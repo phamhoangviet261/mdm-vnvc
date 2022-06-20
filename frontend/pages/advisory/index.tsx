@@ -3,11 +3,16 @@ import { Girl, Banner } from "components";
 import Footer from "layouts/Footer";
 import Header from "layouts/Header";
 import Main from "layouts/Main";
-import { Layout } from "styles/global.styled";
 
 const Home: NextPage = () => {
     return (
-        <Layout>
+        <div
+            style={{
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
             <Header />
             <Main>
                 <Banner
@@ -18,15 +23,15 @@ const Home: NextPage = () => {
                 />
             </Main>
             <Footer />
-        </Layout>
+        </div>
     );
 };
 
 export async function getStaticProps() {
     return {
         props: {
-            title: "Homepage",
-            description: "This is a description for homepage",
+            title: "Tư vấn",
+            description: "This is a description for Tư vấn page",
         },
     };
 }
