@@ -6,7 +6,8 @@ const VaccineSchema = new Schema({
     id: {
         type: String, 
         required: true,
-        unique: true
+        unique: true,
+        index: true,
     },
     name: {
         type: String, 
