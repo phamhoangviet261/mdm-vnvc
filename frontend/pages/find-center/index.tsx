@@ -1,18 +1,14 @@
 import type { NextPage } from "next";
-import { Girl, Banner } from "components";
+import { Banner, NearestCenter } from "components";
 import Footer from "layouts/Footer";
 import Header from "layouts/Header";
 import Main from "layouts/Main";
+import { Layout, Section } from "styles/global.styled";
+import { Container } from "@mui/material";
 
 const Home: NextPage = () => {
     return (
-        <div
-            style={{
-                minHeight: "100vh",
-                display: "flex",
-                flexDirection: "column",
-            }}
-        >
+        <Layout>
             <Header />
             <Main>
                 <Banner
@@ -21,9 +17,14 @@ const Home: NextPage = () => {
                     description="Với hơn 30 phòng khám & phòng tiêm ở mỗi trung tâm"
                     src="/banner/1.png"
                 />
+                <Section>
+                    <Container>
+                        <NearestCenter/>
+                    </Container>
+                </Section>
             </Main>
             <Footer />
-        </div>
+        </Layout>
     );
 };
 
@@ -31,7 +32,7 @@ export async function getStaticProps() {
     return {
         props: {
             title: "Tìm trung tâm",
-            description: "This is a description for homepage",
+            description: "This is a description for find center page",
         },
     };
 }

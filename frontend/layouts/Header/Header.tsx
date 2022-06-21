@@ -24,7 +24,18 @@ const menus = [
 
 const Header: FC<HeaderProps> = () => {
     const router = useRouter();
+
     const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        if (localStorage.getItem("isLogin")) setIsLogin(true);
+    }, []);
+
+    function logout() {
+        localStorage.clear();
+        setIsLogin(false);
+    }
+
     const activeFunction = useCallback(
         (compareRouter: string) => {
             return !!((router.asPath as string) === (compareRouter as string));
@@ -72,14 +83,23 @@ const Header: FC<HeaderProps> = () => {
                                 </button>
                             </form>
                         </div>
-                        <div className="account-logo">
-                            <Link
-                                href={isLogin ? "/my-account" : "/login"}
-                                passHref
-                            >
-                                <AccountCircleIcon />
-                            </Link>
-                        </div>
+                        {isLogin ? (
+                            <div className="account-logo">
+                                <Link
+                                    href={isLogin ? "/my-account" : "/login"}
+                                    passHref
+                                >
+                                    <AccountCircleIcon />
+                                </Link>
+                                <div className="login-text" onClick={logout}>
+                                    Đăng xuất
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="login-text">
+                                <Link href="/login">Đăng nhập</Link>
+                            </div>
+                        )}
                     </HeaderWrapper>
                 </Container>
             </div>
