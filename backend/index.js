@@ -5,7 +5,7 @@ const cors = require('cors')
 const cookieParser = require("cookie-parser");
 const connectDB = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mern-shirobooking.wq7xs.mongodb.net/shirobooking?retryWrites=true&w=majority`)
+        await mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodbcluster.akchj.mongodb.net/MDM-VNVC?retryWrites=true&w=majority`)
 
         console.log("MongoDB connected...");
     } catch (error) {
@@ -39,10 +39,10 @@ app.use(function (req, res, next) {
 app.use(cookieParser());
 
 const authLogin = require('./middlewares/auth').checkLogin
-// const authRoute =  require('./routes/auth')
-// app.use('/auth', authLogin, authRoute)
-app.get((req, res) => {
-    return res.statusCode(400).json("404 ERROR")
+const authRoute =  require('./routes/auth')
+app.use('/auth', authLogin, authRoute)
+app.get('/', (req, res) => {
+    return res.status(400).json("404 ERROR")
 })
 const PORT = process.env.PORT || 5000
 
