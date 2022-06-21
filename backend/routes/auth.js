@@ -10,17 +10,17 @@ const User = require('../models/User')
 // @desc register new user
 // @access public
 router.post('/register', async (req, res) => {   
-    // console.log("reg", req.body); 
-    const {email, password, firstname, lastname} = req.body;
+    console.log("reg", req.body); 
+    const {phone, password, firstname, lastname} = req.body;
     
     // Validation
-    if(!email || !password) return res.status(400).json({success: false, message: 'Missing email or password'})
+    if(!phone || !password) return res.status(400).json({success: false, message: 'Missing phone number or password'})
     try {
         // check existing user
-        const user = await User.findOne({email})
+        const user = await User.findOne({phoneNumber: phone})
 
         if(user){
-            return res.status(400).json({success: false, message: 'Email already taken'})
+            return res.status(400).json({success: false, message: 'Phone number already taken'})
         }
         
         // fine
@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
         // console.log("hashedPassword register", hashedPassword);
         const newUser = new User({
-            email: email,
+            phoneNumber: phone,
             password: hashedPassword,
             firstname: firstname,
             lastname: lastname
@@ -53,17 +53,17 @@ router.post('/register', async (req, res) => {
 // @desc login user
 // @access public
 router.post('/login', async (req, res) => {
-    const {email, password} = req.body;
+    const {phone, password} = req.body;
     // console.log("body", req.body);
     // Validation
-    if(!email || !password) return res.status(400).json({success: false, message: 'Missing email or password'})
+    if(!phone || !password) return res.status(400).json({success: false, message: 'Missing phone or password'})
 
     try {
         // check existing user
         
-        const user = await User.findOne({email})
+        const user = await User.findOne({phoneNumber: phone})
         if(!user){
-            return res.status(400).json({success: false, message: 'Incorrect email or password'})
+            return res.status(400).json({success: false, message: 'Incorrect phone or password'})
         }
 
         // found user
@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
         const passwordValid = await bcrypt.compareSync(password, user.password);
         // console.log("passwordValid", passwordValid)
         if(!passwordValid){
-            return res.status(400).json({success: false, message: 'Incorrect email or password'})
+            return res.status(400).json({success: false, message: 'Incorrect phone or password'})
         }
 
         //return token 
@@ -85,7 +85,7 @@ router.post('/login', async (req, res) => {
             secure: process.env.NODE_ENV === "production",
           })
         .status(200)
-        .json({success: true, message: 'Logged in successfully', name: user.firstname, email:user.email, accessToken})
+        .json({success: true, message: 'Logged in successfully', firstname: user.firstname, phone:user.phoneNumber, accessToken})
     } catch (error) {
         console.log("ERROR: ", error);
         return res.status(500).json({success: false, message: "Internal server error"})
