@@ -85,7 +85,7 @@ router.post('/login', async (req, res) => {
             secure: process.env.NODE_ENV === "production",
           })
         .status(200)
-        .json({success: true, message: 'Logged in successfully', firstname: user.firstname, phone:user.phoneNumber, accessToken})
+        .json({success: true, message: 'Logged in successfully', firstname: user.firstname, phoneNumber :user.phoneNumber, accessToken})
     } catch (error) {
         console.log("ERROR: ", error);
         return res.status(500).json({success: false, message: "Internal server error"})
