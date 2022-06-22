@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState, useRef } from "react";
 import styled from 'styled-components'
 import { theme } from "styles/theme"
 import SearchIcon from "@mui/icons-material/Search";
@@ -97,8 +97,50 @@ export const Title = styled.h1`
   font-weight: bold;
   
 `
+
+interface CenterInterface {
+  id?: number;
+  name?: string;
+  city?: string;
+  address: string;
+}
+const arrayCenter:Array<CenterInterface> = [{
+  id: 1,
+  name: "VNVC Phạm Văn Đồng",
+  city: "HCM",
+  address: "198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM"
+},
+{
+  id: 2,
+  name: "VNVC Kha Vạn Cân",
+  city: "HCM",
+  address: "198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM"
+},
+{
+  id: 3,
+  name: "VNVC Điện Biên Phủ",
+  city: "HN",
+  address: "198 Điện Biên Phủ, P.9, Q.Phú Nhuận, HN"
+}
+]
+
+
 export default function NearestCenter () {
   const [tab, setTab] = useState(true)
+  const [listCenter, setListCenter] = useState<CenterInterface[]>([])
+  const arrayRef = useRef(arrayCenter)
+  useEffect(() => {
+    let tempArr:Array<CenterInterface> = []
+    if (tab){
+      tempArr = arrayRef.current.filter((item)=> item.city == "HCM")
+    }else {
+      tempArr = arrayRef.current.filter((item)=> item.city == "HN")
+    }
+    
+    console.log(tempArr);
+    if (tempArr.length > 0)
+      setListCenter(tempArr)
+  }, [tab])
   return (
     <Wrapper>
         <div className="wrap">
@@ -132,18 +174,15 @@ export default function NearestCenter () {
             </div>
             <div className="list-center">
               <ul>
-                <li>
-                  <h2>VNVC Hoàng Văn Thụ:</h2>
-                  <p>198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM</p>
-                </li>
-                <li>
-                  <h2>VNVC Hoàng Văn Thụ:</h2>
-                  <p>198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM</p>
-                </li>
-                <li>
-                  <h2>VNVC Hoàng Văn Thụ:</h2>
-                  <p>198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM</p>
-                </li>
+                {listCenter.map((item,index)=>
+                   {
+                    return <li key = {index}>
+                    <h2>{item.name}</h2>
+                    <p>{item.address}</p>
+                 </li>
+                   }
+                )}
+               
               </ul>
             </div>
           </div>

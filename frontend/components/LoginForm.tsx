@@ -74,9 +74,13 @@ const LoginForm = () => {
         setPassword("");
         // call api ....
 
-        const result = true;
-        if (result) {
-          localStorage.setItem("isLogin", "true");
+        const userData = {
+            status: true,
+            username: 'KH001',
+        };
+        if (userData.status) {
+          localStorage.setItem("isLogin", JSON.stringify(userData.status));
+          localStorage.setItem("username", JSON.stringify(userData.username));
           router.push('/');
         }
     };
