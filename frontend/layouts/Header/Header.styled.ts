@@ -1,6 +1,7 @@
 import { IconButton } from '@mui/material';
 import styled from 'styled-components'
 import { theme } from "styles/theme"
+
 export const MenuContainer = styled.ul`
 	display: flex;
 	align-items: center;
@@ -43,11 +44,11 @@ export const MenuContainer = styled.ul`
 			}
 		}
 	}
-`
+`;
 
 export const IconButtonStyled = styled(IconButton)`
 	color: #fff;
-`
+`;
 
 export const HeaderStyled = styled.header`
 	max-height: 96px;
@@ -69,8 +70,8 @@ export const HeaderStyled = styled.header`
 		pointer-events: auto;
 		
 	}
-	}
-`
+`;
+
 export const HeaderWrapper = styled.div`
 	display: flex;
 	.menu-container {
@@ -98,8 +99,8 @@ export const HeaderWrapper = styled.div`
 					fill: ${theme?.colors?.blue0};
 				}
 			}
-			& > button:hover {
-				opacity: .8;
+			& > button:hover path{
+				fill: ${theme?.colors?.pink4};
 			}
 		}
 	}
@@ -113,5 +114,16 @@ export const HeaderWrapper = styled.div`
 		& path {
 			color: ${theme?.colors?.blue0};
 		}
-}
+		& path:hover{
+			fill: ${theme?.colors?.pink4};
+		}
+	}
+	.login-text {
+		margin-left: 8px;
+		color: ${theme?.colors?.blue0};
+		line-height: 42px;
+		&:hover {
+			color: ${theme?.colors?.pink4};
+		}
+	}
 `
