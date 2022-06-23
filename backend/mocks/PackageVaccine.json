@@ -1,0 +1,806 @@
+[
+    {
+        "id": "GVC01",
+        "name": "Gói vắc xin Hexaxim",
+        "target": {
+            "targetId":"1",
+            "targetName": "GÓI VẮC XIN CHO TRẺ 0-9 THÁNG"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC05",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC07",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "14",
+        "totalPrice": "14310000"
+    },
+    {
+        "id": "GVC02",
+        "name": "Gói vắc xin Infanrix",
+        "target": {
+            "targetId":"1",
+            "targetName": "GÓI VẮC XIN CHO TRẺ 0-9 THÁNG"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC05",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC02",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC07",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "14",
+        "totalPrice": "14190000"
+    },
+    {
+        "id": "GVC03",
+        "name": "Gói vắc xin Infanrix – Rotarix – Varivax",
+        "target": {
+            "targetId":"2",
+            "targetName": "GÓI VẮC XIN CHO TRẺ 0-12 THÁNG"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC05",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC07",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "2"
+            }
+        ],
+        "totalNumOfInjection": "17",
+        "totalPrice": "17958000"
+    },
+    {
+        "id": "GVC04",
+        "name": "Gói vắc xin Infanrix – Rotarix – Varivax",
+        "target": {
+            "targetId":"3",
+            "targetName": "GÓI VẮC XIN CHO TRẺ 0-24 THÁNG"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC05",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC44",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "19",
+        "totalPrice": "22774000"
+    },
+    {
+        "id": "GVC05",
+        "name": "Gói vắc xin Infanrix – Rotateq – Varivax",
+        "target": {
+            "targetId":"2",
+            "targetName": "GÓI VẮC XIN CHO TRẺ 0-12 THÁNG"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC04",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC07",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "2"
+            }
+        ],
+        "totalNumOfInjection": "17",
+        "totalPrice": "17958000"
+    },
+    {
+        "id": "GVC06",
+        "name": "Gói vắc xin Infanrix – Rotateq  – Varivax",
+        "target": {
+            "targetId":"3",
+            "targetName": "GÓI VẮC XIN CHO TRẺ 0-24 THÁNG"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC04",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC44",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "19",
+        "totalPrice": "22774000"
+    },
+    {
+        "id": "GVC07",
+        "name": "Gói vắc xin Pentaxim – Rotateq",
+        "target": {
+            "targetId":"2",
+            "targetName": "GÓI VẮC XIN CHO TRẺ 0-12 THÁNG"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC04",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC44",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "19",
+        "totalPrice": "18108000"
+    },
+    {
+        "id": "GVC08",
+        "name": "Gói vắc xin cho trẻ 6-24 tháng",
+        "target": {
+            "targetId":"4",
+            "targetName": "Gói vắc xin cho trẻ 6-24 tháng"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC04",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC44",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "17",
+        "totalPrice": "12918000"
+    },
+    {
+        "id": "GVC09",
+        "name": "Gói vắc xin cho trẻ 12-24 tháng",
+        "target": {
+            "targetId":"5",
+            "targetName": "Gói vắc xin cho trẻ 12-24 tháng"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC04",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC03",
+                "numOfInjection": "4"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC17",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC44",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "17",
+        "totalPrice": "12918000"
+    },
+    {
+        "id": "GVC10",
+        "name": "GÓI VẮC XIN CHO TRẺ TIỀN HỌC ĐƯỜNG: GÓI 1",
+        "target": {
+            "targetId":"6",
+            "targetName": "GÓI VẮC XIN CHO TRẺ TIỀN HỌC ĐƯỜNG: 4 Tuổi - 6 Tuổi"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC37",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC18",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC08",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC47",
+                "numOfInjection": "2"
+            }
+        ],
+        "totalNumOfInjection": "10",
+        "totalPrice": "6822000"
+    },
+    {
+        "id": "GVC11",
+        "name": "GÓI VẮC XIN CHO TRẺ TIỀN HỌC ĐƯỜNG: GÓI 2",
+        "target": {
+            "targetId":"6",
+            "targetName": "GÓI VẮC XIN CHO TRẺ TIỀN HỌC ĐƯỜNG: 4 Tuổi - 6 Tuổi"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC37",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC18",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC30",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC08",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC47",
+                "numOfInjection": "2"
+            }
+        ],
+        "totalNumOfInjection": "8",
+        "totalPrice": "5478000"
+    },
+    {
+        "id": "GVC12",
+        "name": "GÓI VẮC XIN CHO TUỔI VỊ THÀNH NIÊN VÀ THANH NIÊN (TỪ 9 TUỔI – 18 TUỔI) GÓI 1",
+        "target": {
+            "targetId":"7",
+            "targetName": "GÓI VẮC XIN CHO TUỔI VỊ THÀNH NIÊN VÀ THANH NIÊN (TỪ 9 TUỔI – 18 TUỔI)"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC26",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC18",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC36",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC08",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "9",
+        "totalPrice": "12078000"
+    },
+    {
+        "id": "GVC13",
+        "name": "GÓI VẮC XIN CHO TUỔI VỊ THÀNH NIÊN VÀ THANH NIÊN (TỪ 9 TUỔI – 18 TUỔI) GÓI 2",
+        "target": {
+            "targetId":"7",
+            "targetName": "GÓI VẮC XIN CHO TUỔI VỊ THÀNH NIÊN VÀ THANH NIÊN (TỪ 9 TUỔI – 18 TUỔI)"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC26",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC18",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC36",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC22",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC08",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "11",
+        "totalPrice": "13518000"
+    },
+    {
+        "id": "GVC14",
+        "name": "GÓI VẮC XIN CHO NGƯỜI TRƯỞNG THÀNH: GÓI 1",
+        "target": {
+            "targetId":"8",
+            "targetName": "GÓI VẮC XIN CHO NGƯỜI TRƯỞNG THÀNH"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC36",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC12",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC23",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC18",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC10",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC08",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "13",
+        "totalPrice": "8420000"
+    },
+    {
+        "id": "GVC15",
+        "name": "GÓI VẮC XIN CHO NGƯỜI TRƯỞNG THÀNH: GÓI 2",
+        "target": {
+            "targetId":"8",
+            "targetName": "GÓI VẮC XIN CHO NGƯỜI TRƯỞNG THÀNH"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC36",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC12",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC23",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC18",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC08",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "10",
+        "totalPrice": "7574000"
+    },
+    {
+        "id": "GVC16",
+        "name": "GÓI VẮC XIN CHO NGƯỜI TRƯỞNG THÀNH: GÓI 3",
+        "target": {
+            "targetId":"8",
+            "targetName": "GÓI VẮC XIN CHO NGƯỜI TRƯỞNG THÀNH"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC36",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC12",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC23",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC18",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC08",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC15",
+                "numOfInjection": "1"
+            }
+        ],
+        "totalNumOfInjection": "13",
+        "totalPrice": "9590000"
+    },
+    {
+        "id": "GVC17",
+        "name": "GÓI VẮC XIN CHO PHỤ NỮ CHUẨN BỊ TRƯỚC MANG THAI: GÓI 1",
+        "target": {
+            "targetId":"9",
+            "targetName": "GÓI VẮC XIN CHO PHỤ NỮ CHUẨN BỊ TRƯỚC MANG THAI"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC18",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC36",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC10",
+                "numOfInjection": "3"
+            },            
+            {
+                "vcid": "VC23",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC28",
+                "numOfInjection": "2"
+            }
+        ],
+        "totalNumOfInjection": "11",
+        "totalPrice": "5360000"
+    },
+    {
+        "id": "GVC18",
+        "name": "GÓI VẮC XIN CHO PHỤ NỮ CHUẨN BỊ TRƯỚC MANG THAI: GÓI 2",
+        "target": {
+            "targetId":"9",
+            "targetName": "GÓI VẮC XIN CHO PHỤ NỮ CHUẨN BỊ TRƯỚC MANG THAI"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC18",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC35",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC23",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC28",
+                "numOfInjection": "2"
+            }
+        ],
+        "totalNumOfInjection": "8",
+        "totalPrice": "4376000"
+    },
+    {
+        "id": "GVC19",
+        "name": "GÓI VẮC XIN CHO PHỤ NỮ CHUẨN BỊ TRƯỚC MANG THAI: GÓI 3",
+        "target": {
+            "targetId":"9",
+            "targetName": "GÓI VẮC XIN CHO PHỤ NỮ CHUẨN BỊ TRƯỚC MANG THAI"
+        },
+        "vaccines": [
+            {
+                "vcid": "VC18",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC19",
+                "numOfInjection": "2"
+            },
+            {
+                "vcid": "VC36",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC41",
+                "numOfInjection": "3"
+            },
+            {
+                "vcid": "VC23",
+                "numOfInjection": "1"
+            },
+            {
+                "vcid": "VC28",
+                "numOfInjection": "2"
+            }
+        ],
+        "totalNumOfInjection": "11",
+        "totalPrice": "6530000"
+    }
+]

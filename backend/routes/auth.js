@@ -83,6 +83,7 @@ router.post('/login', async (req, res) => {
         .cookie("access_token", accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
+            maxAge: 10000,
           })
         .status(200)
         .json({success: true, message: 'Logged in successfully', firstname: user.firstname, phoneNumber :user.phoneNumber, accessToken})

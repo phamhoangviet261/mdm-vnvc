@@ -41,7 +41,9 @@ app.use(cookieParser());
 const authLogin = require('./middlewares/auth').checkLogin
 const authRoute =  require('./routes/auth')
 app.use('/auth', authLogin, authRoute)
-app.get('/', (req, res) => {
+app.use('/vaccine', authLogin, require('./routes/vaccine'))
+app.use('/package', authLogin, require('./routes/packageVaccine'))
+app.get('/', authLogin, (req, res) => {
     return res.status(400).json("404 ERROR")
 })
 const PORT = process.env.PORT || 5000
