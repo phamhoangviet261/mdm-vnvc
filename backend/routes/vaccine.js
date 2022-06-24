@@ -11,6 +11,7 @@ router.get('/', async (req, res, next) => {
         return res.status(200).json({data: vaccines});
     } catch (errors) {
         console.log(errors);
+        return res.status(400).json({success: false, message: errors.message});
     }
     
 })
@@ -23,6 +24,7 @@ router.get('/:vccId', async (req, res, next) => {
         return res.status(200).json({data: vaccine});
     } catch (errors) {
         console.log(errors);
+        return res.status(400).json({success: false, message: errors.message});
     }
     
 })

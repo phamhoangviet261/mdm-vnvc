@@ -12,10 +12,13 @@ const InvoiceSchema = new Schema({
         type: Object, required: true,
     },
     vaccines: {
-        type: Array
+        type: Array,        
     },
     packageVaccines: {
-        type: Array
+        type: Array,        
+    },
+    total: {
+        type: Number,
     }
 }, { timestamps: true })
 

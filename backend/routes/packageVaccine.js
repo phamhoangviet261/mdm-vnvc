@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {
         return res.status(200).json({data: packages});
     } catch (errors) {
         console.log(errors);
+        return res.status(400).json({success: false, message: errors.message});
     }
     
 })
@@ -33,6 +34,7 @@ router.get('/:packageId', async (req, res, next) => {
         return res.status(200).json({data: packages});
     } catch (errors) {
         console.log(errors);
+        return res.status(400).json({success: false, message: errors.message});
     }
     
 })
@@ -53,6 +55,7 @@ router.get('/target/:targetId', async (req, res, next) => {
         return res.status(200).json({data: packages});
     } catch (errors) {
         console.log(errors);
+        return res.status(400).json({success: false, message: errors.message});
     }
     
 })

@@ -1,4 +1,4 @@
-const checkLogin = (req, res, next) => {
+const checkAuth = (req, res, next) => {
     console.log('================================================================');
     console.log('START_CHECK_AUTHENTICATION');
     console.log({res: req.cookies});
@@ -9,5 +9,5 @@ const checkLogin = (req, res, next) => {
 
 
 module.exports = {
-    checkLogin: checkLogin
+    checkAuth: checkAuth
 }

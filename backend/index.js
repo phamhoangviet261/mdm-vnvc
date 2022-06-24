@@ -38,11 +38,12 @@ app.use(function (req, res, next) {
 
 app.use(cookieParser());
 
-const authLogin = require('./middlewares/auth').checkLogin
+const authLogin = require('./middlewares/auth').checkAuth
 const authRoute =  require('./routes/auth')
 app.use('/auth', authLogin, authRoute)
 app.use('/vaccine', authLogin, require('./routes/vaccine'))
-app.use('/package', authLogin, require('./routes/packageVaccine'))
+app.use('/package', authLogin, require('./routes/packageVaccine'));
+app.use('/customer', authLogin, require('./routes/customer'));
 app.get('/', authLogin, (req, res) => {
     return res.status(400).json("404 ERROR")
 })

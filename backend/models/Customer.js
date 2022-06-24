@@ -14,10 +14,11 @@ const CustomerSchema = new Schema({
     },
     age: {
         type: Number, 
-        require: true
+        require: true,
+        min: [0, 'Too few age.']
     },
     address: {
-        type: Array,
+        type: String,
         require: true
     },
     addressDetail: {
