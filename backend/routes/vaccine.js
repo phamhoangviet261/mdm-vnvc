@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:vccId', async (req, res, next) => {
     try {
         console.log("req.params.vccId: ", req.params.vccId);
-        const vaccine = await Vaccine.find({id: req.params.vccId});
+        const vaccine = await Vaccine.findOne({id: req.params.vccId});
         console.log({vcc: vaccine});
         return res.status(200).json({data: vaccine});
     } catch (errors) {

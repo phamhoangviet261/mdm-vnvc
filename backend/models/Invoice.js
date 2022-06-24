@@ -18,7 +18,7 @@ const InvoiceSchema = new Schema({
         type: Array,        
     },
     total: {
-        type: Number,
+        type: Number
     }
 }, { timestamps: true })
 

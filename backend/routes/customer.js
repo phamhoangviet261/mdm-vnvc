@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:phoneNumber', async (req, res, next) => {
     try {
-        const cus = await Customer.find({phoneNumber: req.params.phoneNumber});
+        const cus = await Customer.findOne({phoneNumber: req.params.phoneNumber});
         return res.status(200).json({data: cus});
     } catch (errors) {
         console.log(errors);
