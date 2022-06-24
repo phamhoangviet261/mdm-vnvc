@@ -16,6 +16,9 @@ const RegisterVaccineSchema = new Schema({
     },
     packageVaccines: {
         type: Array
+    },
+    total: {
+        type: Number,
     }
 }, { timestamps: true })
 

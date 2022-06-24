@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon index",
+    "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,7 +18,9 @@
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.0",
-    "neo4j-driver": "^4.4.6",
-    "nodemon": "^2.0.16"
+    "neo4j-driver": "^4.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
   }
 }
