@@ -1,0 +1,425 @@
+[
+    {
+        "id": "VC01",
+        "name": "Infanrix IPV+Hib",
+        "prevention": "Bạch hầu, ho gà, uốn ván, bại liệt và Hib",
+        "producingCountry": "Bỉ",
+        "retailPrice": 785000,
+        "preorderPrice": 942000,
+        "status": "Có"
+    },
+    {
+        "id": "VC02",
+        "name": "Infanrix Hexa (6in1)",
+        "prevention": "Bạch hầu, ho gà, uốn ván, bại liệt, Hib và viêm gan B",
+        "producingCountry": "Bỉ",
+        "retailPrice": 1015000,
+        "preorderPrice": 1218000,
+        "status": "Có"
+    },
+    {
+        "id": "VC03",
+        "name": "Hexaxim (6in1)",
+        "prevention": "Bạch hầu, ho gà, uốn ván, bại liệt, Hib và viêm gan B",
+        "producingCountry": "Pháp",
+        "retailPrice": 1048000,
+        "preorderPrice": 1258000,
+        "status": "Có"
+    },
+    {
+        "id": "VC04",
+        "name": "Rotateq",
+        "prevention": "Rota virus",
+        "producingCountry": "Mỹ",
+        "retailPrice": 665000,
+        "preorderPrice": 798000,
+        "status": "Có"
+    },
+    {
+        "id": "VC05",
+        "name": "Rotarix",
+        "prevention": "Rota virus",
+        "producingCountry": "Bỉ",
+        "retailPrice": 825000,
+        "preorderPrice": 990000,
+        "status": "Có"
+    },
+    {
+        "id": "VC06",
+        "name": "Rotavin-M1",
+        "prevention": "Rota virus",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 490000,
+        "preorderPrice": 588000,
+        "status": "Có"
+    },
+    {
+        "id": "VC07",
+        "name": "Synflorix",
+        "prevention": "Các bệnh do phế cầu",
+        "producingCountry": "Bỉ",
+        "retailPrice": 1045000,
+        "preorderPrice": 1254000,
+        "status": "Có"
+    },
+    {
+        "id": "VC08",
+        "name": "Prevenar 13",
+        "prevention": "Các bệnh do phế cầu",
+        "producingCountry": "Bỉ",
+        "retailPrice": 1290000,
+        "preorderPrice": 1548000,
+        "status": "Có"
+    },
+    {
+        "id": "VC09",
+        "name": "BCG",
+        "prevention": "Lao",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 125000,
+        "preorderPrice": 150000,
+        "status": "Có"
+    },
+    {
+        "id": "VC10",
+        "name": "Engerix B 1ml",
+        "prevention": "Viêm gan B người lớn",
+        "producingCountry": "Bỉ",
+        "retailPrice": 235000,
+        "preorderPrice": 282000,
+        "status": "Có"
+    },
+    {
+        "id": "VC11",
+        "name": "Euvax B 1ml",
+        "prevention": "Viêm gan B người lớn",
+        "producingCountry": "Hàn Quốc",
+        "retailPrice": 170000,
+        "preorderPrice": 204000,
+        "status": "Có"
+    },
+    {
+        "id": "VC12",
+        "name": "Euvax B 0.5ml",
+        "prevention": "Viêm gan B trẻ em",
+        "producingCountry": "Hàn Quốc",
+        "retailPrice": 116000,
+        "preorderPrice": 140000,
+        "status": "Có"
+    },
+    {
+        "id": "VC13",
+        "name": "Engerix B 0,5ml",
+        "prevention": "Viêm gan B trẻ em",
+        "producingCountry": "Bỉ",
+        "retailPrice": 190000,
+        "preorderPrice": 228000,
+        "status": "Có"
+    },
+    {
+        "id": "VC14",
+        "name": "VA-Mengoc-BC",
+        "prevention": "Viêm màng não mô cầu BC",
+        "producingCountry": "Cu Ba",
+        "retailPrice": 295000,
+        "preorderPrice": 354000,
+        "status": "Có"
+    },
+    {
+        "id": "VC15",
+        "name": "Menactra",
+        "prevention": "Viêm màng não mô cầu ACYW",
+        "producingCountry": "Mỹ",
+        "retailPrice": 1260000,
+        "preorderPrice": 1512000,
+        "status": "Có"
+    },
+    {
+        "id": "VC16",
+        "name": "MVVac (Lọ 5ml)",
+        "prevention": "Sởi",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 315000,
+        "preorderPrice": 378000,
+        "status": "Có"
+    },
+    {
+        "id": "VC17",
+        "name": "MVVac (Liều 0.5ml)",
+        "prevention": "Sởi",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 180000,
+        "preorderPrice": 216000,
+        "status": "Có"
+    },
+    {
+        "id": "VC18",
+        "name": "MMR II (3 in 1)",
+        "prevention": "Sởi – Quai bị – Rubella",
+        "producingCountry": "Mỹ",
+        "retailPrice": 305000,
+        "preorderPrice": 366000,
+        "status": "Có"
+    },
+    {
+        "id": "VC19",
+        "name": "Varivax",
+        "prevention": "Thủy đậu",
+        "producingCountry": "Mỹ",
+        "retailPrice": 305000,
+        "preorderPrice": 366000,
+        "status": "Có"
+    },
+    {
+        "id": "VC20",
+        "name": "Varilrix",
+        "prevention": "Thủy đậu",
+        "producingCountry": "Bỉ",
+        "retailPrice": 915000,
+        "preorderPrice": 1098000,
+        "status": "Có"
+    },
+    {
+        "id": "VC21",
+        "name": "Varicella",
+        "prevention": "Thủy đậu",
+        "producingCountry": "Hàn Quốc",
+        "retailPrice": 700000,
+        "preorderPrice": 840000,
+        "status": "Có"
+    },
+    {
+        "id": "VC22",
+        "name": "Vaxigrip Tetra 0.5ml",
+        "prevention": "Cúm",
+        "producingCountry": "Pháp",
+        "retailPrice": 356000,
+        "preorderPrice": 428000,
+        "status": "Có"
+    },
+    {
+        "id": "VC23",
+        "name": "Influvac tetra 0,5ml",
+        "prevention": "Cúm",
+        "producingCountry": "Hà Lan",
+        "retailPrice": 356000,
+        "preorderPrice": 428000,
+        "status": "Có"
+    },
+    {
+        "id": "VC24",
+        "name": "GCFlu Quadrivalent 0,5ml",
+        "prevention": "Cúm",
+        "producingCountry": "Hàn Quốc",
+        "retailPrice": 345000,
+        "preorderPrice": 415000,
+        "status": "Có"
+    },
+    {
+        "id": "VC25",
+        "name": "Ivacflu-S 0,5ml",
+        "prevention": "Cúm (người lớn > 18 tuổi)",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 190000,
+        "preorderPrice": 228000,
+        "status": "Có"
+    },
+    {
+        "id": "VC26",
+        "name": "Gardasil",
+        "prevention": "Ung thư cổ tử cung và sùi mào gà",
+        "producingCountry": "Mỹ",
+        "retailPrice": 1790000,
+        "preorderPrice": 2148000,
+        "status": "Có"
+    },
+    {
+        "id": "VC27",
+        "name": "Gardasil 9",
+        "prevention": "Ung thư cổ tử cung và sùi mào gà",
+        "producingCountry": "Mỹ",
+        "retailPrice": 2950000,
+        "preorderPrice": 3540000,
+        "status": "Có"
+    },
+    {
+        "id": "VC28",
+        "name": "VAT",
+        "prevention": "Phòng uốn ván",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 115000,
+        "preorderPrice": 138000,
+        "status": "Có"
+    },
+    {
+        "id": "VC29",
+        "name": "SAT (huyết thanh kháng độc tố uốn ván)",
+        "prevention": "Phòng uốn ván",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 100000,
+        "preorderPrice": 120000,
+        "status": "Có"
+    },
+    {
+        "id": "VC30",
+        "name": "Imojev",
+        "prevention": "Viêm não Nhật Bản",
+        "producingCountry": "Thái Lan",
+        "retailPrice": 665000,
+        "preorderPrice": 798000,
+        "status": "Có"
+    },
+    {
+        "id": "VC31",
+        "name": "Jevax 1ml",
+        "prevention": "Viêm não Nhật Bản",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 170000,
+        "preorderPrice": 204000,
+        "status": "Có"
+    },
+    {
+        "id": "VC32",
+        "name": "Verorab 0,5ml (TB, TTD)",
+        "prevention": "Vắc xin phòng dại",
+        "producingCountry": "Pháp",
+        "retailPrice": 323000,
+        "preorderPrice": 388000,
+        "status": "Có"
+    },
+    {
+        "id": "VC33",
+        "name": "Abhayrab 0,5ml (TB)",
+        "prevention": "Vắc xin phòng dại",
+        "producingCountry": "Ấn Độ",
+        "retailPrice": 255000,
+        "preorderPrice": 306000,
+        "status": "Có"
+    },
+    {
+        "id": "VC34",
+        "name": "Abhayrab 0,5ml (TTD)",
+        "prevention": "Vắc xin phòng dại",
+        "producingCountry": "Ấn Độ",
+        "retailPrice": 215000,
+        "preorderPrice": 258000,
+        "status": "Có"
+    },
+    {
+        "id": "VC35",
+        "name": "Adacel",
+        "prevention": "Bạch hầu – Uốn ván – Ho gà",
+        "producingCountry": "Canada",
+        "retailPrice": 620000,
+        "preorderPrice": 744000,
+        "status": "Có"
+    },
+    {
+        "id": "VC36",
+        "name": "Boostrix",
+        "prevention": "Bạch hầu – Uốn ván – Ho gà",
+        "producingCountry": "Bỉ",
+        "retailPrice": 735000,
+        "preorderPrice": 882000,
+        "status": "Có"
+    },
+    {
+        "id": "VC37",
+        "name": "Tetraxim",
+        "prevention": "Bạch hầu – Ho gà – Uốn ván – Bại liệt",
+        "producingCountry": "Pháp",
+        "retailPrice": 458000,
+        "preorderPrice": 550000,
+        "status": "Có"
+    },
+    {
+        "id": "VC38",
+        "name": "Uốn ván, bạch hầu hấp phụ (Td)-Lọ 0,5ml",
+        "prevention": "Bạch hầu – Uốn ván",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 125000,
+        "preorderPrice": 150000,
+        "status": "Có"
+    },
+    {
+        "id": "VC39",
+        "name": "Uốn ván, bạch hầu hấp phụ (Td)-Liều 0,5 ml",
+        "prevention": "Bạch hầu – Uốn ván",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 95000,
+        "preorderPrice": 114000,
+        "status": "Có"
+    },
+    {
+        "id": "VC40",
+        "name": "Uốn ván, bạch hầu hấp phụ (Td)-Lọ 5 ml",
+        "prevention": "Bạch hầu – Uốn ván",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 580000,
+        "preorderPrice": 696000,
+        "status": "Có"
+    },
+    {
+        "id": "VC41",
+        "name": "Twinrix",
+        "prevention": "Viêm gan B và Viêm gan A",
+        "producingCountry": "Bỉ",
+        "retailPrice": 560000,
+        "preorderPrice": 672000,
+        "status": "Có"
+    },
+    {
+        "id": "VC42",
+        "name": "Havax 0,5ml",
+        "prevention": "Viêm gan A",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 235000,
+        "preorderPrice": 282000,
+        "status": "Có"
+    },
+    {
+        "id": "VC43",
+        "name": "AVAXIM 80U",
+        "prevention": "Viêm gan A",
+        "producingCountry": "Pháp",
+        "retailPrice": 590000,
+        "preorderPrice": 708000,
+        "status": "Có"
+    },
+    {
+        "id": "VC44",
+        "name": "Typhoid VI",
+        "prevention": "Thương hàn",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 145000,
+        "preorderPrice": 174000,
+        "status": "Có"
+    },
+    {
+        "id": "VC45",
+        "name": "Typhim VI",
+        "prevention": "Thương hàn",
+        "producingCountry": "Pháp",
+        "retailPrice": 300000,
+        "preorderPrice": 360000,
+        "status": "Có"
+    },
+    {
+        "id": "VC46",
+        "name": "Quimi-Hib",
+        "prevention": "Các bệnh do Hib",
+        "producingCountry": "Cu Ba",
+        "retailPrice": 239000,
+        "preorderPrice": 287000,
+        "status": "Có"
+    },
+    {
+        "id": "VC47",
+        "name": "mORCVAX",
+        "prevention": "Tả",
+        "producingCountry": "Việt Nam",
+        "retailPrice": 115000,
+        "preorderPrice": 138000,
+        "status": "Có"
+    }
+]
