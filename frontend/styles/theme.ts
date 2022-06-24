@@ -31,6 +31,7 @@ export const theme = {
 		grey5: '#777f8d',
 		grey6: '#858c99',
 		grey7: '#9399a5',
+		grey8: "#f2f2f2",
 		jade1: '#1d8c5d',
 		jade2: '#21a16b',
 		jade3: '#26b679',

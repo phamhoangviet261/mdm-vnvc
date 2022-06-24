@@ -19,7 +19,7 @@ const Home: NextPage = () => {
                 />
                 <Section>
                     <Container>
-                        <NearestCenter/>
+                        <NearestCenter />
                     </Container>
                 </Section>
             </Main>
