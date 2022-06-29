@@ -3,7 +3,7 @@ import styled from "styled-components";
 import VaccineItem from "./VaccineItem";
 import { Grid } from "@mui/material";
 import { RegisVcContext } from "components/context/RegisVcContext";
-
+import axios from "axios";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -34,9 +34,10 @@ const PackageContainer = styled.div`
 `;
 
 const CateItem = styled.li`
-    margin-left: 28px;
+    margin-left: 18px;
     padding: 4px 2px;
     cursor: pointer;
+    text-transform: uppercase;
     transition: 0.3s all linear;
     &:hover {
         opacity: 0.8;
@@ -52,84 +53,99 @@ interface PackageProps {
 }
 
 interface PackagesProps {
-    packageTypeId: string;
-    packageTypeName: string;
-    packagesList: PackageProps[];
+    listCate2: TargetInterface[];
+    listPackage2: PackagesListInterface[];
 }
 
-const listPackages: Array<PackagesProps> = [
-    {
-        packageTypeId: "PT01",
-        packageTypeName: "Vắc xin cho trẻ em / 0-9 Tháng",
-        packagesList: [
-            {
-                id: "PT0101",
-                title: "GÓI VẮC XIN Hexaxim (0-9 THÁNG) - GÓI LINH ĐỘNG 1",
-                description:
-                    "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-                price: 14300000,
-            },
-            {
-                id: "PT0102",
-                title: "GÓI VẮC XIN Hexaxim (0-9 THÁNG) - GÓI LINH ĐỘNG 2",
-                description:
-                    "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-                price: 14724000,
-            },
-            {
-                id: "PT0103",
-                title: "GÓI VẮC XIN Infanrix (0-9 tháng) - GÓI LINH ĐỘNG 1",
-                description:
-                    "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-                price: 14190000,
-            },
-        ],
-    },
-    {
-        packageTypeId: "PT02",
-        packageTypeName: "Vắc xin cho trẻ em / 0-12 Tháng",
-        packagesList: [
-            {
-                id: "PT0201",
-                title: "GÓI VẮC XIN INFANRIX - ROTATEQ - VARILRIX (0-12 THÁNG)",
-                description:
-                    "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-                price: 14300000,
-            },
-            {
-                id: "PT0202",
-                title: "GÓI VẮC XIN INFANRIX - ROTATEQ - VARIVAX (0-12 tháng)",
-                description:
-                    "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-                price: 14724000,
-            },
-            {
-                id: "PT0203",
-                title: "GÓI VẮC XIN INFANRIX - ROTARIX - VARILRIX (0-12 tháng)",
-                description:
-                    "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-                price: 14190000,
-            },
-        ],
-    },
-];
+interface TargetInterface {
+    targetId: string;
+    targetName: string;
+}
 
-export default function Category() {
-    const [packageCate, setPackageCate] =
-        useState<PackagesProps[]>(listPackages);
-    const [packageTypeId, setPackageTypeId] = useState("PT01");
-    const [packagesList, setPackagesList] = useState<PackageProps[]>([]);
+interface VaccineInterface {
+    vcid: string;
+    numOfInjection: string;
+}
+
+interface PackagesListInterface {
+    target: TargetInterface;
+    vaccines: VaccineInterface[];
+    _id: string;
+    id: string;
+    name: string;
+    totalPrice: number;
+    totalNumOfInjection: number;
+    description: string[];
+}
+
+function uniqueTarget(arr: PackagesListInterface[]) {
+    let newArr = [];
+    let temp = 0;
+    arr.forEach(function (item) {
+        temp = 0;
+        for (let item2 of newArr) {
+            if (item.target.targetId == item2.target.targetId) {
+                temp = 1;
+                break;
+            }
+        }
+        if (temp == 0) {
+            newArr.push(item);
+        }
+    });
+
+    let result: TargetInterface[] = [];
+    result = newArr.map((item) => item.target);
+    return result;
+}
+
+export default function Category({ listCate2, listPackage2 }: PackagesProps) {
+    const [listPackage, setListPackage] =
+        useState<PackagesListInterface[]>(listPackage2);
+    const [listCate, setListCate] = useState<TargetInterface[]>(listCate2);
+    const [selectedPackageId, setSelectedPackageId] = useState("1");
+    const [listPackageEachCate, setListPackageEachCate] = useState<
+        PackagesListInterface[]
+    >([]);
     const [selectedPackages, setSelectedPackages] = useState([]);
 
     const regisVcContext = useContext(RegisVcContext);
 
     useEffect(() => {
-        let arrPackages = packageCate.filter(
-            (item) => item.packageTypeId == packageTypeId
+        let arrPackages = listPackage.filter(
+            (item) => item.target.targetId == selectedPackageId
         );
-        setPackagesList(arrPackages[0].packagesList);
-        console.log(arrPackages[0].packagesList);
-    }, [packageTypeId]);
+        setListPackageEachCate(arrPackages);
+    }, [selectedPackageId]);
+
+    useEffect(() => {
+        let tempArr: PackagesListInterface[] = [];
+        tempArr = listPackage.filter(
+            (item) => item.target.targetId == selectedPackageId
+        );
+        console.log("hehe:", tempArr);
+        setListPackageEachCate(tempArr);
+    }, [listCate]);
+
+    //call api get list of packages
+    // useEffect(() => {
+    //     console.log("ki z ta");
+    //     let arrCate = [];
+    //     axios({
+    //         method: "GET",
+    //         url: "http://localhost:5000/package/",
+    //         data: null,
+    //     })
+    //         .then(function (res) {
+    //             arrCate = uniqueTarget(res.data.data);
+    //             setListCate(arrCate);
+    //             setListPackage(res.data.data);
+    //             console.log(res.data.data);
+    //         })
+    //         .catch(function (err) {
+    //             console.log(err);
+    //         });
+    // }, []);
 
     const handleChoosePackage = (id: string) => {
         let tempArr = [];
@@ -153,31 +169,36 @@ export default function Category() {
                 <SubCategory>
                     <h5>Danh mục gói vắc xin</h5>
                     <ul>
-                        {packageCate.map((item, index) => {
-                            if (item.packageTypeId === packageTypeId)
-                                return (
-                                    <CateItem
-                                        style={{ color: "#2A388F" }}
-                                        onClick={() =>
-                                            setPackageTypeId(item.packageTypeId)
-                                        }
-                                        key={item.packageTypeId}
-                                    >
-                                        {item.packageTypeName}
-                                    </CateItem>
-                                );
-                            else
-                                return (
-                                    <CateItem
-                                        onClick={() =>
-                                            setPackageTypeId(item.packageTypeId)
-                                        }
-                                        key={item.packageTypeId}
-                                    >
-                                        {item.packageTypeName}
-                                    </CateItem>
-                                );
-                        })}
+                        {listCate &&
+                            listCate.map((item, index) => {
+                                if (item.targetId === selectedPackageId)
+                                    return (
+                                        <CateItem
+                                            style={{ color: "#2A388F" }}
+                                            onClick={() =>
+                                                setSelectedPackageId(
+                                                    item.targetId
+                                                )
+                                            }
+                                            key={item.targetId}
+                                        >
+                                            - {item.targetName}
+                                        </CateItem>
+                                    );
+                                else
+                                    return (
+                                        <CateItem
+                                            onClick={() =>
+                                                setSelectedPackageId(
+                                                    item.targetId
+                                                )
+                                            }
+                                            key={item.targetId}
+                                        >
+                                            - {item.targetName}
+                                        </CateItem>
+                                    );
+                            })}
                     </ul>
                 </SubCategory>
                 <PackageContainer>
@@ -186,8 +207,8 @@ export default function Category() {
                         rowSpacing={1}
                         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                     >
-                        {packagesList.length > 0 &&
-                            packagesList.map((item) => (
+                        {listPackageEachCate.length > 0 &&
+                            listPackageEachCate.map((item) => (
                                 <Grid
                                     key={item.id}
                                     onClick={() => handleChoosePackage(item.id)}
@@ -196,9 +217,11 @@ export default function Category() {
                                 >
                                     <VaccineItem
                                         id={item.id}
-                                        title={item.title}
-                                        description={item.description}
-                                        price={item.price}
+                                        title={item.name}
+                                        description={item.description.join(
+                                            ". "
+                                        )}
+                                        price={item.totalPrice}
                                     />
                                 </Grid>
                             ))}

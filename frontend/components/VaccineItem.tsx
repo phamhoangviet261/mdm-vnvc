@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import { RegisVcContext } from "./context/RegisVcContext";
 const PackageWrapper = styled.div`
     height: 100%;
     border: 1px solid #dcdfe6;
     padding: 9px 20px 9px 10px;
     border-radius: 4px;
     display: flex;
+    cursor: pointer;
     .checkbox {
         width: 20px;
     }
@@ -58,6 +60,18 @@ export default function Package({
     const handleClick = () => {
         setClick(!click);
     };
+
+    const regisVcContext = useContext(RegisVcContext);
+
+    useEffect(() => {
+        console.log("Hello");
+        setClick(
+            regisVcContext.listPackages.some((item) => {
+                return item == id;
+            })
+        );
+    }, []);
+
     if (!click) {
         return (
             <PackageWrapper onClick={handleClick}>
@@ -67,7 +81,9 @@ export default function Package({
                 <div className="content">
                     <div className="content-top">
                         <div className="title">{title}</div>
-                        <div className="price">{price}đ</div>
+                        <div className="price">
+                            {price.toLocaleString("vi")}đ
+                        </div>
                     </div>
                     <div className="content-bottom">{description}</div>
                 </div>
@@ -85,7 +101,9 @@ export default function Package({
                 <div className="content">
                     <div className="content-top">
                         <div className="title">{title}</div>
-                        <div className="price">{price}đ</div>
+                        <div className="price">
+                            {price.toLocaleString("vi")}đ
+                        </div>
                     </div>
                     <div className="content-bottom">{description}</div>
                 </div>
