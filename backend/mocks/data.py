@@ -9,10 +9,10 @@ myclient = MongoClient("mongodb+srv://IEwDYeP7dz:mdm-p7Thrs2awb@mongodbcluster.a
 db = myclient["MDM-VNVC"]
    
 # Created or Switched to collection 
-Collection = db["packagevaccines"]
+Collection = db["centers"]
   
 # Loading or Opening the json file
-with open('PackageVaccine.json', encoding="utf8") as file:
+with open('Center.json', encoding="utf8") as file:
     file_data = json.load(file)
       
 # Inserting the loaded data in the Collection
