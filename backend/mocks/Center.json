@@ -13,7 +13,7 @@
         "id": "CEN1",
         "name": "VNVC ICON 4 Cầu Giấy", 
         "address": "ADR1", 
-        "addressDetail": "Tòa nhà Icon 4, Số 3 Cầu Giấy, P.Láng Thượng, Q.Đống Đa, TP.Hà Nội (Cạnh ĐH Giao Thông Vận Tải)",
+        "addressDetail": "Tòa nhà Icon 4, Số 3 Cầu Giấy, P.Láng Thượng, Q.Đống Đa, TP.Hà Nội",
         "googleMap": {
             "link": "https://goo.gl/maps/Bo1rFAjUMA22"
         },
@@ -173,7 +173,7 @@
         "id": "CEN17",
         "name": "VNVC Bình Thạnh", 
         "address": "ADR17", 
-        "addressDetail": "L1-07,08 Tầng 01 Khối A&C Cao ốc chung cư Richmond City, số 207C Nguyễn Xí, P.26, Q.Bình Thạnh, TP.HCM (gần Cầu Đỏ)",
+        "addressDetail": "L1-07,08 Tầng 01 Khối A&C Cao ốc chung cư Richmond City, số 207C Nguyễn Xí, P.26, Q.Bình Thạnh, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/55oXiJfWPVcTFhoT7"
         },
@@ -183,7 +183,7 @@
         "id": "CEN18",
         "name": "VNVC Tân Phú", 
         "address": "ADR18", 
-        "addressDetail": "Tầng 1, toà nhà Oriental Plaza, 685 Âu Cơ, P.Tân Thành, Q.Tân Phú, TP.HCM (ngay Top Market)",
+        "addressDetail": "Tầng 1, toà nhà Oriental Plaza, 685 Âu Cơ, P.Tân Thành, Q.Tân Phú, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/sH9fSzQZLkKJqLZs6"
         },
