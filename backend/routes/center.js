@@ -3,7 +3,6 @@ const router = express.Router()
 
 const Center = require('../models/Center')
 const mongoose = require('mongoose')
-
 router.get('/', async (req, res, next) => {
     try {
         const centers = await Center.find();
@@ -48,5 +47,4 @@ router.post('/add', async (req, res, next) => {
     }
     
 })
-
 module.exports = router
