@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import axios from "axios";
 import {
     InjectorInfo,
     RelatedInfo,
@@ -173,7 +174,10 @@ const data: Array<CenterInterface> = [
     },
 ];
 
-const Home: NextPage = () => {
+const Home: NextPage = ({
+    listCate,
+    listPackage,
+}: RegisterVaccinesInterface) => {
     const [tabTypeRegis, setTabTypeRegis] = useState(true);
     const [tabTypeVaccine, setTabTypeVaccine] = useState(true);
     const [center, setCenter] = useState("");
@@ -206,10 +210,6 @@ const Home: NextPage = () => {
             [e.target.name]: e.target.value,
         });
     }
-
-    useEffect(() => {
-        console.log("service-data:", serviceInfoData);
-    }, [serviceInfoData]);
 
     function handleChangeCity(city: string) {
         setCity(city);
@@ -421,7 +421,14 @@ const Home: NextPage = () => {
                                     </Item>
                                 </Grid>
                             </Grid>
-                            {tabTypeVaccine ? <Packages /> : <Vaccines />}
+                            {tabTypeVaccine ? (
+                                <Packages
+                                    listCate2={listCate}
+                                    listPackage2={listPackage}
+                                />
+                            ) : (
+                                <Vaccines />
+                            )}
                         </ServiceContent>
                         <SubmitButton onClick={handleSubmit}>
                             Hoàn thành đăng ký
@@ -434,11 +441,75 @@ const Home: NextPage = () => {
     );
 };
 
+interface TargetInterface {
+    targetId: string;
+    targetName: string;
+}
+
+interface VaccineInterface {
+    vcid: string;
+    numOfInjection: string;
+}
+
+interface PackagesListInterface {
+    target: TargetInterface;
+    vaccines: VaccineInterface[];
+    _id: string;
+    id: string;
+    name: string;
+    totalPrice: number;
+    totalNumOfInjection: number;
+    description: string[];
+}
+
+interface RegisterVaccinesInterface {
+    listCate: TargetInterface[];
+    listPackage: PackagesListInterface[];
+}
+
+function uniqueTarget(arr: PackagesListInterface[]) {
+    let newArr = [];
+    let temp = 0;
+    arr.forEach(function (item) {
+        temp = 0;
+        for (let item2 of newArr) {
+            if (item.target.targetId == item2.target.targetId) {
+                temp = 1;
+                break;
+            }
+        }
+        if (temp == 0) {
+            newArr.push(item);
+        }
+    });
+
+    let result: TargetInterface[] = [];
+    result = newArr.map((item) => item.target);
+    return result;
+}
+
 export async function getStaticProps() {
+    let listCate: TargetInterface[] = [];
+    let listPackage: PackagesListInterface[] = [];
+    await axios({
+        method: "GET",
+        url: "http://localhost:5000/package/",
+        data: null,
+    })
+        .then(function (res) {
+            console.log("hello");
+            listCate = uniqueTarget(res.data.data);
+            listPackage = res.data.data;
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
     return {
         props: {
             title: "Tìm trung tâm",
             description: "This is a description for homepage",
+            listCate,
+            listPackage,
         },
     };
 }
