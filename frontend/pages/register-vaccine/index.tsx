@@ -177,6 +177,7 @@ const data: Array<CenterInterface> = [
 const Home: NextPage = ({
     listCate,
     listPackage,
+    listVaccines,
 }: RegisterVaccinesInterface) => {
     const [tabTypeRegis, setTabTypeRegis] = useState(true);
     const [tabTypeVaccine, setTabTypeVaccine] = useState(true);
@@ -427,7 +428,7 @@ const Home: NextPage = ({
                                     listPackage2={listPackage}
                                 />
                             ) : (
-                                <Vaccines />
+                                <Vaccines vaccines={listVaccines} />
                             )}
                         </ServiceContent>
                         <SubmitButton onClick={handleSubmit}>
@@ -465,6 +466,14 @@ interface PackagesListInterface {
 interface RegisterVaccinesInterface {
     listCate: TargetInterface[];
     listPackage: PackagesListInterface[];
+    listVaccines: VaccinePropsInterface[];
+}
+
+interface VaccinePropsInterface {
+    id: string;
+    title: string;
+    description: string;
+    price: number;
 }
 
 function uniqueTarget(arr: PackagesListInterface[]) {
@@ -491,6 +500,7 @@ function uniqueTarget(arr: PackagesListInterface[]) {
 export async function getStaticProps() {
     let listCate: TargetInterface[] = [];
     let listPackage: PackagesListInterface[] = [];
+    let listVaccines: VaccinePropsInterface[] = [];
     await axios({
         method: "GET",
         url: "http://localhost:5000/package/",
@@ -504,12 +514,29 @@ export async function getStaticProps() {
         .catch(function (err) {
             console.log(err);
         });
+    await axios({
+        method: "GET",
+        url: "http://localhost:5000/vaccine/",
+        data: null,
+    })
+        .then(function (res) {
+            listVaccines = res.data.data.map((item: any) => ({
+                id: item.id,
+                title: item.name,
+                description: item.prevention,
+                price: item.preorderPrice,
+            }));
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
     return {
         props: {
             title: "Tìm trung tâm",
             description: "This is a description for homepage",
             listCate,
             listPackage,
+            listVaccines,
         },
     };
 }
