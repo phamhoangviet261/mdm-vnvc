@@ -11,8 +11,9 @@ const ExpertSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     degrees: { type: Array, required: true },
-    researches: { type: Array, required: true },
+    researches: { type: Array },
     center: { type: String, required: true },
+    status: { type: String, required: true },
 }, { timestamps: true })
 
 module.exports = mongoose.model('experts', ExpertSchema)

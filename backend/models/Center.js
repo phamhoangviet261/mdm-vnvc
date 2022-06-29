@@ -10,7 +10,11 @@ const CenterSchema = new Schema({
     },
     name: { type: String, required: true },
     address: { type: String },
-    addresDetail: { type: String },
+    addressDetail: { type: String },
+    googleMap:{
+        type: Object
+    },
+    status: { type: String, required: true },
 }, { timestamps: true })
 
 module.exports = mongoose.model('centers', CenterSchema)

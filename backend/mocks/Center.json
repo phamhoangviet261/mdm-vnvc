@@ -1,0 +1,203 @@
+[
+    {
+        "id": "CEN0",
+        "name": "VNVC Trường Chinh", 
+        "address": "ADR0", 
+        "addressDetail": "180 Trường Chinh, P.Khương Thượng, Q.Đống Đa, TP.Hà Nội",
+        "googleMap": {
+            "link": "https://goo.gl/maps/hhHF5mQh6wy"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN1",
+        "name": "VNVC ICON 4 Cầu Giấy", 
+        "address": "ADR1", 
+        "addressDetail": "Tòa nhà Icon 4, Số 3 Cầu Giấy, P.Láng Thượng, Q.Đống Đa, TP.Hà Nội (Cạnh ĐH Giao Thông Vận Tải)",
+        "googleMap": {
+            "link": "https://goo.gl/maps/Bo1rFAjUMA22"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN2",
+        "name": "VNVC Hà Đông", 
+        "address": "ADR2", 
+        "addressDetail": "Tầng 3, tòa nhà NewSkyline, lô CC2 khu đô thị mới Văn Quán - Yên Phúc, Q.Hà Đông, TP.Hà Nội",
+        "googleMap": {
+            "link": "https://goo.gl/maps/vJjugxaKUZNrx212A"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN3",
+        "name": "VNVC Mỹ Đình", 
+        "address": "ADR3", 
+        "addressDetail": "Tầng 2- Tháp R1 tòa nhà Florence, số 28 đường Trần Hữu Dực, P.Cầu Diễn, Q.Nam Từ Liêm, TP.Hà Nội",
+        "googleMap": {
+            "link": "https://goo.gl/maps/kzCruCs38Zzm4sUXA"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN4",
+        "name": "VNVC Đông Anh", 
+        "address": "ADR4", 
+        "addressDetail": "Thôn Đản Mỗ, xã Uy Nỗ, huyện Đông Anh, TP.Hà Nội",
+        "googleMap": {
+            "link": "https://goo.gl/maps/eZSwnMabJR3f4aR39"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN5",
+        "name": "VNVC Nguyễn Thái Học", 
+        "address": "ADR5", 
+        "addressDetail": "Tầng B1 Tòa nhà DOJI TOWER, 05 Lê Duẩn, P.Điện Biên, Q.Ba Đình, TP.Hà Nội",
+        "googleMap": {
+            "link": "https://goo.gl/maps/tLrwNKrm2ftctryr7"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN6",
+        "name": "VNVC Sơn Tây", 
+        "address": "ADR6", 
+        "addressDetail": "Số 1 La Thành, P.Phú Thịnh, Thị Xã Sơn Tây, TP.Hà Nội",
+        "googleMap": {
+            "link": "https://goo.gl/maps/hZRtetPNqYahrR677"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN7",
+        "name": "VNVC Long Biên", 
+        "address": "ADR7", 
+        "addressDetail": "Số 69A1, đường Hoàng Như Tiếp, P.Bồ Đề, Q.Long Biên, TP.Hà Nội",
+        "googleMap": {
+            "link": "https://goo.gl/maps/Eq1icGbWfnvSrLgf7"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN8",
+        "name": "VNVC Hoàng Văn Thụ", 
+        "address": "ADR8", 
+        "addressDetail": "198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/mt1sUfJSLqJ2"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN9",
+        "name": "VNVC Cantavil An Phú", 
+        "address": "ADR9", 
+        "addressDetail": "Lầu 1, Trung tâm thương mại Cantavil An Phú, Số 1 đường Song Hành, P.An Phú, Q.2, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/AkSdwCLwpcy37nzt9"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN10",
+        "name": "VNVC Cantavil An Phú", 
+        "address": "ADR10", 
+        "addressDetail": "Lầu 1, Trung tâm thương mại Cantavil An Phú, Số 1 đường Song Hành, P.An Phú, Q.2, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/AkSdwCLwpcy37nzt9"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN11",
+        "name": "VNVC Lê Đại Hành", 
+        "address": "ADR11", 
+        "addressDetail": "Lầu 1, Trung tâm thương mại Flemington, Cao ốc Bảo Gia, 184 Lê Đại Hành, P.15, Q.11, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/mdoRo5AWM8Gf1RgA6"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN12",
+        "name": "VNVC Quận 12", 
+        "address": "ADR12", 
+        "addressDetail": "Số 8 đường Trung Mỹ Tây 2A, KP5, P.Trung Mỹ Tây, Q.12, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/NSx4Gk77tQrf71p8A"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN13",
+        "name": "VNVC Thủ Đức", 
+        "address": "ADR13", 
+        "addressDetail": "Tầng 2, Cao ốc chung cư Moonlight Residences, Số 102 Đặng Văn Bi, P.Bình Thọ, Q.Thủ Đức, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/n9ewhp6J8HwMxR3D6"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN14",
+        "name": "VNVC Bình Chánh", 
+        "address": "ADR14", 
+        "addressDetail": "Tầng 2, Cao ốc chung cư Saigon Mia, Số 9A chung cư cụm III,IV - Khu dân cư Trung Sơn, xã Bình Hưng, huyện Bình Chánh, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/a6ZRzdUxQTgeNt8W7"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN15",
+        "name": "VNVC Bình Tân", 
+        "address": "ADR15", 
+        "addressDetail": "Số 179 Vành Đai Trong, P.Bình Trị Đông B, Q.Bình Tân, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/movjFs1UdiuHk8sr7"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN16",
+        "name": "VNVC Quận 7", 
+        "address": "ADR16", 
+        "addressDetail": "Phòng số U1&2 tầng trệt, tòa nhà Broadway D, 152 Nguyễn Lương Bằng, P.Tân Phú, Q.7, TP.HCM",
+        "googleMap": {
+            "link": "https://goo.gl/maps/fezP6UdSQYwX6uSw8"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN17",
+        "name": "VNVC Bình Thạnh", 
+        "address": "ADR17", 
+        "addressDetail": "L1-07,08 Tầng 01 Khối A&C Cao ốc chung cư Richmond City, số 207C Nguyễn Xí, P.26, Q.Bình Thạnh, TP.HCM (gần Cầu Đỏ)",
+        "googleMap": {
+            "link": "https://goo.gl/maps/55oXiJfWPVcTFhoT7"
+        },
+        "status": "active"
+    },
+    {
+        "id": "CEN18",
+        "name": "VNVC Tân Phú", 
+        "address": "ADR18", 
+        "addressDetail": "Tầng 1, toà nhà Oriental Plaza, 685 Âu Cơ, P.Tân Thành, Q.Tân Phú, TP.HCM (ngay Top Market)",
+        "googleMap": {
+            "link": "https://goo.gl/maps/sH9fSzQZLkKJqLZs6"
+        },
+        "status": "active"
+    }
+    ,
+    {
+        "id": "CEN19",
+        "name": "VNVC Quận 1", 
+        "address": "ADR19", 
+        "addressDetail": "Tầng 2, Trung tâm thương mại NOWZONE, 235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Quận 1, TP. Hồ Chí Minh",
+        "googleMap": {
+            "link": "https://g.page/nowzone-fashion-mall?share"
+        },
+        "status": "active"
+    }
+]
