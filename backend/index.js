@@ -35,7 +35,9 @@ app.use(function (req, res, next) {
     next();
   });
 
+// const connectNeo = require('./middlewares/neo4j').connectNeo4j
 
+// connectNeo()  
 app.use(cookieParser());
 
 const authLogin = require('./middlewares/auth').checkAuth;
@@ -48,6 +50,7 @@ app.use('/invoice', authLogin, require('./routes/invoice'));
 app.use('/registervaccine', authLogin, require('./routes/registerVaccine'))
 app.use('/expert', authLogin, require('./routes/expert'));
 app.use('/center', authLogin, require('./routes/center'));
+app.use('/neo4j', authLogin, require('./routes/neo4j'));
 
 app.get('/', authLogin, (req, res) => {
     return res.status(400).json("404 ERROR")
