@@ -57,6 +57,20 @@ router.get('/near/:adrId', async(req, res, next) =>{
         console.log(`connectivity verification failed. ${error}`)
     }
     
+    let fakeCenter;
+    try {
+        const centers = await Center.find();
+        fakeCenter = JSON.parse(JSON.stringify(centers));
+        for (let i = 0; i < fakeCenter.length; i++) {
+            fakeCenter[i].centerArr = fakeCenter[i].addressDetail.split(',').map(element => element.trim());
+            fakeCenter[i].city  = fakeCenter[i].centerArr[fakeCenter[i].centerArr.length-1]
+            fakeCenter[i].ward  = fakeCenter[i].centerArr[fakeCenter[i].centerArr.length-2]
+        }
+    } catch (errors) {
+        console.log(errors);
+        return res.status(400).json({success: false, message: errors.message});
+    }
+
     const session = driver.session()
     try {
         const node = await session.run(`MATCH (n:Address) WHERE n.id = '${adrId}' return n;`)
