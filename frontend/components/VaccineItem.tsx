@@ -64,7 +64,6 @@ export default function Package({
     const regisVcContext = useContext(RegisVcContext);
 
     useEffect(() => {
-        console.log("Hello");
         setClick(
             regisVcContext.listPackages.some((item) => {
                 return item == id;

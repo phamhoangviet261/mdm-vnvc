@@ -29,10 +29,10 @@ const Header: FC<HeaderProps> = () => {
 
     useEffect(() => {
         if (localStorage.getItem("isLogin")) setIsLogin(true);
-        let id:string
-        if (localStorage.getItem("username")){
-            id = JSON.parse(localStorage.getItem("username") || "")
-            console.log(id)
+        let id: string;
+        if (localStorage.getItem("username")) {
+            id = JSON.parse(localStorage.getItem("username") || "");
+            // console.log(id)
         }
     }, []);
 

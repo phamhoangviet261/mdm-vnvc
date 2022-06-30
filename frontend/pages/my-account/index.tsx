@@ -8,6 +8,7 @@ import { Layout } from "styles/global.styled";
 import styled from "styled-components";
 import { Container } from "@mui/material";
 import { theme } from "styles/theme";
+import axios from "axios";
 
 const Title = styled.div`
     margin-top: 30px;
@@ -88,12 +89,36 @@ const Home: NextPage = () => {
     const [selectedOption, setSelectedOption] = useState("1");
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
+    const [userData, setUserData] = useState<MyAccountInterface>({});
     useEffect(() => {
         let un = localStorage.getItem("username");
         let fn = localStorage.getItem("firstName");
         setUsername(JSON.parse(un));
         setFirstName(JSON.parse(fn));
     }, []);
+
+    useEffect(() => {
+        console.log("username: " + username);
+        if (username != "") {
+            let url = `http://localhost:5000/customer/${username}`;
+            console.log(url);
+            axios({
+                method: "GET",
+                url: url,
+                data: null,
+            })
+                .then(function (res) {
+                    setUserData(res.data.data);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
+    }, [username]);
+
+    useEffect(() => {
+        console.log(userData);
+    }, [userData]);
     return (
         <Layout>
             <Header />
@@ -134,7 +159,7 @@ const Home: NextPage = () => {
                         </Left>
                         <Right>
                             {selectedOption == "1" ? (
-                                <Information />
+                                <Information userData={userData} />
                             ) : (
                                 <>
                                     <Title>Vắc xin đã tiêm</Title>
@@ -151,6 +176,18 @@ const Home: NextPage = () => {
         </Layout>
     );
 };
+
+interface MyAccountInterface {
+    id?: string;
+    phoneNumber?: string;
+    name?: string;
+    address?: string;
+    addressDetail?: string;
+    invoices?: [];
+    registerVaccine?: [];
+    ccid?: string;
+    gender?: string;
+}
 
 export async function getStaticProps() {
     return {

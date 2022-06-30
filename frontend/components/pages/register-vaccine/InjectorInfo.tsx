@@ -175,6 +175,17 @@ export default function InjectorInfo(props: InjectorInfoProps) {
     }
 
     useEffect(() => {
+        let arrDistricts: Array<CityInterface>;
+        arrDistricts = data.filter((item) => item.city == city);
+        setDistricts(arrDistricts[0].districts);
+        setValues({
+            ...values,
+            district: arrDistricts[0].districts[0],
+        });
+    }, [city]);
+
+    useEffect(() => {
+        console.log("gender init:", gender, "city init:", city);
         setValues({
             ...values,
             city: city,
@@ -184,19 +195,10 @@ export default function InjectorInfo(props: InjectorInfoProps) {
     }, []);
 
     useEffect(() => {
+        console.log("value after update 1:", values);
         regisVcContext.updateRegisSelfInfo(values);
-        console.log("update context");
     }, [values]);
 
-    useEffect(() => {
-        let arrDistricts: Array<CityInterface>;
-        arrDistricts = data.filter((item) => item.city == city);
-        setDistricts(arrDistricts[0].districts);
-        setValues({
-            ...values,
-            district: arrDistricts[0].districts[0],
-        });
-    }, [city]);
     return (
         <InfoWrapper>
             <Title>THÔNG TIN NGƯỜI TIÊM</Title>

@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { theme } from "styles/theme";
 import SearchIcon from "@mui/icons-material/Search";
-
+import axios from "axios";
 export const Wrapper = styled.div`
     margin: 0 auto;
     text-align: center;
@@ -73,9 +73,13 @@ export const Wrapper = styled.div`
             margin-top: 20px;
             li {
                 padding: 10px 0;
+                list-style-type: circle;
             }
             h2 {
                 font-size: 18px;
+            }
+            a {
+                color: #337ab7;
             }
         }
     }
@@ -92,77 +96,91 @@ export const Title = styled.h1`
     font-weight: bold;
 `;
 
-interface CenterInterface {
-    id?: number;
-    name?: string;
-    city?: string;
+const NearestItem = styled.div`
+    margin-top: 20px;
+    padding: 0 20px 20px 20px;
+    border-radius: 6px;
+    border: 2px solid #dcdfe6;
+`;
+
+interface OneCenterInterface {
+    id: string;
+    name: string;
     address: string;
+    addressDetail: string;
+    googleMap: {
+        link: string;
+    };
+    status: string;
+    centerArr: Array<string>;
+    city: string;
+    ward: string;
 }
-const arrayCenter: Array<CenterInterface> = [
-    {
-        id: 1,
-        name: "VNVC Phạm Văn Đồng",
-        city: "HCM",
-        address: "198 Phạm Văn Đồng, P.17, TP.Thủ Đức, TP.HCM",
-    },
-    {
-        id: 2,
-        name: "VNVC Kha Vạn Cân",
-        city: "HCM",
-        address: "198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM",
-    },
-    {
-        id: 3,
-        name: "VNVC Điện Biên Phủ",
-        city: "HN",
-        address: "198 Điện Biên Phủ, P.9, Q.Phú Nhuận, HN",
-    },
-];
+
+interface ListCenterInterface {
+    centerHN: Array<OneCenterInterface>;
+    centerHCM: Array<OneCenterInterface>;
+}
 
 export default function NearestCenter() {
     const [tab, setTab] = useState(true);
-    const [listCenter, setListCenter] = useState<CenterInterface[]>([]);
+    const [listCenter, setListCenter] = useState<OneCenterInterface[]>([]);
     const [listCenterDefault, setListCenterDefault] = useState<
-        CenterInterface[]
+        OneCenterInterface[]
     >([]);
+    const [fullListCenter, setFullListCenter] = useState<ListCenterInterface[]>(
+        []
+    );
     const [search, setSearch] = useState("");
-    const arrayRef = useRef(arrayCenter);
+
+    useEffect(() => {
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/center/",
+            data: null,
+        })
+            .then(function (res) {
+                setFullListCenter(res.data.data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }, []),
+        useEffect(() => {
+            let tempArr: Array<OneCenterInterface> = [];
+            if (tab) {
+                tempArr = fullListCenter?.["centerHCM"];
+            } else {
+                tempArr = fullListCenter?.["centerHN"];
+            }
+
+            if (tempArr && tempArr.length > 0) {
+                setListCenter(tempArr);
+                setListCenterDefault(tempArr);
+            }
+        }, [tab, fullListCenter]);
 
     useEffect(() => {
         if (search == "") {
-            console.log("hello:", search);
             setListCenter(listCenterDefault);
         } else {
-            let tempArr: Array<CenterInterface> = [];
+            let tempArr: Array<OneCenterInterface> = [];
             tempArr = listCenterDefault.filter(
                 (item) =>
-                    item.address.toLocaleLowerCase().includes(search) ||
-                    item.address.includes(search)
+                    item.addressDetail.toLocaleLowerCase().includes(search) ||
+                    item.addressDetail.includes(search)
             );
             setListCenter(tempArr);
         }
     }, [search]);
-
-    useEffect(() => {
-        let tempArr: Array<CenterInterface> = [];
-        if (tab) {
-            tempArr = arrayRef.current.filter((item) => item.city == "HCM");
-        } else {
-            tempArr = arrayRef.current.filter((item) => item.city == "HN");
-        }
-
-        console.log(tempArr);
-        if (tempArr.length > 0) {
-            setListCenter(tempArr);
-            setListCenterDefault(tempArr);
-        }
-    }, [tab]);
     return (
         <Wrapper>
             <div className="wrap">
                 <Title>Trung tâm gần bạn nhất:</Title>
-                <h2>VNVC Hoàng Văn Thụ:</h2>
-                <p>198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM</p>
+                <NearestItem>
+                    <h2>VNVC Hoàng Văn Thụ:</h2>
+                    <p>198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM</p>
+                </NearestItem>
             </div>
             <div className="wrap">
                 <Title>Tìm trung tâm</Title>
@@ -215,7 +233,13 @@ export default function NearestCenter() {
                                     return (
                                         <li key={index}>
                                             <h2>{item.name}</h2>
-                                            <p>{item.address}</p>
+                                            <p>{item.addressDetail}</p>
+                                            <a
+                                                target="_blank"
+                                                href={item.googleMap.link}
+                                            >
+                                                Xem bản đồ trên Google
+                                            </a>
                                         </li>
                                     );
                                 })}

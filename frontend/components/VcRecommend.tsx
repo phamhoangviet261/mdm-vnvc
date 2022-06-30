@@ -94,7 +94,6 @@ export default function VcRecommend({ id }: VcRecommendInterface) {
 
     useEffect(() => {
         // axios call api get list vaccines recommendation
-        console.log(id);
     }, []);
 
     return (
