@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "664da855-84db-478b-bf2f-123adfc109e1",
+		"name": "MDM-VNVC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21560167"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone\": \"0373597130\",\r\n    \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone\": \"0123456789\",\r\n    \"password\": \"1\",\r\n    \"firstname\": \"Phan\",\r\n    \"lastname\": \"Danh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET VACCINES LIST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/vaccine",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"vaccine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET PACKAGE VACCINE LIST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/package",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"package"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET PACKAGE BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/package/GVC03",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"package",
+						"GVC03"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET PACKAGE BY TARGET ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/package/target/40",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"package",
+						"target",
+						"40"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CUSTOMER LIST",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phoneNumber\": \"0373597137\", \r\n    \"name\": \"Quoc Thinh Tran\", \r\n    \"age\": 25, \r\n    \"address\": \"ADR01\", \r\n    \"addressDetail\": \"Chung cu Ricca, D7, Phu Huu\", \r\n    \"invoices\": [], \r\n    \"registerVaccines\": [\"VC07\", \"VC34\", \"VC19\", \"VC40\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET INVOICE LIST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/invoice/INV0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"invoice",
+						"INV0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD NEW INVOICE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"patient\": {\r\n        \"data\": \"All information of patient.\"\r\n    },\r\n    \"vaccines\": [],\r\n    \"packageVaccines\": [],\r\n    \"total\": 1000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/invoice",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET REISTER VACCINE LIST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/registervaccine",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"registervaccine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET REGISTER VACCINE BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/registervaccine/RVC0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"registervaccine",
+						"RVC0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD NEW REGISTER VACCINE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"patient\": {\r\n        \"data\": \"All information of patient.\"\r\n    },\r\n    \"vaccines\": [],\r\n    \"packageVaccines\": [],\r\n    \"total\": 1000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/registervaccine/add",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"registervaccine",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL EXPERTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/expert",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"expert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD EXPERT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"GS. TS. Phạm Hoàng Việt\",\r\n    \"description\": \"Giáo sư Sinh học phân tử hàng đầu Việt Nam.\",\r\n    \"degrees\": [\"Degree 1\", \"Degree 2\"],\r\n    \"researches\": [\"Research 1\", \"Research 2\"],\r\n    \"center\": \"Trung tâm nghiên cứu 1\",\r\n    \"status\": \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/expert/add",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"expert",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CENTERS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/center/neo4j/data",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"center",
+						"neo4j",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD CENTER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Trung tam 1\",\r\n    \"address\": \"ADR1\",\r\n    \"addressDetail\": \"127, Nguyen Van Cu, Quan 5, Thanh pho Ho Chi Minh\",\r\n    \"status\": \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/center/add",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"center",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEO4J GET ALL CENTER",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/neo4j",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"neo4j"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEO4J INITIAL NODE RELATIONSHIP CODE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/neo4j/initial",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"neo4j",
+						"initial"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

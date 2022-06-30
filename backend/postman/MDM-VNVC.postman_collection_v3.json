@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "664da855-84db-478b-bf2f-123adfc109e1",
+		"name": "MDM-VNVC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21560167"
+	},
+	"item": [
+		{
+			"name": "LOGIN/REGISTER",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"0373597130\",\r\n    \"password\": \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"0123456789\",\r\n    \"password\": \"1\",\r\n    \"firstname\": \"Phan\",\r\n    \"lastname\": \"Danh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VACCINE/PACKAGE VACCINE",
+			"item": [
+				{
+					"name": "GET VACCINES LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/vaccine",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vaccine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PACKAGE VACCINE LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/package",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"package"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PACKAGE BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/package/GVC03",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"package",
+								"GVC03"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PACKAGE BY TARGET ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/package/target/40",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"package",
+								"target",
+								"40"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CENTER",
+			"item": [
+				{
+					"name": "GET CENTERS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/center",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"center"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD CENTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Trung tam 1\",\r\n    \"address\": \"ADR1\",\r\n    \"addressDetail\": \"127, Nguyen Van Cu, Quan 5, Thanh pho Ho Chi Minh\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/center/add",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"center",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NEO4J GET ALL WARDS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/neo4j",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"neo4j"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NEO4J GET NEAR ADDRESS BY ADR_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/neo4j/near/ADR53",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"neo4j",
+								"near",
+								"ADR53"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QUESTION/ANSWER",
+			"item": [
+				{
+					"name": "GET ALL QUESTIONS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/question/QUS0",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"question",
+								"QUS0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD NEW QUESTION",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Em mang thai ở tuần thứ 24, muốn tìm hiểu về vấn đề tiêm vắc xin phòng Covid -19, liệu tiêm có nguy hiểm gì tới quá trình mang thai không ạ? Và cho em hỏi có thể đăng kí tiêm tại đâu ạ?\", \r\n    \"customerShortInfo\": {\r\n        \"name\": \"Lê Thị Quỳnh\",\r\n        \"city\": \"Tân Phú, TP.HCM\"\r\n    }, \r\n    \"customer\": \"CUS0\", \r\n    \"answers\": [\"ANS0\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/question/add",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"question",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL ANSWER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/answer",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD NEW ANSWER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Chào Anh/Chị, Theo Quyết định số 3802/QĐ-BYT ban hành ngày 10/8/2021, phụ nữ mang thai từ 13 tuần trở lên và phụ nữ đang cho con bú được tiêm vaccine phòng Covid-19 để hạn chế nguy cơ lây nhiễm và biến chứng nghiêm trọng khi mắc bệnh. Phụ nữ mang thai mắc Covid-19 quả thật là một điều không may. Gánh nặng cho phụ nữ mang thai lớn hơn gấp cả trăm lần so với người bình thường khi người mẹ phải thở máy, chạy ECMO, dùng kháng sinh liều cao, tốn kém chi phí điều trị, em bé có nguy cơ sinh non, lây nhiễm bệnh,… thậm chí đe dọa tính mạng. Nguy hiểm hơn, virus SARS-CoV-2 liên tục đột biến, gây ra bệnh cảnh nặng hơn rất nhiều ở nhóm phụ nữ mang thai. Các loại vắc xin phòng Covid-19 được sử dụng hiện nay đều trải qua quy trình kiểm định chất lượng nghiêm ngặt của Tổ chức Y tế Thế giới (WHO) và Bộ Y tế Việt Nam. Đặc biệt, tất cả các loại vắc xin phòng Covid-19 không chứa virus sống rất an toàn, không gây bất kỳ rủi ro sức khỏe nào đến người mẹ, thai kỳ và em bé. Hơn nữa, kháng thể có trong sữa mẹ còn có tác dụng bảo vệ trẻ trước các bệnh nhiễm trùng, giảm nguy cơ mắc các bệnh truyền nhiễm, giúp cải thiện dinh dưỡng, nâng cao sức đề kháng cho trẻ. Do đó, phụ nữ đang cho con bú có thể tiêm vắc xin phòng Covid-19, đồng thời vẫn tiếp tục cho con bú sau tiêm.\",\r\n    \"expert\": {\r\n        \"name\": \"Bác sĩ Vũ Thiện Cơ\",\r\n        \"nameOfCenter\": \"Bác sĩ Quản lý vùng khu vực TP.HCM, Hệ thống Trung tâm tiêm chủng VNVC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/answer/add",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"answer",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EXPERT",
+			"item": [
+				{
+					"name": "GET ALL EXPERTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/expert",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"expert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD EXPERT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"GS. TS. Phạm Hoàng Việt\",\r\n    \"description\": \"Giáo sư Sinh học phân tử hàng đầu Việt Nam.\",\r\n    \"degrees\": [\"Degree 1\", \"Degree 2\"],\r\n    \"researches\": [\"Research 1\", \"Research 2\"],\r\n    \"center\": \"Trung tâm nghiên cứu 1\",\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/expert/add",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"expert",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INVOICE/RRGISTERD VACCINE",
+			"item": [
+				{
+					"name": "GET INVOICE LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/invoice/INV0",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"invoice",
+								"INV0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD NEW INVOICE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient\": {\r\n        \"data\": \"All information of patient.\"\r\n    },\r\n    \"vaccines\": [],\r\n    \"packageVaccines\": [],\r\n    \"total\": 1000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/invoice",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"invoice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET REISTER VACCINE LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/registervaccine",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"registervaccine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET REGISTER VACCINE BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/registervaccine/RVC0",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"registervaccine",
+								"RVC0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD NEW REGISTER VACCINE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient\": {\r\n        \"data\": \"All information of patient.\"\r\n    },\r\n    \"vaccines\": [],\r\n    \"packageVaccines\": [],\r\n    \"total\": 1000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/registervaccine/add",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"registervaccine",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADD NEW CUSTOMER -> NEW USER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phoneNumber\": \"0373597131\", \r\n    \"name\": \"Lê Thị Quỳnh\", \r\n    \"age\": 25, \r\n    \"address\": \"ADR39\", \r\n    \"addressDetail\": \"Tân Phú, TP.HCM\", \r\n    \"invoices\": [], \r\n    \"registerVaccines\": [\"VC07\", \"VC34\", \"VC19\", \"VC40\"],\r\n    \"password\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/customer/add",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"customer",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL USER",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/user",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
