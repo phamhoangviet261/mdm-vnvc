@@ -113,7 +113,7 @@ const Home: NextPage = () => {
                                                 setSelectedOption("2")
                                             }
                                         >
-                                            Vắc xin đã chích
+                                            Vắc xin đã tiêm
                                         </li>
                                     </>
                                 ) : (
