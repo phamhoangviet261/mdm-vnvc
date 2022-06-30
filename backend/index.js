@@ -46,11 +46,14 @@ app.use('/auth', authLogin, authRoute);
 app.use('/vaccine', authLogin, require('./routes/vaccine'));
 app.use('/package', authLogin, require('./routes/packageVaccine'));
 app.use('/customer', authLogin, require('./routes/customer'));
+app.use('/user', authLogin, require('./routes/user'));
 app.use('/invoice', authLogin, require('./routes/invoice'));
 app.use('/registervaccine', authLogin, require('./routes/registerVaccine'))
 app.use('/expert', authLogin, require('./routes/expert'));
 app.use('/center', authLogin, require('./routes/center'));
 app.use('/neo4j', authLogin, require('./routes/neo4j'));
+app.use('/question', authLogin, require('./routes/question'));
+app.use('/answer', authLogin, require('./routes/answer'));
 
 app.get('/', authLogin, (req, res) => {
     return res.status(400).json("404 ERROR")

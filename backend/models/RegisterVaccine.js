@@ -8,15 +8,34 @@ const RegisterVaccineSchema = new Schema({
         required: true,
         unique: true
     },
-    patient: {
-        type: Object, required: true,
+    regisSelfInfo: {
+        fullname: String,
+        birthday: String,
+        gender: String,
+        city: String,
+        district: String,
+        address: String,
+        ccid: String,
+        phoneNumber: String,
     },
-    vaccines: {
-        type: Array
+    regisAnotherInfo: {
+        fullname: String,
+        birthday: String,
+        gender: String,
+        city: String,
+        district: String,
+        address: String,
+        phoneNumber: String,
+        relationship: String,
+        relatedFullName: String,
     },
-    packageVaccines: {
-        type: Array
+    serviceInfo: {
+        city: String,
+        center: String,
+        injectDate: String,
     },
+    listPackages: Array,
+    listVaccines: Array,
     total: {
         type: Number,
     }

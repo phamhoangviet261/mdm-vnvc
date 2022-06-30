@@ -12,10 +12,10 @@ const QuestionSchema = new Schema({
     customerShortInfo: { 
         name: String,
         city: String,
-        required: true,
      },
-    customer: { type: String, required: true}, // customer id
+    customer: { type: String}, // customer id
     answers: { type: Array },
 }, { timestamps: true })
 
 module.exports = mongoose.model('questions', QuestionSchema)
+
