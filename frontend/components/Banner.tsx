@@ -1,6 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import styled from "styled-components";
+import Slider from "./Slider";
 
 export interface BannerProps {
     title?: string;
@@ -9,7 +10,7 @@ export interface BannerProps {
     src: string;
 }
 export const BannerWrapper = styled.div`
-    height: 450px;
+    height: 500px;
     position: relative;
 `;
 export const Content = styled.div`
@@ -41,14 +42,15 @@ export const Content = styled.div`
 export default function Banner(props: BannerProps) {
     return (
         <BannerWrapper className="banner-wrap">
-            <Image
+            {/* <Image
                 priority
                 src={props.src}
                 alt="banner"
                 layout="fill"
                 objectFit="cover"
                 objectPosition="left top"
-            />
+            /> */}
+            <Slider></Slider>
             <Content>
                 <h4 className="sub-title">{props.subTitle}</h4>
                 <h3 className="title">{props.title}</h3>
