@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import VaccineItem from "./VaccineItem";
 import { Grid } from "@mui/material";
 import { RegisVcContext } from "components/context/RegisVcContext";
 import axios from "axios";
@@ -23,8 +22,38 @@ const VaccineContainer = styled.div`
     margin-left: 20px;
 `;
 
-interface VaccinesInterface {
-    vaccines: Array<VaccineProps>;
+const VaccineItem = styled.div`
+    height: 100%;
+    border: 1px solid #dcdfe6;
+    padding: 9px 20px 9px 10px;
+    border-radius: 4px;
+        .content-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 400;
+            white-space: normal;
+            .title {
+                color: #000;
+                line-height: 1.4em;
+            }
+            .price {
+                color: #1f28af;
+                margin-left: 0.5em;
+                text-align: right;
+            }
+        }
+        .content-bottom {
+            padding-top: 0.5em;
+            color: #888;
+            font-size: 13px;
+            margin-top: auto;
+        }
+    }
+`;
+
+interface VcRecommendInterface {
+    id: string;
 }
 
 interface VaccineProps {
@@ -58,28 +87,16 @@ const listVaccinesData: Array<VaccineProps> = [
     },
 ];
 
-export default function Vaccines({ vaccines }: VaccinesInterface) {
-    const [listVaccines, setListVaccines] = useState<VaccineProps[]>(vaccines);
+export default function VcRecommend({ id }: VcRecommendInterface) {
+    const [listVaccines, setListVaccines] =
+        useState<VaccineProps[]>(listVaccinesData);
     const [selectedVaccines, setSelectedVaccines] = useState([]);
 
-    const regisVcContext = useContext(RegisVcContext);
-
-    const handleChooseVaccine = (id: string) => {
-        let tempArr = [];
-        let checkContains = selectedVaccines.includes(id);
-        if (!checkContains) {
-            tempArr = [...selectedVaccines];
-            tempArr.push(id);
-        } else {
-            tempArr = selectedVaccines.filter((item) => item != id);
-        }
-        setSelectedVaccines(tempArr);
-    };
-
     useEffect(() => {
-        console.log("update context of selected Vaccine");
-        regisVcContext.updateListVaccines(selectedVaccines);
-    }, [selectedVaccines]);
+        // axios call api get list vaccines recommendation
+        console.log(id);
+    }, []);
+
     return (
         <Container>
             <Wrap>
@@ -92,18 +109,23 @@ export default function Vaccines({ vaccines }: VaccinesInterface) {
                         {listVaccines &&
                             listVaccines.length > 0 &&
                             listVaccines.map((item) => (
-                                <Grid
-                                    key={item.id}
-                                    onClick={() => handleChooseVaccine(item.id)}
-                                    item
-                                    xs={4}
-                                >
-                                    <VaccineItem
-                                        id={item.id}
-                                        title={item.title}
-                                        description={item.description}
-                                        price={item.price}
-                                    />
+                                <Grid key={item.id} item xs={4}>
+                                    <VaccineItem>
+                                        <div className="content-top">
+                                            <div className="title">
+                                                {item.title}
+                                            </div>
+                                            <div className="price">
+                                                {item.price.toLocaleString(
+                                                    "vi"
+                                                )}
+                                                đ
+                                            </div>
+                                        </div>
+                                        <div className="content-bottom">
+                                            {item.description}
+                                        </div>
+                                    </VaccineItem>
                                 </Grid>
                             ))}
                     </Grid>
