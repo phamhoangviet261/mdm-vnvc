@@ -29,7 +29,7 @@ router.get('/:phoneNumber', async (req, res, next) => {
 
 router.post('/add', async (req, res, next) => {
     try {
-        const {phoneNumber, name, age, address, addressDetail, invoices, registerVaccines, password} = req.body;
+        const {phoneNumber, name, age, address, addressDetail, invoices, registerVaccines, password, status} = req.body;
         if(!phoneNumber || !name || !age || !address || !addressDetail  || !password){
             return res.status(400).json({success: false, message: 'Incorrect data.'});
         }
@@ -37,13 +37,14 @@ router.post('/add', async (req, res, next) => {
         if(oldCustomer){
             return res.status(400).json({success: false, message: `SOS. The phone number is belong to ${oldCustomer.name}`});
         }
-        const customerList = await Customer.find({});
-        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, name, age, address, addressDetail, invoices, registerVaccines})
-        const cus = await customer.save();
         const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
-        const user = new User({phoneNumber, password: hashedPassword, firstname: name, lastname: name, address})
-        const u = await user.save();
-        return res.status(200).json({data: {customer: cus, user: u}});
+        const customerList = await Customer.find({});
+        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, password: hashedPassword, name, age, address, addressDetail, invoices, registerVaccines, status})
+        const cus = await customer.save();
+        // const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
+        // const user = new User({phoneNumber, password: hashedPassword, firstname: name, lastname: name, address})
+        // const u = await user.save();
+        return res.status(200).json({data: cus});
     } catch (errors) {
         console.log(errors);
         return res.status(400).json({success: false, message: errors.message});

@@ -21,12 +21,12 @@ router.get('/', async (req, res, next) => {
                     desc.push(vaccineDetails.prevention)
                 }
             }
-            console.log({desc1: desc});
+            // console.log({desc1: desc});
             // console.log({desc2: packages[i]});
             packages[i].description = desc;
             // console.log({desc3: packages[i].description});
         }
-        console.log({packages1: packages});
+        // console.log({packages1: packages});
         return res.status(200).json({data: packages});
     } catch (errors) {
         console.log(errors);
