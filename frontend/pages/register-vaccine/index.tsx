@@ -221,10 +221,25 @@ const Home: NextPage = ({
     }
 
     function handleSubmit() {
-        console.log("hehe:", regisVcContext.regisSelfInfo);
-        console.log("hihi:", regisVcContext.regisAnotherInfo);
-        console.log("huhu:", regisVcContext.listPackages);
-        console.log("hoho:", regisVcContext.listVaccines);
+        const data = {
+            regisSelfInfo: regisVcContext.regisSelfInfo,
+            regisAnotherInfo: regisVcContext.regisAnotherInfo,
+            listPackages: regisVcContext.listPackages,
+            listVaccines: regisVcContext.listVaccines,
+        };
+        console.log("full data:", data);
+
+        axios({
+            method: "POST",
+            url: "localhost:5000/registervaccine/add",
+            data: data,
+        })
+            .then(function (res) {
+                console.log(res);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
     }
 
     function handleClickTabRegis() {
@@ -372,7 +387,7 @@ const Home: NextPage = ({
                                             type="date"
                                             name="injectDate"
                                             id="injectDate"
-                                            value={injectDate}
+                                            value={serviceInfoData.injectDate}
                                         />
                                     </Item>
                                 </Grid>

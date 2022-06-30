@@ -184,6 +184,16 @@ export default function RelatedInfo(props: RelatedInfoProps) {
     }
 
     useEffect(() => {
+        let arrDistricts: Array<CityInterface>;
+        arrDistricts = data.filter((item) => item.city == city);
+        setDistricts(arrDistricts[0].districts);
+        setValues({
+            ...values,
+            district: arrDistricts[0].districts[0],
+        });
+    }, [city]);
+
+    useEffect(() => {
         setValues({
             ...values,
             city: city,
@@ -195,16 +205,6 @@ export default function RelatedInfo(props: RelatedInfoProps) {
         regisVcContext.updateRegisAnotherInfo(values);
         console.log("update context");
     }, [values]);
-
-    useEffect(() => {
-        let arrDistricts: Array<CityInterface>;
-        arrDistricts = data.filter((item) => item.city == city);
-        setDistricts(arrDistricts[0].districts);
-        setValues({
-            ...values,
-            district: arrDistricts[0].districts[0],
-        });
-    }, [city]);
 
     return (
         <InfoWrapper>
