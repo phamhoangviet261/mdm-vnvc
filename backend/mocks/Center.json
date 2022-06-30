@@ -82,7 +82,7 @@
     {
         "id": "CEN8",
         "name": "VNVC Hoàng Văn Thụ", 
-        "address": "ADR8", 
+        "address": "ADR30", 
         "addressDetail": "198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/mt1sUfJSLqJ2"
@@ -92,7 +92,7 @@
     {
         "id": "CEN9",
         "name": "VNVC Cantavil An Phú", 
-        "address": "ADR9", 
+        "address": "ADR31", 
         "addressDetail": "Lầu 1, Trung tâm thương mại Cantavil An Phú, Số 1 đường Song Hành, P.An Phú, Q.2, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/AkSdwCLwpcy37nzt9"
@@ -102,7 +102,7 @@
     {
         "id": "CEN10",
         "name": "VNVC Cantavil An Phú", 
-        "address": "ADR10", 
+        "address": "ADR32", 
         "addressDetail": "Lầu 1, Trung tâm thương mại Cantavil An Phú, Số 1 đường Song Hành, P.An Phú, Q.2, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/AkSdwCLwpcy37nzt9"
@@ -112,7 +112,7 @@
     {
         "id": "CEN11",
         "name": "VNVC Lê Đại Hành", 
-        "address": "ADR11", 
+        "address": "ADR33", 
         "addressDetail": "Lầu 1, Trung tâm thương mại Flemington, Cao ốc Bảo Gia, 184 Lê Đại Hành, P.15, Q.11, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/mdoRo5AWM8Gf1RgA6"
@@ -122,7 +122,7 @@
     {
         "id": "CEN12",
         "name": "VNVC Quận 12", 
-        "address": "ADR12", 
+        "address": "ADR34", 
         "addressDetail": "Số 8 đường Trung Mỹ Tây 2A, KP5, P.Trung Mỹ Tây, Q.12, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/NSx4Gk77tQrf71p8A"
@@ -132,7 +132,7 @@
     {
         "id": "CEN13",
         "name": "VNVC Thủ Đức", 
-        "address": "ADR13", 
+        "address": "ADR35", 
         "addressDetail": "Tầng 2, Cao ốc chung cư Moonlight Residences, Số 102 Đặng Văn Bi, P.Bình Thọ, Q.Thủ Đức, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/n9ewhp6J8HwMxR3D6"
@@ -142,7 +142,7 @@
     {
         "id": "CEN14",
         "name": "VNVC Bình Chánh", 
-        "address": "ADR14", 
+        "address": "ADR36", 
         "addressDetail": "Tầng 2, Cao ốc chung cư Saigon Mia, Số 9A chung cư cụm III,IV - Khu dân cư Trung Sơn, xã Bình Hưng, huyện Bình Chánh, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/a6ZRzdUxQTgeNt8W7"
@@ -152,7 +152,7 @@
     {
         "id": "CEN15",
         "name": "VNVC Bình Tân", 
-        "address": "ADR15", 
+        "address": "ADR37", 
         "addressDetail": "Số 179 Vành Đai Trong, P.Bình Trị Đông B, Q.Bình Tân, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/movjFs1UdiuHk8sr7"
@@ -162,7 +162,7 @@
     {
         "id": "CEN16",
         "name": "VNVC Quận 7", 
-        "address": "ADR16", 
+        "address": "ADR38", 
         "addressDetail": "Phòng số U1&2 tầng trệt, tòa nhà Broadway D, 152 Nguyễn Lương Bằng, P.Tân Phú, Q.7, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/fezP6UdSQYwX6uSw8"
@@ -172,7 +172,7 @@
     {
         "id": "CEN17",
         "name": "VNVC Bình Thạnh", 
-        "address": "ADR17", 
+        "address": "ADR39", 
         "addressDetail": "L1-07,08 Tầng 01 Khối A&C Cao ốc chung cư Richmond City, số 207C Nguyễn Xí, P.26, Q.Bình Thạnh, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/55oXiJfWPVcTFhoT7"
@@ -182,7 +182,7 @@
     {
         "id": "CEN18",
         "name": "VNVC Tân Phú", 
-        "address": "ADR18", 
+        "address": "ADR40", 
         "addressDetail": "Tầng 1, toà nhà Oriental Plaza, 685 Âu Cơ, P.Tân Thành, Q.Tân Phú, TP.HCM",
         "googleMap": {
             "link": "https://goo.gl/maps/sH9fSzQZLkKJqLZs6"
@@ -193,7 +193,7 @@
     {
         "id": "CEN19",
         "name": "VNVC Quận 1", 
-        "address": "ADR19", 
+        "address": "ADR41", 
         "addressDetail": "Tầng 2, Trung tâm thương mại NOWZONE, 235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Quận 1, TP. Hồ Chí Minh",
         "googleMap": {
             "link": "https://g.page/nowzone-fashion-mall?share"
