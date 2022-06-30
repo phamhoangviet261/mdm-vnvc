@@ -3,7 +3,7 @@ const router = express.Router()
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 const Customer = require('../models/Customer')
-const User = require('../models/User')
+const Vaccine = require('../models/Vaccine')
 const mongoose = require('mongoose')
 
 router.get('/', async (req, res, next) => {
@@ -20,7 +20,13 @@ router.get('/', async (req, res, next) => {
 router.get('/:phoneNumber', async (req, res, next) => {
     try {
         const cus = await Customer.findOne({phoneNumber: req.params.phoneNumber});
-        return res.status(200).json({data: cus});
+        let fakeCustomer = JSON.parse(JSON.stringify(cus));
+        fakeCustomer.vaccinesDetail = []
+        for(let i = 0; i < fakeCustomer.vaccines.length; i++) {
+            const child = await Vaccine.findOne({id: fakeCustomer.vaccines[i]});
+            fakeCustomer.vaccinesDetail.push(child);
+        }
+        return res.status(200).json({data: fakeCustomer});
     } catch (errors) {
         console.log(errors);
         return res.status(400).json({success: false, message: errors.message});
@@ -29,7 +35,7 @@ router.get('/:phoneNumber', async (req, res, next) => {
 
 router.post('/add', async (req, res, next) => {
     try {
-        const {phoneNumber, name, age, address, addressDetail, invoices, registerVaccines, password, status} = req.body;
+        const {phoneNumber, name, age, ccid, gender, address, addressDetail, invoices, vaccines, password, status} = req.body;
         if(!phoneNumber || !name || !age || !address || !addressDetail  || !password){
             return res.status(400).json({success: false, message: 'Incorrect data.'});
         }
@@ -39,7 +45,7 @@ router.post('/add', async (req, res, next) => {
         }
         const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
         const customerList = await Customer.find({});
-        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, password: hashedPassword, name, age, address, addressDetail, invoices, registerVaccines, status})
+        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, password: hashedPassword, name, ccid, gender, age, address, addressDetail, invoices, vaccines, status})
         const cus = await customer.save();
         // const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
         // const user = new User({phoneNumber, password: hashedPassword, firstname: name, lastname: name, address})
