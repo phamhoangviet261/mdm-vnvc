@@ -111,7 +111,7 @@ router.get('/near/:adrId', async(req, res, next) =>{
             for(let i = 0; i < result.records.length; i++) {
                 wardNear.push(result.records[i]?._fields[0].properties);
             }
-            let resultCenter = findCenter(centerHN, wardNear);
+            let resultCenter = findCenter(node.records[0]._fields[0].properties.city == 'Hà Nội' ? centerHN : centerHCM, wardNear);
             if(resultCenter.length == 0){
                 const result_1 = await session.run(`MATCH (n:Address) - [:NEAR] - () - [:NEAR] - (m:Address) WHERE n.id = '${adrId}' return DISTINCT  m`)
                 if(result_1.records.length > 0){
@@ -120,10 +120,10 @@ router.get('/near/:adrId', async(req, res, next) =>{
                         wardNear_1.push(result_1.records[i]?._fields[0].properties);
                     }
                     let resultCenter_1 = findCenter(node.records[0]._fields[0].properties.city == 'Hà Nội' ? centerHN : centerHCM, wardNear_1);
-                    return res.status(200).json({data: {centers: resultCenter_1, self: node.records[0]._fields[0].properties}});
+                    return res.status(200).json({data: {message: 'Tim xa', centers: resultCenter_1, self: node.records[0]._fields[0].properties}});
                 }
             }
-            return res.status(200).json({data: {centers: resultCenter, self: node.records[0]._fields[0].properties}});
+            return res.status(200).json({data: {message: 'Tim gan', centers: resultCenter, self: node.records[0]._fields[0].properties}});
         }
         return res.status(200).json({data: node, fakeCenter});
     } catch (error) {
