@@ -25,6 +25,12 @@ const CustomerSchema = new Schema({
         type: Number, 
         min: [0, 'Too few age.']
     },
+    ccid: {
+        type: String, 
+    },
+    gender: {
+        type: String,
+    },
     address: {
         type: String,
     },
@@ -34,7 +40,7 @@ const CustomerSchema = new Schema({
     invoices: {
         type: Array,
     },
-    registeredVaccines: {
+    vaccines: {
         type: Array,
     },
     status: String
