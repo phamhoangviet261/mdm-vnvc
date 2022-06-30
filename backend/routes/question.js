@@ -37,7 +37,7 @@ router.get('/:questionId', async (req, res, next) => {
 router.post('/add', async (req, res, next) => {
     try {
         const {content, customerShortInfo, customer, answers} = req.body;
-        if(!content || !answers){
+        if(!content){
             return res.status(400).json({success: false, message: 'Incorrect data.'});
         }
         const questionList = await Question.find();
