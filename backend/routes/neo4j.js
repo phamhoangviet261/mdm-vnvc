@@ -16,8 +16,9 @@ router.get('/', async(req, res, next) =>{
     try {
         await driver.verifyConnectivity()
         console.log('Driver created')
-    } catch (error) {
-        console.log(`connectivity verification failed. ${error}`)
+    } catch (errors) {
+        console.log(`connectivity verification failed. ${errors}`)
+        return res.status(400).json({success: false, message: errors.message});
     }
     
     const session = driver.session()
@@ -28,8 +29,9 @@ router.get('/', async(req, res, next) =>{
             data.push(result.records[i]?._fields[0].properties);
         }
         return res.status(200).json({data});
-    } catch (error) {
-        console.log(`unable to execute query. ${error}`)
+    } catch (errors) {
+        console.log(`unable to execute query. ${errors}`)
+        return res.status(400).json({success: false, message: errors.message});
     } finally {
         await session.close()
     }
@@ -126,9 +128,9 @@ router.get('/near/:adrId', async(req, res, next) =>{
             return res.status(200).json({data: {message: 'Tim gan', centers: resultCenter, self: node.records[0]._fields[0].properties}});
         }
         return res.status(200).json({data: node, fakeCenter});
-    } catch (error) {
-        console.log(`unable to execute query. ${error}`)
-        return res.status(200).json({data: 'NEO4J - CYPHER'});
+    } catch (errors) {
+        console.log(`unable to execute query. ${errors}`)
+        return res.status(400).json({success: false, message: errors.message});
     } finally {
         await session.close()
         await driver.close()
