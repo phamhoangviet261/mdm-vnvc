@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
 const Customer = require('../models/Customer')
+const User = require('../models/User')
 const mongoose = require('mongoose')
 
 router.get('/', async (req, res, next) => {
@@ -27,17 +29,21 @@ router.get('/:phoneNumber', async (req, res, next) => {
 
 router.post('/add', async (req, res, next) => {
     try {
-        const {phoneNumber, name, age, address, addressDetail, invoices, registerVaccines} = req.body;
-        if(!phoneNumber || !name || !age || !address || !addressDetail){
+        const {phoneNumber, name, age, address, addressDetail, invoices, registerVaccines, password} = req.body;
+        if(!phoneNumber || !name || !age || !address || !addressDetail  || !password){
             return res.status(400).json({success: false, message: 'Incorrect data.'});
         }
         const oldCustomer = await Customer.findOne({phoneNumber});
         if(oldCustomer){
             return res.status(400).json({success: false, message: `SOS. The phone number is belong to ${oldCustomer.name}`});
         }
-        const customer = new Customer({phoneNumber, name, age, address, addressDetail, invoices, registerVaccines})
+        const customerList = await Customer.find({});
+        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, name, age, address, addressDetail, invoices, registerVaccines})
         const cus = await customer.save();
-        return res.status(200).json({data: cus});
+        const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
+        const user = new User({phoneNumber, password: hashedPassword, firstname: name, lastname: name, address})
+        const u = await user.save();
+        return res.status(200).json({data: {customer: cus, user: u}});
     } catch (errors) {
         console.log(errors);
         return res.status(400).json({success: false, message: errors.message});

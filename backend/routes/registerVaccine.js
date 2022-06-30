@@ -27,12 +27,10 @@ router.get('/:rvcId', async (req, res, next) => {
 
 router.post('/add', async (req, res, next) => {
     try {
-        const {patient, vaccines, packageVaccines, total} = req.body;
-        if(!patient || !total){
-            return res.status(400).json({success: false, message: 'Incorrect data.'});
-        }
+        const {regisSelfInfo, regisAnotherInfo, serviceInfo, listPackages, listVaccines, total} = req.body;
+        total = total || 0;
         const registerVaccineList = await RegisterVaccineSchema.find();
-        const registerVaccine = new RegisterVaccineSchema({id: `RVC${registerVaccineList.length}`, patient: patient, vaccines, packageVaccines, total});
+        const registerVaccine = new RegisterVaccineSchema({id: `RVC${registerVaccineList.length}`, regisSelfInfo, regisAnotherInfo, serviceInfo, listPackages, listVaccines, total});
         const rvc = await registerVaccine.save();
         return res.status(200).json({data: rvc});
     } catch (errors) {

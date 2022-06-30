@@ -13,21 +13,15 @@ const UserSchema = new Schema({
         required: true,
     },
     firstname: {
-        type: String, 
-        required: true,
+        type: String
     },
     lastname: {
-        type: String, 
-        required: true,
-    },
-    createAt: {
-        type: Date,
-        default: Date.now()
+        type: String
     },
     address: {
         type: Array,
         require: true
     }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('users', UserSchema)
