@@ -23,7 +23,7 @@ router.get('/', async(req, res, next) =>{
     
     const session = driver.session()
     try {
-        const result = await session.run('MATCH (n) RETURN (n);');
+        const result = await session.run('MATCH (n:Address) RETURN (n);');
         let data = [];
         for(let i = 0; i < result.records.length; i++) {
             data.push(result.records[i]?._fields[0].properties);

@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 const RegisterVaccineSchema = require('../models/RegisterVaccine')
+const Vaccine = require('../models/Vaccine')
+const PackageVaccine = require('../models/PackageVaccine')
 const mongoose = require('mongoose')
 
 router.get('/', async (req, res, next) => {
@@ -27,8 +29,21 @@ router.get('/:rvcId', async (req, res, next) => {
 
 router.post('/add', async (req, res, next) => {
     try {
-        const {regisSelfInfo, regisAnotherInfo, serviceInfo, listPackages, listVaccines, total} = req.body;
+        let {regisSelfInfo, regisAnotherInfo, serviceInfo, listPackages, listVaccines, total} = req.body;
         total = total || 0;
+
+        let vaccines = await Vaccine.find({})
+        for(let i = 0; i < listVaccines.length; i++) {
+            resultVaccine = vaccines.filter(item => listVaccines.includes(item.id));
+        }
+        resultVaccine.forEach(item => total += item.retailPrice)
+
+        let packages = await PackageVaccine.find({})
+        for(let i = 0; i < listPackages.length; i++) {
+            resultPackage = packages.filter(item => listPackages.includes(item.id));
+        }
+        resultPackage.forEach(item => total += item.totalPrice)
+
         const registerVaccineList = await RegisterVaccineSchema.find();
         const registerVaccine = new RegisterVaccineSchema({id: `RVC${registerVaccineList.length}`, regisSelfInfo, regisAnotherInfo, serviceInfo, listPackages, listVaccines, total});
         const rvc = await registerVaccine.save();

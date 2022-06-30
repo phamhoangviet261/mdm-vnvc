@@ -7,7 +7,6 @@ const mongoose = require('mongoose')
 router.get('/', async (req, res, next) => {
     try {
         const vaccines = await Vaccine.find();
-        console.log({vcc: vaccines});
         return res.status(200).json({data: vaccines});
     } catch (errors) {
         console.log(errors);

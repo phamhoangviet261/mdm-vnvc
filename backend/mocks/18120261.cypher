@@ -225,3 +225,54 @@ MATCH (a:Address), (b:Address) WHERE a.id = 'ADR49' AND b.id= 'ADR52' CREATE (a)
 
 MATCH (a:Address), (b:Address) WHERE a.id = 'ADR50' AND b.id= 'ADR51' CREATE (a)-[:NEAR]->(b);
 
+
+
+
+
+CREATE (n:Vaccine {id: 'VC01'});
+CREATE (n:Vaccine {id: 'VC02'});
+CREATE (n:Vaccine {id: 'VC03'});
+CREATE (n:Vaccine {id: 'VC04'});
+CREATE (n:Vaccine {id: 'VC05'});
+CREATE (n:Vaccine {id: 'VC06'});
+CREATE (n:Vaccine {id: 'VC07'});
+CREATE (n:Vaccine {id: 'VC08'});
+CREATE (n:Vaccine {id: 'VC09'});
+CREATE (n:Vaccine {id: 'VC10'});
+CREATE (n:Vaccine {id: 'VC11'});
+CREATE (n:Vaccine {id: 'VC12'});
+CREATE (n:Vaccine {id: 'VC13'});
+CREATE (n:Vaccine {id: 'VC14'});
+CREATE (n:Vaccine {id: 'VC15'});
+CREATE (n:Vaccine {id: 'VC16'});
+CREATE (n:Vaccine {id: 'VC17'});
+CREATE (n:Vaccine {id: 'VC18'});
+CREATE (n:Vaccine {id: 'VC19'});
+CREATE (n:Vaccine {id: 'VC20'});
+CREATE (n:Vaccine {id: 'VC21'});
+CREATE (n:Vaccine {id: 'VC22'});
+CREATE (n:Vaccine {id: 'VC23'});
+CREATE (n:Vaccine {id: 'VC24'});
+CREATE (n:Vaccine {id: 'VC25'});
+CREATE (n:Vaccine {id: 'VC26'});
+CREATE (n:Vaccine {id: 'VC27'});
+CREATE (n:Vaccine {id: 'VC28'});
+CREATE (n:Vaccine {id: 'VC29'});
+CREATE (n:Vaccine {id: 'VC30'});
+CREATE (n:Vaccine {id: 'VC31'});
+CREATE (n:Vaccine {id: 'VC32'});
+CREATE (n:Vaccine {id: 'VC33'});
+CREATE (n:Vaccine {id: 'VC34'});
+CREATE (n:Vaccine {id: 'VC35'});
+CREATE (n:Vaccine {id: 'VC36'});
+CREATE (n:Vaccine {id: 'VC37'});
+CREATE (n:Vaccine {id: 'VC38'});
+CREATE (n:Vaccine {id: 'VC39'});
+CREATE (n:Vaccine {id: 'VC40'});
+CREATE (n:Vaccine {id: 'VC41'});
+CREATE (n:Vaccine {id: 'VC42'});
+CREATE (n:Vaccine {id: 'VC43'});
+CREATE (n:Vaccine {id: 'VC44'});
+CREATE (n:Vaccine {id: 'VC45'});
+CREATE (n:Vaccine {id: 'VC46'});
+CREATE (n:Vaccine {id: 'VC47'});

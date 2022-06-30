@@ -13,18 +13,20 @@ const CustomerSchema = new Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String, 
+        required: true,
+    },
     name: {
         type: String, 
         required: true,
     },
     age: {
         type: Number, 
-        require: true,
         min: [0, 'Too few age.']
     },
     address: {
         type: String,
-        require: true
     },
     addressDetail: {
         type: String, 
@@ -34,7 +36,8 @@ const CustomerSchema = new Schema({
     },
     registeredVaccines: {
         type: Array,
-    }
+    },
+    status: String
 }, { timestamps: true })
 
 module.exports = mongoose.model('customers', CustomerSchema)
