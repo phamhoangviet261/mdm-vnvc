@@ -112,10 +112,6 @@ const LoginForm = () => {
                         "username",
                         JSON.stringify(res.data.phoneNumber)
                     );
-                    localStorage.setItem(
-                        "firstName",
-                        JSON.stringify(res.data.firstname)
-                    );
                     router.push("/");
                 } else {
                     setMessage(res.data.message);

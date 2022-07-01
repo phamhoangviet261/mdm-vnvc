@@ -3,8 +3,23 @@ import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { theme } from "styles/theme";
 import { useEffect, useState, useContext } from "react";
+import axios from "axios";
 
-export interface InjectorInfoProps {}
+interface MyAccountInterface {
+    id?: string;
+    phoneNumber?: string;
+    name?: string;
+    address?: string;
+    addressDetail?: string;
+    invoices?: [];
+    registerVaccine?: [];
+    ccid?: string;
+    gender?: string;
+}
+
+interface InformationProps {
+    userData: MyAccountInterface;
+}
 const InfoWrapper = styled.div``;
 export const Title = styled.div`
     margin-top: 20px;
@@ -78,86 +93,85 @@ interface CityInterface {
     city: string;
     districts: string[];
 }
-const data: Array<CityInterface> = [
-    {
-        city: "Thành phố Hồ Chí Minh",
-        districts: [
-            "Quận 1",
-            "Quận 3",
-            "Quận 4",
-            "Quận 5",
-            "Quận 6",
-            "Quận 7",
-            "Quận 8",
-            "Quận 10",
-            "Quận 11",
-            "Quận 12",
-            "Quận Bình Tân",
-            "Quận Bình Thạnh",
-            "Quận Gò Vấp",
-            "Quận Phú Nhuận",
-            "Quận Tân Bình",
-            "Quận Tân Phú",
-            "Huyện Bình Chánh",
-            "Huyện Cần Giờ",
-            "Huyện Củ Chi",
-            "Huyện Nhà Bè",
-            "Huyện Hóc Môn",
-            "Thành phố Thủ Đức ",
-        ],
-    },
-    {
-        city: "Thành phố Hà Nội",
-        districts: [
-            "Quận Ba Đình",
-            "Quận Bắc Từ Liêm",
-            "Quận Cầu Giấy",
-            "Quận Đống Đa",
-            "Quận Hà Đông",
-            "Quận Hai Bà Trưng",
-            "Quận Hoàn Kiếm",
-            "Quận Hoàng Mai",
-            "Quận Long Biên",
-            "Quận Nam Từ Liêm",
-            "Quận Tây Hồ",
-            "Quận Thanh Xuân",
-            "Thị xã Sơn Tây",
-            "Huyện Chương Mỹ",
-            "Huyện Đan Phượng",
-            "Huyện Đông Anh",
-            "Huyện Gia Lâm",
-            "Huyện Hoài Đức",
-            "Huyện Mê Linh",
-            "Huyện Mỹ Đức",
-            "Huyện Phú Xuyên",
-            "Huyện Phúc Thọ",
-            "Huyện Quốc Oai",
-            "Huyện Sóc Sơn",
-            "Huyện Thạch Thất",
-            "Huyện Thanh Oai",
-            "Huyện Thanh Trì",
-            "Huyện Thường Tín",
-            "Huyện Ứng Hoà",
-        ],
-    },
-];
 
-export const exampleSelfData = {
-    fullname: "",
-    birthday: "",
-    gender: "",
-    city: "",
-    district: "",
-    address: "",
-    ccid: "",
-    phoneNumber: "",
-};
+interface DistrictInterface {
+    id: string;
+    city: string;
+    ward: string;
+}
 
-export default function InjectorInfo(props: InjectorInfoProps) {
-    const [gender, setGender] = useState("Nam");
-    const [city, setCity] = useState("Thành phố Hồ Chí Minh");
-    const [districts, setDistricts] = useState<string[]>([]);
-    const [values, setValues] = useState(exampleSelfData);
+export default function InjectorInfo({ userData }: InformationProps) {
+    const [addressId, setAddressId] = useState(userData.address);
+    const [gender, setGender] = useState(userData.gender || "Nam");
+    const [city, setCity] = useState("");
+    const [district, setDistrict] = useState("");
+    const [districts, setDistricts] = useState<DistrictInterface[]>([]);
+    const [values, setValues] = useState({
+        fullname: userData.name,
+        birthday: "",
+        gender: userData.gender || "Nam",
+        city: "",
+        district: "",
+        address: userData.addressDetail,
+        ccid: userData.ccid,
+        phoneNumber: userData.phoneNumber,
+    });
+    const [listAddress, setListAddress] = useState([]);
+
+    // set AddressID
+    useEffect(() => {
+        setAddressId(userData.address);
+    }, []);
+
+    // call api get list address
+    useEffect(() => {
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/neo4j",
+            data: null,
+        })
+            .then(function (res) {
+                setListAddress(res.data.data);
+                console.log(res.data.data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }, []);
+
+    // set City, District after have listAddress
+    useEffect(() => {
+        let tempObj = [];
+        console.log("addressId: ", addressId);
+        if (addressId && listAddress && listAddress.length > 0) {
+            tempObj = listAddress.filter((item) => item.id === addressId);
+            console.log("hehehe:", tempObj);
+            setCity(tempObj[0].city);
+            setDistrict(tempObj[0].ward);
+        }
+    }, [listAddress, addressId]);
+
+    // when city change => set Values and set new list Districts
+    useEffect(() => {
+        let arrDistricts = [];
+        console.log("listAddress: ", listAddress);
+        if (listAddress && listAddress.length > 0) {
+            arrDistricts = listAddress.filter((item) => item.city == city);
+            setDistricts(arrDistricts);
+            setValues({
+                ...values,
+                district: arrDistricts[0].ward,
+            });
+        }
+    }, [city]);
+
+    useEffect(() => {
+        setValues({
+            ...values,
+            city: city,
+            district: district,
+        });
+    }, []);
 
     function handleChange(
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -185,24 +199,6 @@ export default function InjectorInfo(props: InjectorInfoProps) {
         });
     }
 
-    useEffect(() => {
-        setValues({
-            ...values,
-            city: city,
-            gender: gender,
-            district: "Quận 1",
-        });
-    }, []);
-
-    useEffect(() => {
-        let arrDistricts: Array<CityInterface>;
-        arrDistricts = data.filter((item) => item.city == city);
-        setDistricts(arrDistricts[0].districts);
-        setValues({
-            ...values,
-            district: arrDistricts[0].districts[0],
-        });
-    }, [city]);
     return (
         <InfoWrapper>
             <Title>THÔNG TIN NGƯỜI TIÊM</Title>
@@ -308,10 +304,8 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                             onChange={(e) => handleChangeCity(e.target.value)}
                             id="city"
                         >
-                            <option value="Thành phố Hồ Chí Minh">
-                                TP Hồ Chí Minh
-                            </option>
-                            <option value="Thành phố Hà Nội">Hà Nội</option>
+                            <option value="Hồ Chí Minh">TP Hồ Chí Minh</option>
+                            <option value="Hà Nội">Hà Nội</option>
                         </select>
                     </Item>
                 </Grid>
@@ -324,13 +318,31 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                             onChange={handleChange}
                             id="district"
                             name="district"
+                            defaultValue="Quận 2"
                         >
                             {districts.length > 0 &&
-                                districts.map((item, index) => (
-                                    <option key={index} value={item}>
-                                        {item}
-                                    </option>
-                                ))}
+                                districts.map((item, index) => {
+                                    if (item.ward == district) {
+                                        return (
+                                            <option
+                                                selected
+                                                key={index}
+                                                value={item.ward}
+                                            >
+                                                {item.ward}
+                                            </option>
+                                        );
+                                    } else {
+                                        return (
+                                            <option
+                                                key={index}
+                                                value={item.ward}
+                                            >
+                                                {item.ward}
+                                            </option>
+                                        );
+                                    }
+                                })}
                         </select>
                     </Item>
                 </Grid>

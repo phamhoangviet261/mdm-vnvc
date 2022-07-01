@@ -88,20 +88,16 @@ export const Item = styled.div`
 const Home: NextPage = () => {
     const [selectedOption, setSelectedOption] = useState("1");
     const [username, setUsername] = useState("");
-    const [firstName, setFirstName] = useState("");
+    const [firstName, setFirstName] = useState("Danh");
     const [userData, setUserData] = useState<MyAccountInterface>({});
     useEffect(() => {
         let un = localStorage.getItem("username");
-        let fn = localStorage.getItem("firstName");
         setUsername(JSON.parse(un));
-        setFirstName(JSON.parse(fn));
     }, []);
 
     useEffect(() => {
-        console.log("username: " + username);
         if (username != "") {
             let url = `http://localhost:5000/customer/${username}`;
-            console.log(url);
             axios({
                 method: "GET",
                 url: url,
@@ -119,62 +115,66 @@ const Home: NextPage = () => {
     useEffect(() => {
         console.log(userData);
     }, [userData]);
-    return (
-        <Layout>
-            <Header />
-            <Main>
-                <Container>
-                    <Wrap>
-                        <Left>
-                            <h1>Xin chào, {firstName}</h1>
-                            <ul>
+    if (userData.address) {
+        return (
+            <Layout>
+                <Header />
+                <Main>
+                    <Container>
+                        <Wrap>
+                            <Left>
+                                <h1>Xin chào, {firstName}</h1>
+                                <ul>
+                                    {selectedOption == "1" ? (
+                                        <>
+                                            <li className="active">
+                                                Thông tin khách hàng
+                                            </li>
+                                            <li
+                                                onClick={() =>
+                                                    setSelectedOption("2")
+                                                }
+                                            >
+                                                Vắc xin đã tiêm
+                                            </li>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <li
+                                                onClick={() =>
+                                                    setSelectedOption("1")
+                                                }
+                                            >
+                                                Thông tin khách hàng
+                                            </li>
+                                            <li className="active">
+                                                Vắc xin đã chích
+                                            </li>
+                                        </>
+                                    )}
+                                </ul>
+                            </Left>
+                            <Right>
                                 {selectedOption == "1" ? (
-                                    <>
-                                        <li className="active">
-                                            Thông tin khách hàng
-                                        </li>
-                                        <li
-                                            onClick={() =>
-                                                setSelectedOption("2")
-                                            }
-                                        >
-                                            Vắc xin đã tiêm
-                                        </li>
-                                    </>
+                                    <Information userData={userData} />
                                 ) : (
                                     <>
-                                        <li
-                                            onClick={() =>
-                                                setSelectedOption("1")
-                                            }
-                                        >
-                                            Thông tin khách hàng
-                                        </li>
-                                        <li className="active">
-                                            Vắc xin đã chích
-                                        </li>
+                                        <Title>Vắc xin đã tiêm</Title>
+                                        <VcInjected />
+                                        <Title>Vắn xin liên quan</Title>
+                                        <VcRecommend id="id1" />
                                     </>
                                 )}
-                            </ul>
-                        </Left>
-                        <Right>
-                            {selectedOption == "1" ? (
-                                <Information userData={userData} />
-                            ) : (
-                                <>
-                                    <Title>Vắc xin đã tiêm</Title>
-                                    <VcInjected />
-                                    <Title>Vắn xin liên quan</Title>
-                                    <VcRecommend id="id1" />
-                                </>
-                            )}
-                        </Right>
-                    </Wrap>
-                </Container>
-            </Main>
-            <Footer />
-        </Layout>
-    );
+                            </Right>
+                        </Wrap>
+                    </Container>
+                </Main>
+                <Footer />
+            </Layout>
+        );
+    } else {
+        return <h1>Loading</h1>;
+    }
 };
 
 interface MyAccountInterface {
