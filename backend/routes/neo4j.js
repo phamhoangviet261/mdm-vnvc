@@ -34,6 +34,7 @@ router.get('/', async(req, res, next) =>{
         return res.status(400).json({success: false, message: errors.message});
     } finally {
         await session.close()
+        await driver.close()
     }
    
     // Don't forget to close the driver connection when you're finished with it

@@ -45,7 +45,7 @@ router.post('/add', async (req, res, next) => {
         }
         const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
         const customerList = await Customer.find({});
-        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, password: hashedPassword, name, ccid, gender, age, address, addressDetail, invoices, vaccines, status})
+        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, password: hashedPassword, name, ccid, gender, age, address, addressDetail, invoices, vaccines, status: status ? status : "active"})
         const cus = await customer.save();
         // const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
         // const user = new User({phoneNumber, password: hashedPassword, firstname: name, lastname: name, address})
