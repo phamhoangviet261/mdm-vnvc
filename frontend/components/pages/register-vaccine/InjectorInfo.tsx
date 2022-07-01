@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "styles/theme";
 import { useEffect, useState, useContext } from "react";
 import { RegisVcContext } from "components/context/RegisVcContext";
-
+import axios from "axios";
 export interface InjectorInfoProps {}
 const InfoWrapper = styled.div``;
 export const Title = styled.div`
@@ -140,12 +140,21 @@ export const exampleSelfData = {
     phoneNumber: "",
 };
 
-export default function InjectorInfo(props: InjectorInfoProps) {
-    const [gender, setGender] = useState("Nam");
-    const [city, setCity] = useState("Thành phố Hồ Chí Minh");
-    const [districts, setDistricts] = useState<string[]>([]);
-    const [values, setValues] = useState(exampleSelfData);
+interface DistrictInterface {
+    id: string;
+    city: string;
+    ward: string;
+}
 
+export default function InjectorInfo(props: InjectorInfoProps) {
+    const [username, setUsername] = useState("");
+    const [gender, setGender] = useState("Nam");
+    const [city, setCity] = useState("Hồ Chí Minh");
+    const [district, setDistrict] = useState("");
+    const [districts, setDistricts] = useState<DistrictInterface[]>([]);
+    const [values, setValues] = useState(exampleSelfData);
+    const [addressId, setAddressId] = useState("");
+    const [listAddress, setListAddress] = useState<DistrictInterface[]>([]);
     const regisVcContext = useContext(RegisVcContext);
 
     function handleChange(
@@ -175,29 +184,65 @@ export default function InjectorInfo(props: InjectorInfoProps) {
     }
 
     useEffect(() => {
-        let arrDistricts: Array<CityInterface>;
-        arrDistricts = data.filter((item) => item.city == city);
-        setDistricts(arrDistricts[0].districts);
-        setValues({
-            ...values,
-            district: arrDistricts[0].districts[0],
-        });
-    }, [city]);
-
-    useEffect(() => {
-        console.log("gender init:", gender, "city init:", city);
-        setValues({
-            ...values,
-            city: city,
-            gender: gender,
-            district: "Quận 1",
-        });
+        let un = JSON.parse(localStorage.getItem("username"));
+        setUsername(un);
     }, []);
 
     useEffect(() => {
-        console.log("value after update 1:", values);
-        regisVcContext.updateRegisSelfInfo(values);
-    }, [values]);
+        if (username != "") {
+            let url = `http://localhost:5000/customer/${username}`;
+            console.log(url);
+            axios({
+                method: "GET",
+                url: url,
+                data: null,
+            })
+                .then(function (res) {
+                    setValues({
+                        ...values,
+                        fullname: res.data.data.name,
+                        phoneNumber: res.data.data.phoneNumber,
+                        address: res.data.data.addressDetail,
+                    });
+                    setAddressId(res.data.data.address);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
+    }, [username]);
+
+    useEffect(() => {
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/neo4j",
+            data: null,
+        })
+            .then(function (res) {
+                setListAddress(res.data.data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }, []);
+
+    // set City, District after have listAddress
+    useEffect(() => {
+        let tempObj = [];
+        if (addressId && listAddress && listAddress.length > 0) {
+            tempObj = listAddress.filter((item) => item.id === addressId);
+            setDistrict(tempObj[0].ward);
+            setCity(tempObj[0].city);
+        }
+    }, [listAddress, addressId]);
+
+    useEffect(() => {
+        setValues({
+            ...values,
+            city: city,
+            district: district,
+        });
+    }, [city, district]);
 
     return (
         <InfoWrapper>
@@ -209,11 +254,11 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                             Họ và tên người tiêm
                         </label>
                         <input
-                            onChange={handleChange}
                             type="text"
                             name="fullname"
                             id="fullname"
                             value={values.fullname}
+                            disabled
                         />
                     </Item>
                 </Grid>
@@ -223,11 +268,11 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                             Ngày sinh người tiêm
                         </label>
                         <input
-                            onChange={handleChange}
-                            type="date"
+                            type="text"
                             name="birthday"
                             id="birthday"
                             value={values.birthday}
+                            disabled
                         />
                     </Item>
                 </Grid>
@@ -242,23 +287,9 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                                     <div className="tab-item active-tab">
                                         Nam
                                     </div>
-                                    <div
-                                        className="tab-item"
-                                        onClick={() => handleChangeGender("Nữ")}
-                                    >
-                                        Nữ
-                                    </div>
                                 </>
                             ) : (
                                 <>
-                                    <div
-                                        className="tab-item"
-                                        onClick={() =>
-                                            handleChangeGender("Nam")
-                                        }
-                                    >
-                                        Nam
-                                    </div>
                                     <div className="tab-item active-tab">
                                         Nữ
                                     </div>
@@ -273,11 +304,11 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                             CMND/CCCD
                         </label>
                         <input
-                            onChange={handleChange}
                             type="text"
                             name="ccid"
                             id="ccid"
                             value={values.ccid}
+                            disabled
                         />
                     </Item>
                 </Grid>
@@ -287,11 +318,11 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                             Số điện thoại
                         </label>
                         <input
-                            onChange={handleChange}
                             type="text"
                             name="phoneNumber"
                             id="phoneNumber"
                             value={values.phoneNumber}
+                            disabled
                         />
                     </Item>
                 </Grid>
@@ -300,14 +331,8 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                         <label className="label-required" htmlFor="city">
                             Tỉnh thành
                         </label>
-                        <select
-                            onChange={(e) => handleChangeCity(e.target.value)}
-                            id="city"
-                        >
-                            <option value="Thành phố Hồ Chí Minh">
-                                TP Hồ Chí Minh
-                            </option>
-                            <option value="Thành phố Hà Nội">Hà Nội</option>
+                        <select id="city" disabled>
+                            <option value={city}>Thành phố {city}</option>
                         </select>
                     </Item>
                 </Grid>
@@ -316,17 +341,8 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                         <label className="label-required" htmlFor="district">
                             Quận/Huyện
                         </label>
-                        <select
-                            onChange={handleChange}
-                            id="district"
-                            name="district"
-                        >
-                            {districts.length > 0 &&
-                                districts.map((item, index) => (
-                                    <option key={index} value={item}>
-                                        {item}
-                                    </option>
-                                ))}
+                        <select id="district" name="district" disabled>
+                            <option value={district}>{district}</option>
                         </select>
                     </Item>
                 </Grid>
@@ -337,11 +353,11 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                             Số nhà, tên đường, phường/xã
                         </label>
                         <input
-                            onChange={handleChange}
                             type="text"
                             name="address"
                             id="address"
                             value={values.address}
+                            disabled
                         />
                     </Item>
                 </Grid>
