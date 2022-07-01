@@ -480,7 +480,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"customerId\": \"CUS1\",\r\n    \"regisAnotherInfo\": {\r\n        \"fullname\": \"Scarlet\",\r\n        \"birthday\": \"21/11/2001\",\r\n        \"gender\": \"Nu\",\r\n        \"city\": \"Ha Noi\",\r\n        \"district\": \"Nam Tu Liem\",\r\n        \"address\": \"...\",\r\n        \"phoneNumber\": \"0375689455\",\r\n        \"relationship\": \"Vo\",\r\n        \"relatedFullName\": \"Pham Hoang Viet\"\r\n    },\r\n    \"serviceInfo\": {\r\n        \"city\": \"Ho Chi Minh\",\r\n        \"center\": \"Quan 2\",\r\n        \"injectDate\": \"30/6/2022\"\r\n    },\r\n    \"listPackages\": [\"GVC01\", \"GVC12\"],\r\n    \"listVaccines\": [\"VC01\", \"VC15\", \"VC30\"]\r\n}",
+							"raw": "{\r\n    \"customerId\": \"CUS2\",\r\n    \"regisAnotherInfo\": {\r\n        \"fullname\": \"Scarlet\",\r\n        \"birthday\": \"21/11/2001\",\r\n        \"gender\": \"Nu\",\r\n        \"city\": \"Ha Noi\",\r\n        \"district\": \"Nam Tu Liem\",\r\n        \"address\": \"...\",\r\n        \"phoneNumber\": \"0375689455\",\r\n        \"relationship\": \"Vo\",\r\n        \"relatedFullName\": \"Pham Hoang Viet\"\r\n    },\r\n    \"serviceInfo\": {\r\n        \"city\": \"Ho Chi Minh\",\r\n        \"center\": \"Quan 2\",\r\n        \"injectDate\": \"30/6/2022\"\r\n    },\r\n    \"listPackages\": [],\r\n    \"listVaccines\": [\"VC10\", \"VC35\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -510,7 +510,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"phoneNumber\": \"0373597130\", \r\n    \"name\": \"Phạm Hoàng Việt\", \r\n    \"age\": 22, \r\n    \"ccid\": \"0600200020600\",\r\n    \"gender\": \"Nam\",\r\n    \"address\": \"ADR53\", \r\n    \"addressDetail\": \"Chung cư Ricca, P.Phú Hữu \", \r\n    \"invoices\": [], \r\n    \"vaccines\": [],\r\n    \"password\": \"1\"\r\n}",
+					"raw": "{\r\n    \"phoneNumber\": \"1\",\r\n    \"name\": \"Test Neo4j\",\r\n    \"age\": 22,\r\n    \"ccid\": \"0600200020600\",\r\n    \"gender\": \"Nam\",\r\n    \"address\": \"ADR53\",\r\n    \"addressDetail\": \"Chung cư Ricca, P.Phú Hữu \",\r\n    \"invoices\": [],\r\n    \"vaccines\": [],\r\n    \"password\": \"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -537,24 +537,35 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5000/customer/0373597130",
+					"raw": "localhost:5000/customer",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"customer",
-						"0373597130"
+						"customer"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "HINT VACCINE FROM CUSTOMER PHONENUMBER",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/customer/1/hint",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"customer",
+						"1",
+						"hint"
+					]
+				}
 			},
 			"response": []
 		}
