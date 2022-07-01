@@ -6,6 +6,8 @@ const Vaccine = require('../models/Vaccine')
 const PackageVaccine = require('../models/PackageVaccine')
 const Customer = require('../models/Customer')
 const mongoose = require('mongoose')
+const neo4j = require('neo4j-driver')
+require('dotenv').config()
 
 router.get('/', async (req, res, next) => {
     try {
@@ -38,6 +40,7 @@ router.post('/add', async (req, res, next) => {
 
         // TODO: cal total number
         let vaccines = await Vaccine.find({})
+        let resultVaccine= [], resultPackage = [];
         for(let i = 0; i < listVaccines.length; i++) {
             resultVaccine = vaccines.filter(item => listVaccines.includes(item.id));
         }
@@ -68,7 +71,37 @@ router.post('/add', async (req, res, next) => {
         listCustomerVaccines = listCustomerVaccines.concat(listVaccinesInPackage.filter((item) => listCustomerVaccines.indexOf(item) < 0))
         const newCus = await Customer.findOneAndUpdate({id: customerId}, {vaccines: listCustomerVaccines})
 
-        return res.status(200).json({data: rvc});
+        // TODO: add Neo4j relationship from Customer to Vaccine
+        // TODO: get new vaccine from Customer
+        let newVaccines = listCustomerVaccines.filter((item) => cus.vaccines.indexOf(item) == -1)
+
+        // TODO: create relationship
+        newVaccines.forEach(async (item) =>{
+            const uri = process.env.NEO4J_URI;
+            const user = process.env.NEO4J_USERNAME;
+            const password = process.env.NEO4J_PASSWORD;
+            
+            const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
+            // const session = driver.session()
+        
+            try {
+                await driver.verifyConnectivity()
+                console.log('Driver created')
+            } catch (error) {
+                console.log(`connectivity verification failed. ${error}`)
+            }
+
+            const session = driver.session()
+            try {
+                const node = await session.run(`MATCH (c:Customer), (v:Vaccine) WHERE c.phone = '${cus.phoneNumber}' AND v.id = '${item}' CREATE (c)-[:BUY]->(v);`)
+                console.log({node});
+            } catch (errors) {
+                console.log(errors);
+                // return res.status(400).json({success: false, message: errors.message});
+            }
+        })
+
+        return res.status(200).json({data: newVaccines});
     } catch (errors) {
         console.log(errors);
         return res.status(400).json({success: false, message: errors.message});

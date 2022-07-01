@@ -276,3 +276,6 @@ CREATE (n:Vaccine {id: 'VC44'});
 CREATE (n:Vaccine {id: 'VC45'});
 CREATE (n:Vaccine {id: 'VC46'});
 CREATE (n:Vaccine {id: 'VC47'});
+
+
+MATCH (n:Customer) WHERE n.phone = '1234' DETACH DELETE n;
