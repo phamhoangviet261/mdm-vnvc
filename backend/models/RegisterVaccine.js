@@ -8,16 +8,7 @@ const RegisterVaccineSchema = new Schema({
         required: true,
         unique: true
     },
-    regisSelfInfo: {
-        fullname: String,
-        birthday: String,
-        gender: String,
-        city: String,
-        district: String,
-        address: String,
-        ccid: String,
-        phoneNumber: String,
-    },
+    customerId: { type: String, required: true },
     regisAnotherInfo: {
         fullname: String,
         birthday: String,
