@@ -164,7 +164,7 @@ const Home: NextPage = () => {
                                             vaccines={userData.vaccinesDetail}
                                         />
                                         <Title>Vắn xin liên quan</Title>
-                                        <VcRecommend id={username} />
+                                        <VcRecommend customerId={username} />
                                     </>
                                 )}
                             </Right>

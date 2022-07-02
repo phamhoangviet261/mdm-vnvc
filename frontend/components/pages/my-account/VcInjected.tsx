@@ -1,20 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
-import { RegisVcContext } from "components/context/RegisVcContext";
-import axios from "axios";
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-`;
 
 const Wrap = styled.div`
+    margin-top: 10px;
     padding: 0 20px;
 `;
 
@@ -79,46 +68,46 @@ export default function VcInjected({ vaccines }: any) {
     }, [listVaccines]);
 
     return (
-        <Container>
-            <Wrap>
-                <VaccineContainer>
-                    <Grid
-                        container
-                        rowSpacing={3}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                    >
-                        {listVaccines &&
-                            listVaccines.length > 0 &&
-                            listVaccines.map((item: any) => (
-                                <Grid key={item.id} item xs={4}>
-                                    <VaccineItem>
-                                        <div className="content-top">
-                                            <div className="title">
-                                                {item.name}
-                                            </div>
-                                            <div className="price">
-                                                {item.preorderPrice.toLocaleString(
-                                                    "vi"
-                                                )}
-                                                đ
-                                            </div>
+        <Wrap>
+            <VaccineContainer>
+                <Grid
+                    container
+                    rowSpacing={3}
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                >
+                    {listVaccines &&
+                        listVaccines.length > 0 &&
+                        listVaccines.map((item: any) => (
+                            <Grid key={item.id} item xs={6}>
+                                <VaccineItem>
+                                    <div className="content-top">
+                                        <div className="title">{item.name}</div>
+                                        <div className="price">
+                                            {item.preorderPrice.toLocaleString(
+                                                "vi"
+                                            )}
+                                            đ
                                         </div>
-                                        <div className="content-bottom">
-                                            <div className="origin">
-                                                <span>Xuất xứ:</span>
-                                                {item.producingCountry}
-                                            </div>
-                                            <div className="desc">
-                                                <span>Ngăn ngừa: </span>
-                                                {item.prevention}
-                                            </div>
+                                    </div>
+                                    <div className="content-bottom">
+                                        <div className="id">
+                                            <span>Mã vắc-xin:</span>
+                                            {item.id}
                                         </div>
-                                    </VaccineItem>
-                                </Grid>
-                            ))}
-                    </Grid>
-                </VaccineContainer>
-            </Wrap>
-        </Container>
+                                        <div className="origin">
+                                            <span>Xuất xứ:</span>
+                                            {item.producingCountry}
+                                        </div>
+                                        <div className="desc">
+                                            <span>Ngăn ngừa: </span>
+                                            {item.prevention}
+                                        </div>
+                                    </div>
+                                </VaccineItem>
+                            </Grid>
+                        ))}
+                </Grid>
+            </VaccineContainer>
+        </Wrap>
     );
 }
