@@ -126,7 +126,7 @@ router.get('/:phoneNumber/hint', async (req, res, next) => {
         const session = driver.session()
         try {
             const node = await session.run(`
-            MATCH (:Customer {phone: ${cus.phoneNumber}})-[:BUY]-(v1:Vaccine)-[:BUY]-(other:Customer) 
+            MATCH (:Customer {phone: '${cus.phoneNumber}'})-[:BUY]-(v1:Vaccine)-[:BUY]-(other:Customer) 
             WITH collect(v1) as listv1
             MATCH (other)-[:BUY]-(v2:Vaccine)
             WHERE not v2 in listv1
@@ -136,7 +136,13 @@ router.get('/:phoneNumber/hint', async (req, res, next) => {
             for(let i = 0; i < node.records.length; i++) {
                 data.push(node.records[i]?._fields[0].properties.id);
             }
-            return res.status(200).json({data: cus, vaccinesHint: data});
+
+            let hintVaccines = []
+            for(let i = 0; i <  data.length; i++) {
+                let vc = await Vaccine.findOne({id: data[i]});
+                hintVaccines.push(vc)
+            }
+            return res.status(200).json({data: cus, vaccinesHint: hintVaccines});
         } catch (errors) {
             return res.status(400).json({success: false, message: errors.message});
         }
