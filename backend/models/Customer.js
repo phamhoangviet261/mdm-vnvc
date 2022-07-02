@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { Date } = require('neo4j-driver')
 
 const Schema = mongoose.Schema
 
@@ -20,6 +21,9 @@ const CustomerSchema = new Schema({
     name: {
         type: String, 
         required: true,
+    },
+    dob: {
+        type: Date
     },
     age: {
         type: Number, 

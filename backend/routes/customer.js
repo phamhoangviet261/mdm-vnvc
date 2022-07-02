@@ -37,7 +37,7 @@ router.get('/:phoneNumber', async (req, res, next) => {
 
 router.post('/add', async (req, res, next) => {
     try {
-        const {phoneNumber, name, age, ccid, gender, address, addressDetail, invoices, vaccines, password, status} = req.body;
+        const {phoneNumber, name, dob, age, ccid, gender, address, addressDetail, invoices, vaccines, password, status} = req.body;
         if(!phoneNumber || !name || !age || !address || !addressDetail  || !password){
             return res.status(400).json({success: false, message: 'Incorrect data.'});
         }
@@ -47,7 +47,7 @@ router.post('/add', async (req, res, next) => {
         }
         const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
         const customerList = await Customer.find({});
-        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, password: hashedPassword, name, ccid, gender, age, address, addressDetail, invoices, vaccines, status: status ? status : "active"})
+        const customer = new Customer({id: `CUS${customerList.length}`, phoneNumber, password: hashedPassword, name, dob, ccid, gender, age, address, addressDetail, invoices, vaccines, status: status ? status : "active"})
         const cus = await customer.save();
         // const hashedPassword = await bcrypt.hash(password, '$2b$10$o/hktJ4aYLFo3zuvTU80mO');
         // const user = new User({phoneNumber, password: hashedPassword, firstname: name, lastname: name, address})
@@ -85,13 +85,13 @@ router.post('/add', async (req, res, next) => {
 
 router.post('/update', async (req, res, next) => {
     try {
-        const {phoneNumber, name, age, address, addressDetail, invoices, registerVaccines} = req.body;
+        const {phoneNumber, name, dob, age, address, addressDetail, invoices, registerVaccines} = req.body;
         if(!phoneNumber || !name || !age || !address || !addressDetail){
             return res.status(400).json({success: false, message: 'Incorrect data.'});
         }
         const oldCustomer = await Customer.findOne({phoneNumber});
         if(oldCustomer){
-            const customer = await Customer.findOneAndUpdate({'phoneNumber': oldCustomer.phoneNumber}, {phoneNumber, name, age, address, addressDetail, invoices, registerVaccines}, {upsert: true})
+            const customer = await Customer.findOneAndUpdate({'phoneNumber': oldCustomer.phoneNumber}, {phoneNumber, name, dob, age, address, addressDetail, invoices, registerVaccines}, {upsert: true})
             const cus = await Customer.findOne({phoneNumber});
             return res.status(200).json({data: cus});
         }
@@ -126,7 +126,7 @@ router.get('/:phoneNumber/hint', async (req, res, next) => {
         const session = driver.session()
         try {
             const node = await session.run(`
-            MATCH (:Customer {phone: ${cus.phoneNumber}})-[:BUY]-(v1:Vaccine)-[:BUY]-(other:Customer) 
+            MATCH (:Customer {phone: '${cus.phoneNumber}'})-[:BUY]-(v1:Vaccine)-[:BUY]-(other:Customer) 
             WITH collect(v1) as listv1
             MATCH (other)-[:BUY]-(v2:Vaccine)
             WHERE not v2 in listv1
@@ -136,7 +136,13 @@ router.get('/:phoneNumber/hint', async (req, res, next) => {
             for(let i = 0; i < node.records.length; i++) {
                 data.push(node.records[i]?._fields[0].properties.id);
             }
-            return res.status(200).json({data: cus, vaccinesHint: data});
+
+            let hintVaccines = []
+            for(let i = 0; i <  data.length; i++) {
+                let vc = await Vaccine.findOne({id: data[i]});
+                hintVaccines.push(vc)
+            }
+            return res.status(200).json({data: cus, vaccinesHint: hintVaccines});
         } catch (errors) {
             return res.status(400).json({success: false, message: errors.message});
         }

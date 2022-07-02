@@ -93,6 +93,7 @@ router.post('/add', async (req, res, next) => {
 
             const session = driver.session()
             try {
+                console.log(`MATCH (c:Customer), (v:Vaccine) WHERE c.phone = '${cus.phoneNumber}' AND v.id = '${item}' CREATE (c)-[:BUY]->(v);`);
                 const node = await session.run(`MATCH (c:Customer), (v:Vaccine) WHERE c.phone = '${cus.phoneNumber}' AND v.id = '${item}' CREATE (c)-[:BUY]->(v);`)
                 console.log({node});
             } catch (errors) {
