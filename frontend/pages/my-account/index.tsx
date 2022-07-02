@@ -115,7 +115,7 @@ const Home: NextPage = () => {
     useEffect(() => {
         console.log(userData);
     }, [userData]);
-    if (userData.address) {
+    if (userData.address && userData.vaccinesDetail.length > 0 && username) {
         return (
             <Layout>
                 <Header />
@@ -160,9 +160,11 @@ const Home: NextPage = () => {
                                 ) : (
                                     <>
                                         <Title>Vắc xin đã tiêm</Title>
-                                        <VcInjected />
+                                        <VcInjected
+                                            vaccines={userData.vaccinesDetail}
+                                        />
                                         <Title>Vắn xin liên quan</Title>
-                                        <VcRecommend id="id1" />
+                                        <VcRecommend id={username} />
                                     </>
                                 )}
                             </Right>
@@ -185,6 +187,7 @@ interface MyAccountInterface {
     addressDetail?: string;
     invoices?: [];
     registerVaccine?: [];
+    vaccinesDetail?: [];
     ccid?: string;
     gender?: string;
 }

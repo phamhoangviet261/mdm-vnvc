@@ -132,7 +132,6 @@ export default function InjectorInfo({ userData }: InformationProps) {
         })
             .then(function (res) {
                 setListAddress(res.data.data);
-                console.log(res.data.data);
             })
             .catch(function (err) {
                 console.log(err);
@@ -142,10 +141,8 @@ export default function InjectorInfo({ userData }: InformationProps) {
     // set City, District after have listAddress
     useEffect(() => {
         let tempObj = [];
-        console.log("addressId: ", addressId);
         if (addressId && listAddress && listAddress.length > 0) {
             tempObj = listAddress.filter((item) => item.id === addressId);
-            console.log("hehehe:", tempObj);
             setCity(tempObj[0].city);
             setDistrict(tempObj[0].ward);
         }
@@ -154,7 +151,6 @@ export default function InjectorInfo({ userData }: InformationProps) {
     // when city change => set Values and set new list Districts
     useEffect(() => {
         let arrDistricts = [];
-        console.log("listAddress: ", listAddress);
         if (listAddress && listAddress.length > 0) {
             arrDistricts = listAddress.filter((item) => item.city == city);
             setDistricts(arrDistricts);

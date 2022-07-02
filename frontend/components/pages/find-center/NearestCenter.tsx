@@ -103,7 +103,7 @@ const NearestItem = styled.div`
     border: 2px solid #dcdfe6;
 `;
 
-interface OneCenterInterface {
+export interface OneCenterInterface {
     id: string;
     name: string;
     address: string;
@@ -117,7 +117,7 @@ interface OneCenterInterface {
     ward: string;
 }
 
-interface ListCenterInterface {
+export interface ListCenterInterface {
     centerHN: Array<OneCenterInterface>;
     centerHCM: Array<OneCenterInterface>;
 }

@@ -151,37 +151,11 @@ export default function InjectorInfo(props: InjectorInfoProps) {
     const [gender, setGender] = useState("Nam");
     const [city, setCity] = useState("Hồ Chí Minh");
     const [district, setDistrict] = useState("");
-    const [districts, setDistricts] = useState<DistrictInterface[]>([]);
     const [values, setValues] = useState(exampleSelfData);
     const [addressId, setAddressId] = useState("");
     const [listAddress, setListAddress] = useState<DistrictInterface[]>([]);
+    const [cusId, setCusId] = useState("");
     const regisVcContext = useContext(RegisVcContext);
-
-    function handleChange(
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-    ) {
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value,
-        });
-        console.log(values);
-    }
-
-    function handleChangeGender(gender: string) {
-        setGender(gender);
-        setValues({
-            ...values,
-            gender: gender,
-        });
-    }
-
-    function handleChangeCity(city: string) {
-        setCity(city);
-        setValues({
-            ...values,
-            city: city,
-        });
-    }
 
     useEffect(() => {
         let un = JSON.parse(localStorage.getItem("username"));
@@ -203,14 +177,22 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                         fullname: res.data.data.name,
                         phoneNumber: res.data.data.phoneNumber,
                         address: res.data.data.addressDetail,
+                        ccid: res.data.data.ccid,
                     });
                     setAddressId(res.data.data.address);
+                    setCusId(res.data.data.id);
                 })
                 .catch(function (err) {
                     console.log(err);
                 });
         }
     }, [username]);
+
+    useEffect(() => {
+        if (cusId != "") {
+            regisVcContext.updateCustomerId(cusId);
+        }
+    }, [cusId]);
 
     useEffect(() => {
         axios({
@@ -331,9 +313,13 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                         <label className="label-required" htmlFor="city">
                             Tỉnh thành
                         </label>
-                        <select id="city" disabled>
-                            <option value={city}>Thành phố {city}</option>
-                        </select>
+                        <input
+                            type="text"
+                            name="city"
+                            id="city"
+                            disabled
+                            value={city}
+                        />
                     </Item>
                 </Grid>
                 <Grid item xs={6}>
@@ -341,9 +327,13 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                         <label className="label-required" htmlFor="district">
                             Quận/Huyện
                         </label>
-                        <select id="district" name="district" disabled>
-                            <option value={district}>{district}</option>
-                        </select>
+                        <input
+                            type="text"
+                            name="district"
+                            id="district"
+                            disabled
+                            value={district}
+                        />
                     </Item>
                 </Grid>
 

@@ -44,8 +44,12 @@ const VaccineItem = styled.div`
             }
         }
         .content-bottom {
+            span {
+                color: #888;
+                padding-right: 10px;
+            }
             padding-top: 0.5em;
-            color: #888;
+            color: #1a1a1a;
             font-size: 13px;
             margin-top: auto;
         }
@@ -57,40 +61,22 @@ interface VaccinesInterface {
 }
 
 interface VaccineProps {
+    createAt?: string;
     id: string;
-    title: string;
-    description: string;
-    price: number;
+    name: string;
+    prevention: string;
+    producingCountry: string;
+    retailPrice: number;
+    preorderPrice: number;
 }
 
-const listVaccinesData: Array<VaccineProps> = [
-    {
-        id: "VC01",
-        title: "GÓI VẮC XIN Hexaxim (0-9 THÁNG) - GÓI LINH ĐỘNG 1",
-        description:
-            "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-        price: 14300000,
-    },
-    {
-        id: "VC02",
-        title: "GÓI VẮC XIN Hexaxim (0-9 THÁNG) - GÓI LINH ĐỘNG 2",
-        description:
-            "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-        price: 14724000,
-    },
-    {
-        id: "VC03",
-        title: "GÓI VẮC XIN Infanrix (0-9 tháng) - GÓI LINH ĐỘNG 1",
-        description:
-            "Tiêu chảy do rota virus, Bạch hầu, Ho gà, Uốn ván, Bại liệt, Viêm màng não mủ, Viêm phổi do HIB, Viêm gan B, Hội chứng nhiễm trùng, viêm màng não, viêm phổi, nhiễm khuẩn huyết, viêm tai giữa do phế cầu, Cúm, Sởi, Viêm não Nhật bản, Viêm màng não do não mô cầu ACYW",
-        price: 14190000,
-    },
-];
-
-export default function VcInjected() {
-    const [listVaccines, setListVaccines] =
-        useState<VaccineProps[]>(listVaccinesData);
+export default function VcInjected({ vaccines }: any) {
+    const [listVaccines, setListVaccines] = useState(vaccines);
     const [selectedVaccines, setSelectedVaccines] = useState([]);
+
+    useEffect(() => {
+        console.log("listVaccines: ", listVaccines.length);
+    }, [listVaccines]);
 
     return (
         <Container>
@@ -103,22 +89,29 @@ export default function VcInjected() {
                     >
                         {listVaccines &&
                             listVaccines.length > 0 &&
-                            listVaccines.map((item) => (
+                            listVaccines.map((item: any) => (
                                 <Grid key={item.id} item xs={4}>
                                     <VaccineItem>
                                         <div className="content-top">
                                             <div className="title">
-                                                {item.title}
+                                                {item.name}
                                             </div>
                                             <div className="price">
-                                                {item.price.toLocaleString(
+                                                {item.preorderPrice.toLocaleString(
                                                     "vi"
                                                 )}
                                                 đ
                                             </div>
                                         </div>
                                         <div className="content-bottom">
-                                            {item.description}
+                                            <div className="origin">
+                                                <span>Xuất xứ:</span>
+                                                {item.producingCountry}
+                                            </div>
+                                            <div className="desc">
+                                                <span>Ngăn ngừa: </span>
+                                                {item.prevention}
+                                            </div>
                                         </div>
                                     </VaccineItem>
                                 </Grid>
