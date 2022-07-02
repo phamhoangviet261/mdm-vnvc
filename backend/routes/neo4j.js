@@ -144,9 +144,9 @@ router.get('/near/:adrId', async(req, res, next) =>{
     return res.status(200).json({data: 'NEO4J - CYPHER'});
 })
 
-router.get('/near/customer/:customerId', async(req, res, next) =>{
-    const cusId = req.params.customerId;
-    const cus = await Customer.findOne({id: cusId});
+router.get('/near/customer/:customerPhone', async(req, res, next) =>{
+    const customerPhone = req.params.customerPhone;
+    const cus = await Customer.findOne({phoneNumber: customerPhone});
     const adrId = cus.address;
     console.log('START CONNECT NEO4J........', adrId);
     const uri = process.env.NEO4J_URI;
