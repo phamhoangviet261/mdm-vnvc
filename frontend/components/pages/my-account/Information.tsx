@@ -15,6 +15,7 @@ interface MyAccountInterface {
     registerVaccine?: [];
     ccid?: string;
     gender?: string;
+    dob?: string;
 }
 
 interface InformationProps {
@@ -108,7 +109,7 @@ export default function InjectorInfo({ userData }: InformationProps) {
     const [districts, setDistricts] = useState<DistrictInterface[]>([]);
     const [values, setValues] = useState({
         fullname: userData.name,
-        birthday: "",
+        dob: userData.dob.slice(0, 10) || "2022-07-01",
         gender: userData.gender || "Nam",
         city: "",
         district: "",
@@ -116,6 +117,7 @@ export default function InjectorInfo({ userData }: InformationProps) {
         ccid: userData.ccid,
         phoneNumber: userData.phoneNumber,
     });
+
     const [listAddress, setListAddress] = useState([]);
 
     // set AddressID
@@ -221,9 +223,9 @@ export default function InjectorInfo({ userData }: InformationProps) {
                         <input
                             onChange={handleChange}
                             type="date"
-                            name="birthday"
-                            id="birthday"
-                            value={values.birthday}
+                            name="dob"
+                            id="dob"
+                            value={values.dob}
                         />
                     </Item>
                 </Grid>

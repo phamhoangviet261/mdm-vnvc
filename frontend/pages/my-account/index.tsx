@@ -190,6 +190,7 @@ interface MyAccountInterface {
     vaccinesDetail?: [];
     ccid?: string;
     gender?: string;
+    dob?: string;
 }
 
 export async function getStaticProps() {

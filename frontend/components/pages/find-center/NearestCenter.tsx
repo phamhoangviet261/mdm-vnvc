@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
         margin-top: 16px;
         font-size: 24px;
         color: ${theme?.colors?.blue0};
-        font-weight: 700;
+        font-weight: 500;
     }
     & p {
         font-size: 16px;
@@ -101,6 +101,14 @@ const NearestItem = styled.div`
     padding: 0 20px 20px 20px;
     border-radius: 6px;
     border: 2px solid #dcdfe6;
+    p {
+        padding-top: 4px;
+    }
+    a {
+        padding-top: 10px;
+
+        color: #337ab7;
+    }
 `;
 
 export interface OneCenterInterface {
@@ -131,7 +139,32 @@ export default function NearestCenter() {
     const [fullListCenter, setFullListCenter] = useState<ListCenterInterface[]>(
         []
     );
+    const [nearestCenters, setNearestCenters] =
+        useState<OneCenterInterface[]>();
     const [search, setSearch] = useState("");
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        let un = localStorage.getItem("username");
+        setUsername(JSON.parse(un));
+    }, []);
+
+    useEffect(() => {
+        if (username != "") {
+            let url = `http://localhost:5000/neo4j/near/customer/${username}`;
+            axios({
+                method: "GET",
+                url: url,
+                data: null,
+            })
+                .then(function (res) {
+                    setNearestCenters(res.data.data.centers);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
+    }, [username]);
 
     useEffect(() => {
         axios({
@@ -145,20 +178,21 @@ export default function NearestCenter() {
             .catch(function (err) {
                 console.log(err);
             });
-    }, []),
-        useEffect(() => {
-            let tempArr: Array<OneCenterInterface> = [];
-            if (tab) {
-                tempArr = fullListCenter?.["centerHCM"];
-            } else {
-                tempArr = fullListCenter?.["centerHN"];
-            }
+    }, []);
 
-            if (tempArr && tempArr.length > 0) {
-                setListCenter(tempArr);
-                setListCenterDefault(tempArr);
-            }
-        }, [tab, fullListCenter]);
+    useEffect(() => {
+        let tempArr: Array<OneCenterInterface> = [];
+        if (tab) {
+            tempArr = fullListCenter?.["centerHCM"];
+        } else {
+            tempArr = fullListCenter?.["centerHN"];
+        }
+
+        if (tempArr && tempArr.length > 0) {
+            setListCenter(tempArr);
+            setListCenterDefault(tempArr);
+        }
+    }, [tab, fullListCenter]);
 
     useEffect(() => {
         if (search == "") {
@@ -177,10 +211,17 @@ export default function NearestCenter() {
         <Wrapper>
             <div className="wrap">
                 <Title>Trung tâm gần bạn nhất:</Title>
-                <NearestItem>
-                    <h2>VNVC Hoàng Văn Thụ:</h2>
-                    <p>198 Hoàng Văn Thụ, P.9, Q.Phú Nhuận, TP.HCM</p>
-                </NearestItem>
+                {nearestCenters &&
+                    nearestCenters.length > 0 &&
+                    nearestCenters.map((item) => (
+                        <NearestItem key={item.id}>
+                            <h2>{item.name}</h2>
+                            <p>{item.addressDetail}</p>
+                            <a target="_blank" href={item.googleMap.link}>
+                                Xem bản đồ trên Google
+                            </a>
+                        </NearestItem>
+                    ))}
             </div>
             <div className="wrap">
                 <Title>Tìm trung tâm</Title>

@@ -178,6 +178,7 @@ export default function InjectorInfo(props: InjectorInfoProps) {
                         phoneNumber: res.data.data.phoneNumber,
                         address: res.data.data.addressDetail,
                         ccid: res.data.data.ccid,
+                        birthday: res.data.data.dob.slice(0, 10),
                     });
                     setAddressId(res.data.data.address);
                     setCusId(res.data.data.id);
