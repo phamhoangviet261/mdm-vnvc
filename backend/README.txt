@@ -5,6 +5,6 @@ git checkout main
 git status
 git commit -m ''
 git push
-git subtree--prefix heroku main
+git subtree push --prefix backend heroku main
 
 
