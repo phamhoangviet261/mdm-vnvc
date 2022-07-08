@@ -10,6 +10,10 @@ import {
     exampleAnotherData,
     exampleSelfData,
 } from "components";
+import {
+    OneCenterInterface,
+    ListCenterInterface,
+} from "components/pages/find-center/NearestCenter";
 import Footer from "layouts/Footer";
 import Header from "layouts/Header";
 import Main from "layouts/Main";
@@ -103,77 +107,6 @@ const SubmitButton = styled.div`
     }
 `;
 
-interface CenterInterface {
-    city: string;
-    centers: string[];
-}
-
-const data: Array<CenterInterface> = [
-    {
-        city: "Thành phố Hồ Chí Minh",
-        centers: [
-            "VNVC quận 1",
-            "VNVC quận 2",
-            "VNVC quận 3",
-            "VNVC quận 4",
-            "VNVC quận 5",
-            "VNVC quận 6",
-            "VNVC quận 7",
-            "VNVC quận 8",
-            "VNVC quận 9",
-            "VNVC quận 10",
-            "VNVC quận 11",
-            "VNVC quận 12",
-            "VNVC Bình Tân",
-            "VNVC Bình Thạnh",
-            "VNVC Gò Vấp",
-            "VNVC Phú Nhuận",
-            "VNVC Tân Bình",
-            "VNVC Tân Phú",
-            "VNVC Bình Chánh",
-            "VNVC Cần Giờ",
-            "VNVC Củ Chi",
-            "VNVC Nhà Bè",
-            "VNVC Hóc Môn",
-            "VNVC Thủ Đức ",
-        ],
-    },
-    {
-        city: "Thành phố Hà Nội",
-        centers: [
-            "VNVC Ba Đình",
-            "VNVC Bắc Từ Liêm",
-            "VNVC Cầu Giấy",
-            "VNVC Đống Đa",
-            "VNVC Hà Đông",
-            "VNVC Hai Bà Trưng",
-            "VNVC Hoàn Kiếm",
-            "VNVC Hoàng Mai",
-            "VNVC Long Biên",
-            "VNVC Nam Từ Liêm",
-            "VNVC Tây Hồ",
-            "VNVC Thanh Xuân",
-            "VNVC Sơn Tây",
-            "VNVC Chương Mỹ",
-            "VNVC Đan Phượng",
-            "VNVC Đông Anh",
-            "VNVC Gia Lâm",
-            "VNVC Hoài Đức",
-            "VNVC Mê Linh",
-            "VNVC Mỹ Đức",
-            "VNVC Phú Xuyên",
-            "VNVC Phúc Thọ",
-            "VNVC Quốc Oai",
-            "VNVC Sóc Sơn",
-            "VNVC Thạch Thất",
-            "VNVC Thanh Oai",
-            "VNVC Thanh Trì",
-            "VNVC Thường Tín",
-            "VNVC Ứng Hoà",
-        ],
-    },
-];
-
 const Home: NextPage = ({
     listCate,
     listPackage,
@@ -183,8 +116,9 @@ const Home: NextPage = ({
     const [tabTypeVaccine, setTabTypeVaccine] = useState(true);
     const [center, setCenter] = useState("");
     const [injectDate, setInjectDate] = useState("");
-    const [city, setCity] = useState("Thành phố Hồ Chí Minh");
-    const [centers, setCenters] = useState<string[]>([]);
+    const [city, setCity] = useState("TP.HCM");
+    const [centers, setCenters] = useState<OneCenterInterface[]>([]);
+    const [listCenter, setListCenter] = useState<ListCenterInterface>();
     const [serviceInfoData, setServiceInfoData] = useState({
         city: "Thành phố Hồ Chí Minh",
         center: "VNVC quận 1",
@@ -194,14 +128,34 @@ const Home: NextPage = ({
     const regisVcContext = useContext(RegisVcContext);
 
     useEffect(() => {
-        let arrCenters: Array<CenterInterface>;
-        arrCenters = data.filter((item) => item.city == city);
-        setCenters(arrCenters[0].centers);
-        setServiceInfoData({
-            ...serviceInfoData,
-            center: arrCenters[0].centers[0],
-        });
-    }, [city]);
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/center",
+            data: null,
+        })
+            .then(function (res) {
+                setListCenter(res.data.data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }, []);
+
+    useEffect(() => {
+        let arrCenters: Array<OneCenterInterface>;
+        if (city == "TP.HCM") {
+            arrCenters = listCenter?.["centerHCM"];
+        } else {
+            arrCenters = listCenter?.["centerHN"];
+        }
+        if (arrCenters && arrCenters.length > 0) {
+            setCenters(arrCenters);
+            setServiceInfoData({
+                ...serviceInfoData,
+                center: arrCenters[0].id,
+            });
+        }
+    }, [city, listCenter]);
 
     function handleChangeServiceData(
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -222,24 +176,25 @@ const Home: NextPage = ({
 
     function handleSubmit() {
         const data = {
-            regisSelfInfo: regisVcContext.regisSelfInfo,
+            customerId: regisVcContext.customerId,
             regisAnotherInfo: regisVcContext.regisAnotherInfo,
+            serviceInfo: regisVcContext.serviceInfo,
             listPackages: regisVcContext.listPackages,
             listVaccines: regisVcContext.listVaccines,
         };
         console.log("full data:", data);
 
-        axios({
-            method: "POST",
-            url: "localhost:5000/registervaccine/add",
-            data: data,
-        })
-            .then(function (res) {
-                console.log(res);
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
+        // axios({
+        //     method: "POST",
+        //     url: "localhost:5000/registervaccine/add",
+        //     data: data,
+        // })
+        //     .then(function (res) {
+        //         console.log(res);
+        //     })
+        //     .catch(function (err) {
+        //         console.log(err);
+        //     });
     }
 
     function handleClickTabRegis() {
@@ -249,8 +204,6 @@ const Home: NextPage = ({
     useEffect(() => {
         if (tabTypeRegis) {
             regisVcContext.updateRegisAnotherInfo(exampleAnotherData);
-        } else {
-            regisVcContext.updateRegisSelfInfo(exampleSelfData);
         }
     }, [tabTypeRegis]);
 
@@ -261,6 +214,10 @@ const Home: NextPage = ({
             regisVcContext.updateListVaccines([]);
         }
     }, [tabTypeVaccine]);
+
+    useEffect(() => {
+        regisVcContext.updateServiceInfo(serviceInfoData);
+    }, [serviceInfoData]);
 
     return (
         <Layout>
@@ -341,10 +298,10 @@ const Home: NextPage = ({
                                             }
                                             id="city"
                                         >
-                                            <option value="Thành phố Hồ Chí Minh">
+                                            <option value="TP.HCM">
                                                 TP Hồ Chí Minh
                                             </option>
-                                            <option value="Thành phố Hà Nội">
+                                            <option value="TP.Hà Nội">
                                                 Hà Nội
                                             </option>
                                         </select>
@@ -361,14 +318,15 @@ const Home: NextPage = ({
                                         <select
                                             onChange={handleChangeServiceData}
                                             id="district"
+                                            name="center"
                                         >
                                             {centers.length > 0 &&
-                                                centers.map((item, index) => (
+                                                centers.map((item) => (
                                                     <option
-                                                        key={index}
-                                                        value={item}
+                                                        key={item.id}
+                                                        value={item.id}
                                                     >
-                                                        {item}
+                                                        {item.name}
                                                     </option>
                                                 ))}
                                         </select>

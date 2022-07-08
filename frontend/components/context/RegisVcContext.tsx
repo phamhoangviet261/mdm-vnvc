@@ -1,16 +1,7 @@
 import { useState, createContext } from "react";
 
 type regisVcContextType = {
-    regisSelfInfo: {
-        fullname: string;
-        birthday: string;
-        gender: string;
-        city: string;
-        district: string;
-        address: string;
-        ccid: string;
-        phoneNumber: string;
-    };
+    customerId: string;
     regisAnotherInfo: {
         fullname: string;
         birthday: string;
@@ -29,7 +20,7 @@ type regisVcContextType = {
     };
     listPackages: string[];
     listVaccines: string[];
-    updateRegisSelfInfo: (data: any) => void;
+    updateCustomerId: (data: any) => void;
     updateRegisAnotherInfo: (data: any) => void;
     updateServiceInfo: (data: any) => void;
     updateListPackages: (data: any) => void;
@@ -37,16 +28,7 @@ type regisVcContextType = {
 };
 
 const regisVcContextDefault: regisVcContextType = {
-    regisSelfInfo: {
-        fullname: "",
-        birthday: "",
-        gender: "",
-        city: "",
-        district: "",
-        address: "",
-        ccid: "",
-        phoneNumber: "",
-    },
+    customerId: "",
     regisAnotherInfo: {
         fullname: "",
         birthday: "",
@@ -65,7 +47,7 @@ const regisVcContextDefault: regisVcContextType = {
     },
     listPackages: [],
     listVaccines: [],
-    updateRegisSelfInfo: (data: any) => {},
+    updateCustomerId: (data: any) => {},
     updateRegisAnotherInfo: (data: any) => {},
     updateServiceInfo: (data: any) => {},
     updateListPackages: (data: any) => {},
@@ -75,8 +57,8 @@ const regisVcContextDefault: regisVcContextType = {
 const RegisVcContext = createContext<regisVcContextType>(regisVcContextDefault);
 
 function RegisVcProvider({ children }) {
-    const [regisSelfInfo, setRegisSelfInfo] = useState(
-        regisVcContextDefault.regisSelfInfo
+    const [customerId, setCustomerId] = useState(
+        regisVcContextDefault.customerId
     );
     const [regisAnotherInfo, setRegisAnotherInfo] = useState(
         regisVcContextDefault.regisAnotherInfo
@@ -92,13 +74,13 @@ function RegisVcProvider({ children }) {
         regisVcContextDefault.listVaccines
     );
     const values = {
-        regisSelfInfo,
+        customerId,
         regisAnotherInfo,
         serviceInfo,
         listPackages,
         listVaccines,
-        updateRegisSelfInfo: (data: any) => {
-            setRegisSelfInfo(data);
+        updateCustomerId: (data: any) => {
+            setCustomerId(data);
         },
         updateRegisAnotherInfo: (data: any) => {
             setRegisAnotherInfo(data);

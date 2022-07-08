@@ -15,6 +15,7 @@ interface MyAccountInterface {
     registerVaccine?: [];
     ccid?: string;
     gender?: string;
+    dob?: string;
 }
 
 interface InformationProps {
@@ -108,7 +109,7 @@ export default function InjectorInfo({ userData }: InformationProps) {
     const [districts, setDistricts] = useState<DistrictInterface[]>([]);
     const [values, setValues] = useState({
         fullname: userData.name,
-        birthday: "",
+        dob: userData.dob.slice(0, 10) || "2022-07-01",
         gender: userData.gender || "Nam",
         city: "",
         district: "",
@@ -116,6 +117,7 @@ export default function InjectorInfo({ userData }: InformationProps) {
         ccid: userData.ccid,
         phoneNumber: userData.phoneNumber,
     });
+
     const [listAddress, setListAddress] = useState([]);
 
     // set AddressID
@@ -132,7 +134,6 @@ export default function InjectorInfo({ userData }: InformationProps) {
         })
             .then(function (res) {
                 setListAddress(res.data.data);
-                console.log(res.data.data);
             })
             .catch(function (err) {
                 console.log(err);
@@ -142,10 +143,8 @@ export default function InjectorInfo({ userData }: InformationProps) {
     // set City, District after have listAddress
     useEffect(() => {
         let tempObj = [];
-        console.log("addressId: ", addressId);
         if (addressId && listAddress && listAddress.length > 0) {
             tempObj = listAddress.filter((item) => item.id === addressId);
-            console.log("hehehe:", tempObj);
             setCity(tempObj[0].city);
             setDistrict(tempObj[0].ward);
         }
@@ -154,7 +153,6 @@ export default function InjectorInfo({ userData }: InformationProps) {
     // when city change => set Values and set new list Districts
     useEffect(() => {
         let arrDistricts = [];
-        console.log("listAddress: ", listAddress);
         if (listAddress && listAddress.length > 0) {
             arrDistricts = listAddress.filter((item) => item.city == city);
             setDistricts(arrDistricts);
@@ -225,9 +223,9 @@ export default function InjectorInfo({ userData }: InformationProps) {
                         <input
                             onChange={handleChange}
                             type="date"
-                            name="birthday"
-                            id="birthday"
-                            value={values.birthday}
+                            name="dob"
+                            id="dob"
+                            value={values.dob}
                         />
                     </Item>
                 </Grid>
