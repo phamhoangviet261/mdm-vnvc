@@ -136,10 +136,10 @@ router.get('/:phoneNumber/hint', async (req, res, next) => {
             for(let i = 0; i < node.records.length; i++) {
                 data.push(node.records[i]?._fields[0].properties.id);
             }
-
+            hintData = [... new Set([...data])];
             let hintVaccines = []
-            for(let i = 0; i <  data.length; i++) {
-                let vc = await Vaccine.findOne({id: data[i]});
+            for(let i = 0; i <  hintData.length; i++) {
+                let vc = await Vaccine.findOne({id: hintData[i]});
                 hintVaccines.push(vc)
             }
             return res.status(200).json({data: cus, vaccinesHint: hintVaccines});
