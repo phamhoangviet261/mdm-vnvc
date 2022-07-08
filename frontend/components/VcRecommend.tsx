@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 import axios from "axios";
+import { theme } from "styles/theme";
+import { RegisVcContext } from "components/context/RegisVcContext";
+
 import myUrl from "components/config/config";
 const Wrap = styled.div`
     margin-bottom: 20px;
@@ -16,7 +19,7 @@ const VaccineContainer = styled.div`
 const VaccineItem = styled.div`
     height: 100%;
     border: 1px solid #dcdfe6;
-    padding: 9px 20px 9px 10px;
+    padding: 9px 20px;
     border-radius: 4px;
         .content-top {
             display: flex;
@@ -45,6 +48,20 @@ const VaccineItem = styled.div`
             margin-top: auto;
         }
     }
+    .buy {
+        margin-top: 10px;
+        border-radius: 4px;
+        font-size: 16px;
+        padding: 8px 12px;
+        background-color: ${theme?.colors?.blue0};
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2 linear;
+        color: white;
+        &:hover {
+            background-color: ${theme?.colors?.pink4};
+        }
+    }
 `;
 
 interface VcRecommendInterface {
@@ -66,6 +83,8 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
     const [listVaccines, setListVaccines] = useState<VaccineProps[]>();
     const [selectedVaccines, setSelectedVaccines] = useState([]);
 
+    const regisVcContext = useContext(RegisVcContext);
+
     useEffect(() => {
         // axios call api get list vaccines recommendation
         if (id) {
@@ -85,6 +104,13 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
                 });
         }
     }, []);
+
+    function handleClickBuy(item: VaccineProps) {
+        console.log("vaccine clicked: ", item);
+        let tempArr = [...regisVcContext.listVxBuy, item];
+        console.log("tempArr:", tempArr);
+        regisVcContext.updateListVxBuy([...regisVcContext.listVxBuy, item]);
+    }
 
     return listVaccines ? (
         <Wrap>
@@ -120,6 +146,12 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
                                         <div className="desc">
                                             <span>Ngăn ngừa: </span>
                                             {item.prevention}
+                                        </div>
+                                        <div
+                                            className="buy"
+                                            onClick={() => handleClickBuy(item)}
+                                        >
+                                            Đặt mua
                                         </div>
                                     </div>
                                 </VaccineItem>

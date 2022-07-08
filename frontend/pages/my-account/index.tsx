@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React, { useState, useEffect, useContext } from "react";
-import { Banner, Information, VcInjected, VcRecommend } from "components";
+import { Information, VcInjected, VcRecommend } from "components";
 import Footer from "layouts/Footer";
 import Header from "layouts/Header";
 import Main from "layouts/Main";
