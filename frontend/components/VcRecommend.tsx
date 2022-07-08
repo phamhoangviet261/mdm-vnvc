@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import axios from "axios";
 import { theme } from "styles/theme";
 import { RegisVcContext } from "components/context/RegisVcContext";
-
+import { useRouter } from "next/router";
 import myUrl from "components/config/config";
 const Wrap = styled.div`
     margin-bottom: 20px;
@@ -59,7 +59,7 @@ const VaccineItem = styled.div`
         transition: all 0.2 linear;
         color: white;
         &:hover {
-            background-color: ${theme?.colors?.pink4};
+            background-color: #35944A;
         }
     }
 `;
@@ -84,7 +84,7 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
     const [selectedVaccines, setSelectedVaccines] = useState([]);
 
     const regisVcContext = useContext(RegisVcContext);
-
+    const router = useRouter();
     useEffect(() => {
         // axios call api get list vaccines recommendation
         if (id) {
@@ -110,6 +110,7 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
         let tempArr = [...regisVcContext.listVxBuy, item];
         console.log("tempArr:", tempArr);
         regisVcContext.updateListVxBuy([...regisVcContext.listVxBuy, item]);
+        router.push("/buy-vaccine");
     }
 
     return listVaccines ? (
