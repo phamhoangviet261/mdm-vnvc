@@ -114,6 +114,7 @@ interface VaccineProps {
     producingCountry: string;
     retailPrice: number;
     preorderPrice: number;
+    disabledButton?: boolean;
 }
 
 export default function BuyItem(props: VaccineProps) {
@@ -144,7 +145,9 @@ export default function BuyItem(props: VaccineProps) {
             <ItemBottom>
                 <p>Phòng bệnh:</p>
                 <div className="prevention">{props.prevention}</div>
-                {regisVcContext.listVxBuy.some((x) => x.id === props.id) ? (
+                {props.disabledButton ? (
+                    ""
+                ) : regisVcContext.listVxBuy.some((x) => x.id === props.id) ? (
                     <div
                         className="btn-buy active"
                         onClick={() => handleClickBuy(props)}
