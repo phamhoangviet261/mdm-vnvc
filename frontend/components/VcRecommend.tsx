@@ -6,6 +6,7 @@ import { theme } from "styles/theme";
 import { RegisVcContext } from "components/context/RegisVcContext";
 import { useRouter } from "next/router";
 import myUrl from "components/config/config";
+import Loading from "./Loading";
 const Wrap = styled.div`
     margin-bottom: 20px;
     padding: 0 20px;
@@ -61,6 +62,17 @@ const VaccineItem = styled.div`
         &:hover {
             background-color: #35944A;
         }
+    }
+`;
+
+const LoadingComponent = styled.div`
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        padding-left: 14px;
+        font-size: 16px;
     }
 `;
 
@@ -162,6 +174,9 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
             </VaccineContainer>
         </Wrap>
     ) : (
-        <Wrap>Loading</Wrap>
+        <LoadingComponent>
+            <Loading />
+            <h2>Loading...</h2>
+        </LoadingComponent>
     );
 }

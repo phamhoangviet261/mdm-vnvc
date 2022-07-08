@@ -10,6 +10,7 @@ import { Container } from "@mui/material";
 import { theme } from "styles/theme";
 import axios from "axios";
 import myUrl from "components/config/config";
+import Loading from "components/Loading";
 const Title = styled.div`
     margin-top: 30px;
     padding-bottom: 10px;
@@ -39,6 +40,7 @@ const Left = styled.div`
         font-size: 22px;
         font-weight: 500;
         color: ${theme?.colors?.blue0};
+        text-align: center;
     }
     ul {
         padding-top: 16px;
@@ -85,6 +87,17 @@ export const Item = styled.div`
       width: 100%;
     }
 `;
+
+const LoadingComponent = styled.div`
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        padding-left: 14px;
+        font-size: 16px;
+    }
+`;
 const Home: NextPage = () => {
     const [selectedOption, setSelectedOption] = useState("1");
     const [username, setUsername] = useState("");
@@ -105,6 +118,7 @@ const Home: NextPage = () => {
             })
                 .then(function (res) {
                     setUserData(res.data.data);
+                    setFirstName(res.data.data.name);
                 })
                 .catch(function (err) {
                     console.log(err);
@@ -123,7 +137,9 @@ const Home: NextPage = () => {
                     <Container>
                         <Wrap>
                             <Left>
-                                <h1>Xin chào, {firstName}</h1>
+                                <h1>
+                                    Xin chào <br /> {firstName}
+                                </h1>
                                 <ul>
                                     {selectedOption == "1" ? (
                                         <>
@@ -175,7 +191,12 @@ const Home: NextPage = () => {
             </Layout>
         );
     } else {
-        return <h1>Loading</h1>;
+        return (
+            <LoadingComponent>
+                <Loading />
+                <h2>Loading...</h2>
+            </LoadingComponent>
+        );
     }
 };
 
