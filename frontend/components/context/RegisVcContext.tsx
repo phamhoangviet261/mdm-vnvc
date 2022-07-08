@@ -1,5 +1,15 @@
 import { useState, createContext } from "react";
 
+type VaccineItem = {
+    createAt?: string;
+    id: string;
+    name: string;
+    prevention: string;
+    producingCountry: string;
+    retailPrice: number;
+    preorderPrice: number;
+};
+
 type regisVcContextType = {
     customerId: string;
     regisAnotherInfo: {
@@ -20,11 +30,13 @@ type regisVcContextType = {
     };
     listPackages: string[];
     listVaccines: string[];
+    listVxBuy: VaccineItem[];
     updateCustomerId: (data: any) => void;
     updateRegisAnotherInfo: (data: any) => void;
     updateServiceInfo: (data: any) => void;
     updateListPackages: (data: any) => void;
     updateListVaccines: (data: any) => void;
+    updateListVxBuy: (data: any) => void;
 };
 
 const regisVcContextDefault: regisVcContextType = {
@@ -47,11 +59,13 @@ const regisVcContextDefault: regisVcContextType = {
     },
     listPackages: [],
     listVaccines: [],
+    listVxBuy: [],
     updateCustomerId: (data: any) => {},
     updateRegisAnotherInfo: (data: any) => {},
     updateServiceInfo: (data: any) => {},
     updateListPackages: (data: any) => {},
     updateListVaccines: (data: any) => {},
+    updateListVxBuy: (data: any) => {},
 };
 
 const RegisVcContext = createContext<regisVcContextType>(regisVcContextDefault);
@@ -73,12 +87,14 @@ function RegisVcProvider({ children }) {
     const [listVaccines, setListVaccines] = useState(
         regisVcContextDefault.listVaccines
     );
+    const [listVxBuy, setListVxBuy] = useState(regisVcContextDefault.listVxBuy);
     const values = {
         customerId,
         regisAnotherInfo,
         serviceInfo,
         listPackages,
         listVaccines,
+        listVxBuy,
         updateCustomerId: (data: any) => {
             setCustomerId(data);
         },
@@ -93,6 +109,9 @@ function RegisVcProvider({ children }) {
         },
         updateListVaccines: (data: any) => {
             setListVaccines(data);
+        },
+        updateListVxBuy: (data: any) => {
+            setListVxBuy(data);
         },
     };
     return (
