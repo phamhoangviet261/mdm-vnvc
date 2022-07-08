@@ -30,7 +30,7 @@ const Home: NextPage = () => {
 export async function getStaticProps() {
     return {
         props: {
-            title: "Tìm trung tâm",
+            title: "Mua vắc xin",
             description: "This is a description for homepage",
         },
     };

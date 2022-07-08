@@ -1,15 +1,13 @@
-
-import axios from 'axios';
-import { usePageContext } from 'components/context/PageContext';
-import PaginationRounded from 'components/Pagination';
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components';
-import QuestionCard from './QuestionCard'
-
+import axios from "axios";
+import { usePageContext } from "components/context/PageContext";
+import PaginationRounded from "components/Pagination";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import QuestionCard from "./QuestionCard";
+import myUrl from "components/config/config";
 const List = styled.div`
     flex: 1;
-    
-`
+`;
 
 interface AnswerInterface {
     DoctorName: string;
@@ -22,72 +20,63 @@ interface CustomerShortInfo {
     city: string;
 }
 
-
 interface QuestionInterface {
     id: string;
     customerShortInfo: CustomerShortInfo;
     content: string;
 }
 
-async function getListQuestion(){
-    try{
-        const response = await axios.get('http://localhost:5000/question')
+async function getListQuestion() {
+    try {
+        const response = await axios.get(`${myUrl}/question`);
         return response.data;
-    }
-    catch(error){
+    } catch (error) {
         console.log(error);
     }
-    
-
 }
 
-
 const ListQuestion = () => {
-
-    
-
     const [listQuestion, setListQuestion] = useState<QuestionInterface[]>([]);
 
     useEffect(() => {
         axios({
             method: "GET",
-            url: "http://localhost:5000/question",
+            url: `${myUrl}/question`,
         })
-        .then(function (res) {
-            setListQuestion(res.data.data);
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
-    }, [])
+            .then(function (res) {
+                setListQuestion(res.data.data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }, []);
 
     const PageContext = usePageContext();
     const [pageCount, setPageCount] = useState(1);
 
-    useEffect(()=>{
-        if (listQuestion.length > 0){
+    useEffect(() => {
+        if (listQuestion.length > 0) {
             setPageCount(Math.ceil(listQuestion.length / 5));
         }
-    }, [listQuestion])
+    }, [listQuestion]);
 
-    const[page, setPage] = useState(1);
+    const [page, setPage] = useState(1);
 
-    useEffect(()=>{
+    useEffect(() => {
         setPage(PageContext.page);
-    }, [PageContext.page])
+    }, [PageContext.page]);
 
-  return (
-    <List>
-        {listQuestion.length > 0 && listQuestion.map((item, index)=>{
-            if (index < (page * 5) && index >= (page - 1)*5){
-                return (
-                    <QuestionCard question={item.id} key={index}/>
-                )
-            }
-        })}
-    <PaginationRounded count={pageCount}/>
-    </List>
-  )
-}
+    return (
+        <List>
+            {listQuestion.length > 0 &&
+                listQuestion.map((item, index) => {
+                    if (index < page * 5 && index >= (page - 1) * 5) {
+                        return <QuestionCard question={item.id} key={index} />;
+                    }
+                })}
+            <PaginationRounded count={pageCount} />
+        </List>
+    );
+};
 
-export default ListQuestion
+export default ListQuestion;

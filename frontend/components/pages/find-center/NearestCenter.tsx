@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { theme } from "styles/theme";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
+import myUrl from "components/config/config";
 export const Wrapper = styled.div`
     margin: 0 auto;
     text-align: center;
@@ -151,7 +152,7 @@ export default function NearestCenter() {
 
     useEffect(() => {
         if (username != "") {
-            let url = `http://localhost:5000/neo4j/near/customer/${username}`;
+            let url = `${myUrl}/neo4j/near/customer/${username}`;
             axios({
                 method: "GET",
                 url: url,
@@ -169,7 +170,7 @@ export default function NearestCenter() {
     useEffect(() => {
         axios({
             method: "GET",
-            url: "http://localhost:5000/center/",
+            url: `${myUrl}/center/`,
             data: null,
         })
             .then(function (res) {

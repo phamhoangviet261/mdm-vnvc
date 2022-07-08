@@ -24,7 +24,7 @@ import styled from "styled-components";
 import { theme } from "styles/theme";
 import { useEffect, useState, useContext } from "react";
 import { RegisVcContext } from "components";
-
+import myUrl from "components/config/config";
 const TopContent = styled.div`
     margin-bottom: 30px;
     .heading-container {
@@ -107,6 +107,42 @@ const SubmitButton = styled.div`
     }
 `;
 
+const ResultWrapper = styled.div`
+    padding: 100px 100px 120px;
+    background-color: ${theme?.colors?.blue0};
+    position: relative;
+    left: 50%;
+    top: 160px;
+    transform: translateX(-50%);
+    width: 40%;
+    border-radius: 10px;
+    h2 {
+        font-size: 24px;
+        font-weight: 500;
+        color: white;
+        text-align: center;
+    }
+    .btn-result {
+        margin-top: 20px;
+        background-color: white;
+        color: black;
+        width: 40%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        font-size: 20px;
+        padding: 12px 0;
+        transition: all 0.2s linear;
+        &:hover {
+            background-color: ${theme?.colors?.pink4};
+            color: white;
+        }
+    }
+`;
+
 const Home: NextPage = ({
     listCate,
     listPackage,
@@ -125,12 +161,13 @@ const Home: NextPage = ({
         injectDate: "",
     });
 
+    const [result, setResult] = useState(false);
     const regisVcContext = useContext(RegisVcContext);
 
     useEffect(() => {
         axios({
             method: "GET",
-            url: "http://localhost:5000/center",
+            url: `${myUrl}/center`,
             data: null,
         })
             .then(function (res) {
@@ -184,17 +221,21 @@ const Home: NextPage = ({
         };
         console.log("full data:", data);
 
-        // axios({
-        //     method: "POST",
-        //     url: "localhost:5000/registervaccine/add",
-        //     data: data,
-        // })
-        //     .then(function (res) {
-        //         console.log(res);
-        //     })
-        //     .catch(function (err) {
-        //         console.log(err);
-        //     });
+        axios({
+            method: "POST",
+            url: `${myUrl}/registervaccine/add`,
+            data: data,
+        })
+            .then(function (res) {
+                console.log("handle result:", res);
+                if (res.status === 200) {
+                    console.log("ccc");
+                    setResult(true);
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
     }
 
     function handleClickTabRegis() {
@@ -219,7 +260,7 @@ const Home: NextPage = ({
         regisVcContext.updateServiceInfo(serviceInfoData);
     }, [serviceInfoData]);
 
-    return (
+    return !result ? (
         <Layout>
             <Header />
             <Main>
@@ -412,6 +453,15 @@ const Home: NextPage = ({
             </Main>
             <Footer />
         </Layout>
+    ) : (
+        <Layout>
+            <ResultWrapper>
+                <h2>Bạn đã đăng ký thành công</h2>
+                <div className="btn-result" onClick={() => setResult(false)}>
+                    OK
+                </div>
+            </ResultWrapper>
+        </Layout>
     );
 };
 
@@ -476,7 +526,7 @@ export async function getStaticProps() {
     let listVaccines: VaccinePropsInterface[] = [];
     await axios({
         method: "GET",
-        url: "http://localhost:5000/package/",
+        url: `${myUrl}/package/`,
         data: null,
     })
         .then(function (res) {
@@ -489,7 +539,7 @@ export async function getStaticProps() {
         });
     await axios({
         method: "GET",
-        url: "http://localhost:5000/vaccine/",
+        url: `${myUrl}/vaccine/`,
         data: null,
     })
         .then(function (res) {
@@ -505,7 +555,7 @@ export async function getStaticProps() {
         });
     return {
         props: {
-            title: "Tìm trung tâm",
+            title: "Đăng ký vắc xin",
             description: "This is a description for homepage",
             listCate,
             listPackage,

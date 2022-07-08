@@ -4,6 +4,7 @@ import { theme } from "styles/theme";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
+import myUrl from "components/config/config";
 const Container = styled.div`
     margin: 60px auto;
     width: 540px;
@@ -95,7 +96,7 @@ const LoginForm = () => {
 
         axios({
             method: "POST",
-            url: "http://localhost:5000/auth/login",
+            url: `${myUrl}/auth/login`,
             data: {
                 phone: data.username,
                 password: data.password,
