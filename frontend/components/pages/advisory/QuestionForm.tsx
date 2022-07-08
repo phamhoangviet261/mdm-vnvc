@@ -1,4 +1,6 @@
-import React from 'react'
+import axios from 'axios'
+import { usePageContext } from 'components/context/PageContext'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const Select = styled.select`
@@ -81,10 +83,42 @@ const Submit = styled.button`
 `
 
 const QuestionForm = () => {
+
+    const [name, setName] = useState("");
+    const [city, setCity] = useState("");
+    const [content, setContent] = useState("");
+
+    const addQuestion = () => {
+        let value = {
+            content , 
+            customerShortInfo: {
+                name,
+                city
+            }, 
+            customer: "CUS0", 
+            answers: []
+        }
+
+        axios({
+            method: "POST",
+            url: "http://localhost:5000/question/add",
+            data: value,
+        })
+            .then(function (res) {
+                console.log(res);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        setName("");
+        setCity("");
+        setContent("");
+    }
+
   return (
     <Form>
         <Title>ĐẶT CÂU HỎI</Title>
-        <Input type="text" placeholder='Họ và Tên (người được tiêm chủng)'/>
+        <Input type="text" placeholder='Họ và Tên (người được tiêm chủng)' onChange={(e)=>{setName(e.target.value)}} value={name}/>
         <div style={{display: 'flex', gap: '25px'}}>
             <Select name="gender">
                 <option>Giới tính</option>
@@ -96,7 +130,7 @@ const QuestionForm = () => {
         </div>
         <Input type="email" placeholder='Email' />
         <Input type="text" placeholder='Số điện thoại' />
-        <Input type="text" placeholder='Địa chỉ' />
+        <Input type="text" placeholder='Địa chỉ'  onChange={(e)=>{setCity(e.target.value)}} value={city}/>
         <Select>
             <option>Chúng tôi có thể giúp gì cho bạn?</option>
             <option>Vắc xin cho trẻ em</option>
@@ -106,8 +140,8 @@ const QuestionForm = () => {
             <option>Chi phí</option>
             <option>Thủ tục</option>
         </Select>
-        <TextArea placeholder='Câu hỏi của bạn'/>
-        <Submit>GỬI CÂU HỎI</Submit>
+        <TextArea placeholder='Câu hỏi của bạn'  onChange={(e)=>{setContent(e.target.value)}} value={content}/>
+        <Submit onClick={addQuestion}>GỬI CÂU HỎI</Submit>
     </Form>
   )
 }
