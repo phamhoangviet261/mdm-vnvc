@@ -3,7 +3,7 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import styled from "styled-components";
 import axios from "axios";
-import myUrl from "config";
+import myUrl from "components/config/config";
 const Card = styled.div`
     width: 100%;
     border: 1px solid #ddd;

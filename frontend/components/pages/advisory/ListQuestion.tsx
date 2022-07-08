@@ -4,7 +4,7 @@ import PaginationRounded from "components/Pagination";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import QuestionCard from "./QuestionCard";
-import myUrl from "config";
+import myUrl from "components/config/config";
 const List = styled.div`
     flex: 1;
 `;

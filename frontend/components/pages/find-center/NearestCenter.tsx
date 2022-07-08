@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "styles/theme";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
-import myUrl from "config";
+import myUrl from "components/config/config";
 export const Wrapper = styled.div`
     margin: 0 auto;
     text-align: center;

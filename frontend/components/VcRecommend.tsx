@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 import axios from "axios";
-import myUrl from "config";
+import myUrl from "components/config/config";
 const Wrap = styled.div`
     margin-bottom: 20px;
     padding: 0 20px;

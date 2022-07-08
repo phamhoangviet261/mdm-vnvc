@@ -5,7 +5,7 @@ import { theme } from "styles/theme";
 import { useEffect, useState, useContext } from "react";
 import { RegisVcContext } from "components/context/RegisVcContext";
 import axios from "axios";
-import myUrl from "config";
+import myUrl from "components/config/config";
 
 export interface InjectorInfoProps {}
 const InfoWrapper = styled.div``;

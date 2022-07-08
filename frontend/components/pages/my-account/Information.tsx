@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "styles/theme";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import myUrl from "config";
+import myUrl from "components/config/config";
 
 interface MyAccountInterface {
     id?: string;

@@ -4,7 +4,7 @@ import { theme } from "styles/theme";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
-import myUrl from "config";
+import myUrl from "components/config/config";
 const Container = styled.div`
     margin: 60px auto;
     width: 540px;

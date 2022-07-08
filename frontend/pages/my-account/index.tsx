@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { Container } from "@mui/material";
 import { theme } from "styles/theme";
 import axios from "axios";
-import myUrl from "config";
+import myUrl from "components/config/config";
 const Title = styled.div`
     margin-top: 30px;
     padding-bottom: 10px;
