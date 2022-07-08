@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Girl, Banner } from "components";
+import { Banner } from "components";
 import Footer from "layouts/Footer";
 import Header from "layouts/Header";
 import Main from "layouts/Main";
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 export async function getStaticProps() {
     return {
         props: {
-            title: "Homepage",
+            title: "Trang chủ",
             description: "This is a description for homepage",
         },
     };

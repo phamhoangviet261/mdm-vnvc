@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { Container } from "@mui/material";
 import { theme } from "styles/theme";
 import axios from "axios";
-
+import myUrl from "config";
 const Title = styled.div`
     margin-top: 30px;
     padding-bottom: 10px;
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
 
     useEffect(() => {
         if (username != "") {
-            let url = `http://localhost:5000/customer/${username}`;
+            let url = `${myUrl}/customer/${username}`;
             axios({
                 method: "GET",
                 url: url,
@@ -115,7 +115,7 @@ const Home: NextPage = () => {
     useEffect(() => {
         console.log(userData);
     }, [userData]);
-    if (userData.address && userData.vaccinesDetail.length > 0 && username) {
+    if (userData.address && username) {
         return (
             <Layout>
                 <Header />
@@ -196,7 +196,7 @@ interface MyAccountInterface {
 export async function getStaticProps() {
     return {
         props: {
-            title: "My Account",
+            title: "Thông tin của tôi",
             description: "This is a description for my account",
         },
     };

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { theme } from "styles/theme";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import myUrl from "config";
 
 interface MyAccountInterface {
     id?: string;
@@ -129,7 +130,7 @@ export default function InjectorInfo({ userData }: InformationProps) {
     useEffect(() => {
         axios({
             method: "GET",
-            url: "http://localhost:5000/neo4j",
+            url: `${myUrl}/neo4j`,
             data: null,
         })
             .then(function (res) {

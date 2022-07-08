@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 import axios from "axios";
-
+import myUrl from "config";
 const Wrap = styled.div`
     margin-bottom: 20px;
     padding: 0 20px;
@@ -69,7 +69,7 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
     useEffect(() => {
         // axios call api get list vaccines recommendation
         if (id) {
-            let url = `http://localhost:5000/customer/${id}/hint`;
+            let url = `${myUrl}/customer/${id}/hint`;
             axios({
                 method: "GET",
                 url: url,
@@ -86,7 +86,7 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
         }
     }, []);
 
-    return (
+    return listVaccines ? (
         <Wrap>
             <VaccineContainer>
                 <Grid
@@ -96,8 +96,8 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
                 >
                     {listVaccines &&
                         listVaccines.length > 0 &&
-                        listVaccines.map((item) => (
-                            <Grid key={item.id} item xs={6}>
+                        listVaccines.slice(0, 6).map((item, index) => (
+                            <Grid key={index} item xs={6}>
                                 <VaccineItem>
                                     <div className="content-top">
                                         <div className="title">{item.name}</div>
@@ -128,5 +128,7 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
                 </Grid>
             </VaccineContainer>
         </Wrap>
+    ) : (
+        <Wrap>Loading</Wrap>
     );
 }

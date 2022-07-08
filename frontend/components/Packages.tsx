@@ -127,26 +127,6 @@ export default function Category({ listCate2, listPackage2 }: PackagesProps) {
         setListPackageEachCate(tempArr);
     }, [listCate]);
 
-    //call api get list of packages
-    // useEffect(() => {
-    //     console.log("ki z ta");
-    //     let arrCate = [];
-    //     axios({
-    //         method: "GET",
-    //         url: "http://localhost:5000/package/",
-    //         data: null,
-    //     })
-    //         .then(function (res) {
-    //             arrCate = uniqueTarget(res.data.data);
-    //             setListCate(arrCate);
-    //             setListPackage(res.data.data);
-    //             console.log(res.data.data);
-    //         })
-    //         .catch(function (err) {
-    //             console.log(err);
-    //         });
-    // }, []);
-
     const handleChoosePackage = (id: string) => {
         let tempArr = [];
         let checkContains = selectedPackages.includes(id);

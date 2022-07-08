@@ -5,6 +5,8 @@ import { theme } from "styles/theme";
 import { useEffect, useState, useContext } from "react";
 import { RegisVcContext } from "components/context/RegisVcContext";
 import axios from "axios";
+import myUrl from "config";
+
 export interface InjectorInfoProps {}
 const InfoWrapper = styled.div``;
 export const Title = styled.div`
@@ -65,69 +67,6 @@ interface CityInterface {
     city: string;
     districts: string[];
 }
-const data: Array<CityInterface> = [
-    {
-        city: "Thành phố Hồ Chí Minh",
-        districts: [
-            "Quận 1",
-            "Quận 3",
-            "Quận 4",
-            "Quận 5",
-            "Quận 6",
-            "Quận 7",
-            "Quận 8",
-            "Quận 10",
-            "Quận 11",
-            "Quận 12",
-            "Quận Bình Tân",
-            "Quận Bình Thạnh",
-            "Quận Gò Vấp",
-            "Quận Phú Nhuận",
-            "Quận Tân Bình",
-            "Quận Tân Phú",
-            "Huyện Bình Chánh",
-            "Huyện Cần Giờ",
-            "Huyện Củ Chi",
-            "Huyện Nhà Bè",
-            "Huyện Hóc Môn",
-            "Thành phố Thủ Đức ",
-        ],
-    },
-    {
-        city: "Thành phố Hà Nội",
-        districts: [
-            "Quận Ba Đình",
-            "Quận Bắc Từ Liêm",
-            "Quận Cầu Giấy",
-            "Quận Đống Đa",
-            "Quận Hà Đông",
-            "Quận Hai Bà Trưng",
-            "Quận Hoàn Kiếm",
-            "Quận Hoàng Mai",
-            "Quận Long Biên",
-            "Quận Nam Từ Liêm",
-            "Quận Tây Hồ",
-            "Quận Thanh Xuân",
-            "Thị xã Sơn Tây",
-            "Huyện Chương Mỹ",
-            "Huyện Đan Phượng",
-            "Huyện Đông Anh",
-            "Huyện Gia Lâm",
-            "Huyện Hoài Đức",
-            "Huyện Mê Linh",
-            "Huyện Mỹ Đức",
-            "Huyện Phú Xuyên",
-            "Huyện Phúc Thọ",
-            "Huyện Quốc Oai",
-            "Huyện Sóc Sơn",
-            "Huyện Thạch Thất",
-            "Huyện Thanh Oai",
-            "Huyện Thanh Trì",
-            "Huyện Thường Tín",
-            "Huyện Ứng Hoà",
-        ],
-    },
-];
 
 export const exampleSelfData = {
     fullname: "",
@@ -164,7 +103,7 @@ export default function InjectorInfo(props: InjectorInfoProps) {
 
     useEffect(() => {
         if (username != "") {
-            let url = `http://localhost:5000/customer/${username}`;
+            let url = `${myUrl}/customer/${username}`;
             console.log(url);
             axios({
                 method: "GET",
@@ -198,7 +137,7 @@ export default function InjectorInfo(props: InjectorInfoProps) {
     useEffect(() => {
         axios({
             method: "GET",
-            url: "http://localhost:5000/neo4j",
+            url: `${myUrl}/neo4j`,
             data: null,
         })
             .then(function (res) {
