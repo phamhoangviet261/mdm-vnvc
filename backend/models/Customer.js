@@ -47,6 +47,9 @@ const CustomerSchema = new Schema({
     vaccines: {
         type: Array,
     },
+    packages:{
+        type: Array,
+    },
     status: String
 }, { timestamps: true })
 

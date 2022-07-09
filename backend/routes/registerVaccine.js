@@ -75,6 +75,12 @@ router.post('/add', async (req, res, next) => {
         // TODO: get new vaccine from Customer
         let newVaccines = listCustomerVaccines.filter((item) => cus.vaccines.indexOf(item) == -1)
 
+        let vacinesInPackage = [];
+        for(let i = 0; i < listPackages.length; i++){
+            let p = await PackageVaccine.findOne({id: listPackages[i]});
+            vacinesInPackage.push(p);
+        }
+
         // TODO: create relationship
         newVaccines.forEach(async (item) =>{
             const uri = process.env.NEO4J_URI;
@@ -102,7 +108,7 @@ router.post('/add', async (req, res, next) => {
             }
         })
 
-        return res.status(200).json({data: newVaccines});
+        return res.status(200).json({data: newVaccines, resultPackage, listPackages});
     } catch (errors) {
         console.log(errors);
         return res.status(400).json({success: false, message: errors.message});

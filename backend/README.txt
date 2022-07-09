@@ -7,4 +7,5 @@ git commit -m ''
 git push
 git subtree push --prefix backend heroku main
 
+heroku dyno:restart
 

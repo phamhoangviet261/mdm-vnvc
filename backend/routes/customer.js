@@ -127,7 +127,7 @@ router.get('/:phoneNumber/hint', async (req, res, next) => {
         try {
             const node = await session.run(`
             MATCH (:Customer {phone: '${cus.phoneNumber}'})-[:BUY]-(v1:Vaccine)-[:BUY]-(other:Customer) 
-            WITH collect(v1) as listv1
+            WITH collect(v1) as listv1, other
             MATCH (other)-[:BUY]-(v2:Vaccine)
             WHERE not v2 in listv1
             RETURN v2

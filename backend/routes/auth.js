@@ -10,7 +10,7 @@ const Customer = require('../models/Customer')
 // @desc register new user
 // @access public
 router.post('/register', async (req, res) => {       
-    const {phone, phoneNumber, password, name, age, address, addressDetail, status} = req.body;    
+    const {phone, phoneNumber, password, name, dob, age, ccid, address, addressDetail, status} = req.body;    
     // Validation
     if(!phoneNumber || !password) return res.status(400).json({success: false, message: 'Missing phone number or password'})
     try {
