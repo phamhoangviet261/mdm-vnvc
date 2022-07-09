@@ -3,6 +3,7 @@ import { usePageContext } from "components/context/PageContext";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import myUrl from "components/config/config";
+import { useAvisoryContext } from "components/context/AdvisoryContext";
 const Select = styled.select`
     height: 34px;
     outline: none;
@@ -92,6 +93,8 @@ const QuestionForm = () => {
     const [city, setCity] = useState("");
     const [content, setContent] = useState("");
 
+    const AdvisoryContext = useAvisoryContext();
+
     const addQuestion = () => {
         let value = {
             content,
@@ -110,6 +113,7 @@ const QuestionForm = () => {
         })
             .then(function (res) {
                 console.log(res);
+                window.location.reload();
             })
             .catch(function (err) {
                 console.log(err);
@@ -117,6 +121,19 @@ const QuestionForm = () => {
         setName("");
         setCity("");
         setContent("");
+        AdvisoryContext.updateListQuestion(
+            [
+                ...AdvisoryContext.listQuestion,
+                {
+                    content,
+                    customerShortInfo: {
+                        name,
+                        city,
+                    },
+                    answerDetail: [],
+                }
+            ]
+        )
     };
 
     return (

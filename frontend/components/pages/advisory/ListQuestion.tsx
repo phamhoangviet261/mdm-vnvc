@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import QuestionCard from "./QuestionCard";
 import myUrl from "components/config/config";
+import { useAvisoryContext } from "components/context/AdvisoryContext";
 const List = styled.div`
     flex: 1;
 `;
@@ -37,6 +38,9 @@ async function getListQuestion() {
 
 const ListQuestion = () => {
     const [listQuestion, setListQuestion] = useState<QuestionInterface[]>([]);
+    const AdvisoryContext = useAvisoryContext();
+
+    
 
     useEffect(() => {
         axios({
@@ -53,6 +57,7 @@ const ListQuestion = () => {
 
     const PageContext = usePageContext();
     const [pageCount, setPageCount] = useState(1);
+
 
     useEffect(() => {
         if (listQuestion.length > 0) {
