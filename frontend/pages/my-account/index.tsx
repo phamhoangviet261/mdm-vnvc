@@ -179,7 +179,7 @@ const Home: NextPage = () => {
                                         <VcInjected
                                             vaccines={userData.vaccinesDetail}
                                         />
-                                        <Title>Vắn xin liên quan</Title>
+                                        <Title>Gợi ý vắc xin</Title>
                                         <VcRecommend customerId={username} />
                                     </>
                                 )}

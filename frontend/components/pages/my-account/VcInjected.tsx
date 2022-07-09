@@ -45,6 +45,14 @@ const VaccineItem = styled.div`
     }
 `;
 
+const Empty = styled.div`
+    padding: 40px 20px;
+    color: #d6d6d6;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-style: italic;
+    text-align: center;
+`;
 interface VaccinesInterface {
     vaccines: Array<VaccineProps>;
 }
@@ -106,6 +114,10 @@ export default function VcInjected({ vaccines }: any) {
                                 </VaccineItem>
                             </Grid>
                         ))}
+
+                    {listVaccines.length === 0 && (
+                        <Empty>Bạn chưa tiêm vắc xin nào</Empty>
+                    )}
                 </Grid>
             </VaccineContainer>
         </Wrap>

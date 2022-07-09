@@ -54,6 +54,7 @@ const Header: FC<HeaderProps> = () => {
     function logout() {
         localStorage.clear();
         setIsLogin(false);
+        router.push("/login");
     }
 
     const activeFunction = useCallback(
