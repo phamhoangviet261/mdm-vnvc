@@ -7,6 +7,7 @@ export default function PaginationRounded({count}) {
 
   const PageContext = usePageContext();
   function handlePagination (event) {
+    console.log(event.currentTarget.textContent);
     PageContext.updatePage(event.target.textContent);
   }
   return (

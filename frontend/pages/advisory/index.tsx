@@ -9,6 +9,7 @@ import styled from "styled-components";
 import QuestionForm from "components/pages/advisory/QuestionForm";
 import ListQuestion from "components/pages/advisory/ListQuestion";
 import PaginationRounded from "../../components/Pagination";
+import { useState } from "react";
 
 const Container = styled.div`
     width: 90%;
@@ -24,7 +25,25 @@ const AddQuestion = styled.div`
     width: 280px;
 `
 
+interface CustomerShortInfo {
+    name: string;
+    city: string;
+}
+
+interface QuestionInterface {
+    id: string;
+    customerShortInfo: CustomerShortInfo;
+    content: string;
+}
+
 const Home: NextPage = () => {
+
+    const [newQuestion, setNewQuestion] = useState<QuestionInterface>();
+
+    const updateQuestion = (data: QuestionInterface) => {
+        setNewQuestion(data);
+    }
+
     return (
         <div
             style={{
