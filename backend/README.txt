@@ -6,6 +6,7 @@ git status
 git commit -m ''
 git push
 git subtree push --prefix backend heroku main
+heroku logs --tailsss
 
 heroku dyno:restart
 

@@ -16,10 +16,25 @@ import {
 
 const menus = [
     { key: "home", title: "Trang chủ", route: "/" },
-    { key: "market-place", title: "Tìm trung tâm", route: "/find-center" },
-    { key: "our-team", title: "Đăng ký tiêm", route: "/register-vaccine" },
-    { key: "download", title: "Đặt mua vaccine", route: "/buy-vaccine" },
-    { key: "whitepaper", title: "Tư vấn", route: "/advisory" },
+    {
+        key: "find-center",
+        title: "Tìm trung tâm",
+        route: "/find-center",
+        isRequired: true,
+    },
+    {
+        key: "register-vaccine",
+        title: "Đăng ký tiêm",
+        route: "/register-vaccine",
+        isRequired: true,
+    },
+    {
+        key: "buy-vaccine",
+        title: "Đặt mua vaccine",
+        route: "/buy-vaccine",
+        isRequired: true,
+    },
+    { key: "advisory", title: "Tư vấn", route: "/advisory" },
 ];
 
 const Header: FC<HeaderProps> = () => {
@@ -68,18 +83,28 @@ const Header: FC<HeaderProps> = () => {
                         </div>
                         <div className="menu-container">
                             <MenuContainer>
-                                {menus.map(({ route, title, key }) => (
-                                    <li
-                                        key={key}
-                                        className={
-                                            activeFunction(route)
-                                                ? "active"
-                                                : ""
-                                        }
-                                    >
-                                        <Link href={route}>{title}</Link>
-                                    </li>
-                                ))}
+                                {menus.map(
+                                    ({ route, title, key, isRequired }) => (
+                                        <li
+                                            key={key}
+                                            className={
+                                                activeFunction(route)
+                                                    ? "active"
+                                                    : ""
+                                            }
+                                        >
+                                            <Link
+                                                href={
+                                                    isRequired && !isLogin
+                                                        ? "/login"
+                                                        : route
+                                                }
+                                            >
+                                                {title}
+                                            </Link>
+                                        </li>
+                                    )
+                                )}
                             </MenuContainer>
                             <form className="form-search">
                                 <input placeholder="Tìm kiếm vaccine" />

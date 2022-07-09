@@ -4,8 +4,9 @@ import { Grid } from "@mui/material";
 import axios from "axios";
 import { theme } from "styles/theme";
 import { RegisVcContext } from "components/context/RegisVcContext";
-
+import { useRouter } from "next/router";
 import myUrl from "components/config/config";
+import Loading from "./Loading";
 const Wrap = styled.div`
     margin-bottom: 20px;
     padding: 0 20px;
@@ -59,8 +60,19 @@ const VaccineItem = styled.div`
         transition: all 0.2 linear;
         color: white;
         &:hover {
-            background-color: ${theme?.colors?.pink4};
+            background-color: #35944A;
         }
+    }
+`;
+
+const LoadingComponent = styled.div`
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        padding-left: 14px;
+        font-size: 16px;
     }
 `;
 
@@ -84,7 +96,7 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
     const [selectedVaccines, setSelectedVaccines] = useState([]);
 
     const regisVcContext = useContext(RegisVcContext);
-
+    const router = useRouter();
     useEffect(() => {
         // axios call api get list vaccines recommendation
         if (id) {
@@ -110,6 +122,7 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
         let tempArr = [...regisVcContext.listVxBuy, item];
         console.log("tempArr:", tempArr);
         regisVcContext.updateListVxBuy([...regisVcContext.listVxBuy, item]);
+        router.push("/buy-vaccine");
     }
 
     return listVaccines ? (
@@ -161,6 +174,9 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
             </VaccineContainer>
         </Wrap>
     ) : (
-        <Wrap>Loading</Wrap>
+        <LoadingComponent>
+            <Loading />
+            <h2>Loading...</h2>
+        </LoadingComponent>
     );
 }
