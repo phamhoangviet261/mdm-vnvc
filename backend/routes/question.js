@@ -50,5 +50,18 @@ router.post('/add', async (req, res, next) => {
     }
     
 })
+router.post('/update/:questionId', async (req, res, next) => {
+    try {
+        const {name} = req.body;
+        const qs = await Question.findOne({id: req.params.questionId});
+        
+        const newQuestion = await Question.findOneAndUpdate({id: req.params.questionId}, {"customerShortInfo.name": name}, {new: true});
+        return res.status(200).json({data: newQuestion});
+    } catch (errors) {
+        console.log(errors);
+        return res.status(400).json({success: false, message: errors.message});
+    }
+    
+})
 
 module.exports = router
