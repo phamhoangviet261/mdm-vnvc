@@ -51,3 +51,7 @@ npm start
 > 18120302 - Pham Hai Dang
 
 > 18120303 - Phan Khac Thanh Danh
+
+## Domain
+Server: https://mdm-vnvc.herokuapp.com/
+Client: https://mdm-vnvc.vercel.app/
