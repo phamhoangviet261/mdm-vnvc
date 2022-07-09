@@ -2,7 +2,7 @@ import * as React from "react";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { theme } from "styles/theme";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useMemo } from "react";
 import axios from "axios";
 import myUrl from "components/config/config";
 
@@ -108,9 +108,13 @@ export default function InjectorInfo({ userData }: InformationProps) {
     const [city, setCity] = useState("");
     const [district, setDistrict] = useState("");
     const [districts, setDistricts] = useState<DistrictInterface[]>([]);
+
+    const birthday = useMemo(() => {
+        return userData.dob ? userData.dob.slice(0, 10) : "";
+    }, []);
     const [values, setValues] = useState({
         fullname: userData.name,
-        dob: userData.dob.slice(0, 10) || "2022-07-01",
+        dob: birthday,
         gender: userData.gender || "Nam",
         city: "",
         district: "",

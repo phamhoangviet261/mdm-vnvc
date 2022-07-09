@@ -222,30 +222,32 @@ const Checkout: NextPage = () => {
     }
 
     function handleSubmit() {
+        let tempArr = regisVcContext.listVxBuy.map((x) => x.id);
         const data = {
             customerId: regisVcContext.customerId,
             regisAnotherInfo: regisVcContext.regisAnotherInfo,
             serviceInfo: regisVcContext.serviceInfo,
-            listVxBuy: regisVcContext.listVxBuy,
+            listPackages: regisVcContext.listPackages,
+            listVaccines: tempArr,
         };
         console.log("full data:", data);
 
         regisVcContext.updateListVxBuy([]);
-        // axios({
-        //     method: "POST",
-        //     url: `${myUrl}/registervaccine/add`,
-        //     data: data,
-        // })
-        //     .then(function (res) {
-        //         console.log("handle result:", res);
-        //         if (res.status === 200) {
-        //             console.log("ccc");
-        //             setResult(true);
-        //         }
-        //     })
-        //     .catch(function (err) {
-        //         console.log(err);
-        //     });
+        axios({
+            method: "POST",
+            url: `${myUrl}/registervaccine/add`,
+            data: data,
+        })
+            .then(function (res) {
+                console.log("handle result:", res);
+                if (res.status === 200) {
+                    console.log("ccc");
+                    setResult(true);
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
     }
 
     function handleClickTabRegis() {

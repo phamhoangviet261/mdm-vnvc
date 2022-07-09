@@ -135,41 +135,55 @@ export default function VcRecommend({ customerId }: VcRecommendInterface) {
                 >
                     {listVaccines &&
                         listVaccines.length > 0 &&
-                        listVaccines.slice(0, 6).map((item, index) => (
-                            <Grid key={index} item xs={6}>
-                                <VaccineItem>
-                                    <div className="content-top">
-                                        <div className="title">{item.name}</div>
-                                        <div className="price">
-                                            {item.preorderPrice.toLocaleString(
-                                                "vi"
-                                            )}
-                                            đ
-                                        </div>
-                                    </div>
-                                    <div className="content-bottom">
-                                        <div className="id">
-                                            <span>Mã vắc-xin:</span>
-                                            {item.id}
-                                        </div>
-                                        <div className="origin">
-                                            <span>Xuất xứ:</span>
-                                            {item.producingCountry}
-                                        </div>
-                                        <div className="desc">
-                                            <span>Ngăn ngừa: </span>
-                                            {item.prevention}
-                                        </div>
-                                        <div
-                                            className="buy"
-                                            onClick={() => handleClickBuy(item)}
-                                        >
-                                            Đặt mua
-                                        </div>
-                                    </div>
-                                </VaccineItem>
-                            </Grid>
-                        ))}
+                        listVaccines.slice(0, 6).map((item, index) => {
+                            if (
+                                regisVcContext.listVxBuy.some(
+                                    (x) => x.id === item.id
+                                )
+                            ) {
+                                return null;
+                            } else {
+                                return (
+                                    <Grid key={index} item xs={6}>
+                                        <VaccineItem>
+                                            <div className="content-top">
+                                                <div className="title">
+                                                    {item.name}
+                                                </div>
+                                                <div className="price">
+                                                    {item.preorderPrice.toLocaleString(
+                                                        "vi"
+                                                    )}
+                                                    đ
+                                                </div>
+                                            </div>
+                                            <div className="content-bottom">
+                                                <div className="id">
+                                                    <span>Mã vắc-xin:</span>
+                                                    {item.id}
+                                                </div>
+                                                <div className="origin">
+                                                    <span>Xuất xứ:</span>
+                                                    {item.producingCountry}
+                                                </div>
+                                                <div className="desc">
+                                                    <span>Ngăn ngừa: </span>
+                                                    {item.prevention}
+                                                </div>
+                                                <div
+                                                    className="buy"
+                                                    onClick={() =>
+                                                        handleClickBuy(item)
+                                                    }
+                                                >
+                                                    Đặt mua
+                                                </div>
+                                            </div>
+                                        </VaccineItem>
+                                    </Grid>
+                                );
+                            }
+                        })}
                 </Grid>
             </VaccineContainer>
         </Wrap>
